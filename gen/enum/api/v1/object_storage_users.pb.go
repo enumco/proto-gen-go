@@ -23,14 +23,20 @@ const (
 )
 
 type ObjectStorageUser struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ProjectId     string                 `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	CreatedBy     string                 `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Status        ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProjectId string                 `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// Deprecated: use `name` instead. This field is still populated on responses
+	// for backwards compatibility and will be removed in a future API version.
+	//
+	// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users.proto.
+	DisplayName string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	CreatedBy   string                 `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Status      ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
+	// Unique name of the object storage user within the project. Replaces `display_name`.
+	Name          string `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -79,6 +85,7 @@ func (x *ObjectStorageUser) GetProjectId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users.proto.
 func (x *ObjectStorageUser) GetDisplayName() string {
 	if x != nil {
 		return x.DisplayName
@@ -114,23 +121,31 @@ func (x *ObjectStorageUser) GetStatus() ResourceStatus {
 	return ResourceStatus_RESOURCE_STATUS_UNSPECIFIED
 }
 
+func (x *ObjectStorageUser) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_enum_api_v1_object_storage_users_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_users_proto_rawDesc = "" +
 	"\n" +
-	"&enum/api/v1/object_storage_users.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xaf\x02\n" +
+	"&enum/api/v1/object_storage_users.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc7\x02\n" +
 	"\x11ObjectStorageUser\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x02 \x01(\tR\tprojectId\x12!\n" +
-	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x1d\n" +
+	"project_id\x18\x02 \x01(\tR\tprojectId\x12%\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x02\x18\x01R\vdisplayName\x12\x1d\n" +
 	"\n" +
 	"created_by\x18\x04 \x01(\tR\tcreatedBy\x129\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
-	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06statusB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06status\x12\x12\n" +
+	"\x04name\x18\b \x01(\tR\x04nameB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_users_proto_rawDescOnce sync.Once

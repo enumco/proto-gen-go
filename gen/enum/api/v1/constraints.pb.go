@@ -118,6 +118,38 @@ var file_enum_api_v1_constraints_proto_extTypes = []protoimpl.ExtensionInfo{
 		Tag:           "varint,80017,opt,name=s3bucket_name",
 		Filename:      "enum/api/v1/constraints.proto",
 	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80018,
+		Name:          "enum.api.v1.dnszone_id",
+		Tag:           "varint,80018,opt,name=dnszone_id",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80019,
+		Name:          "enum.api.v1.dnsrecord_id",
+		Tag:           "varint,80019,opt,name=dnsrecord_id",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80020,
+		Name:          "enum.api.v1.dns_zone_name",
+		Tag:           "varint,80020,opt,name=dns_zone_name",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80021,
+		Name:          "enum.api.v1.dns_record_name",
+		Tag:           "varint,80021,opt,name=dns_record_name",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
 }
 
 // Extension fields to validate.StringRules.
@@ -172,6 +204,25 @@ var (
 	//
 	// optional bool s3bucket_name = 80017;
 	E_S3BucketName = &file_enum_api_v1_constraints_proto_extTypes[11]
+	// DNS zone ID (TypeID: dnszone-{base32_ulid}).
+	//
+	// optional bool dnszone_id = 80018;
+	E_DnszoneId = &file_enum_api_v1_constraints_proto_extTypes[12]
+	// DNS record ID (TypeID: dnsrecord-{base32_ulid}).
+	//
+	// optional bool dnsrecord_id = 80019;
+	E_DnsrecordId = &file_enum_api_v1_constraints_proto_extTypes[13]
+	// DNS zone apex name: fully qualified domain, 1-253 chars, lowercase.
+	//
+	// optional bool dns_zone_name = 80020;
+	E_DnsZoneName = &file_enum_api_v1_constraints_proto_extTypes[14]
+	// DNS record owner name: an FQDN, 1-253 chars. Allows wildcards and
+	// underscore labels (e.g. *.example.com, _acme-challenge.example.com). The
+	// apex is addressed by the zone name itself. Rigorous per-type validation
+	// happens server-side.
+	//
+	// optional bool dns_record_name = 80021;
+	E_DnsRecordName = &file_enum_api_v1_constraints_proto_extTypes[15]
 )
 
 var File_enum_api_v1_constraints_proto protoreflect.FileDescriptor
@@ -215,7 +266,20 @@ const file_enum_api_v1_constraints_proto_rawDesc = "" +
 	"s3bucketId:\x9a\x02\n" +
 	"\rs3bucket_name\x12\x19.buf.validate.StringRules\x18\x91\xf1\x04 \x01(\bB\xd7\x01\xc2H\xd3\x01\n" +
 	"\xd0\x01\n" +
-	"\x14string.s3bucket_name\x12`must be 3-63 lowercase alphanumeric characters or hyphens, starting and ending with alphanumeric\x1aVsize(this) >= 3 && size(this) <= 63 && this.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?$')R\fs3bucketNameB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
+	"\x14string.s3bucket_name\x12`must be 3-63 lowercase alphanumeric characters or hyphens, starting and ending with alphanumeric\x1aVsize(this) >= 3 && size(this) <= 63 && this.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?$')R\fs3bucketName:\xc6\x01\n" +
+	"\n" +
+	"dnszone_id\x12\x19.buf.validate.StringRules\x18\x92\xf1\x04 \x01(\bB\x89\x01\xc2H\x85\x01\n" +
+	"\x82\x01\n" +
+	"\x11string.dnszone_id\x12Emust be a valid DNS zone ID (e.g. dnszone-01kmyy4apq8h8ysq42b1sqnrkc)\x1a&this.matches('^dnszone-[0-9a-z]{26}$')R\tdnszoneId:\xd2\x01\n" +
+	"\fdnsrecord_id\x12\x19.buf.validate.StringRules\x18\x93\xf1\x04 \x01(\bB\x91\x01\xc2H\x8d\x01\n" +
+	"\x8a\x01\n" +
+	"\x13string.dnsrecord_id\x12Imust be a valid DNS record ID (e.g. dnsrecord-01kmyy4apq8h8ysq42b1sqnrkc)\x1a(this.matches('^dnsrecord-[0-9a-z]{26}$')R\vdnsrecordId:\x86\x02\n" +
+	"\rdns_zone_name\x12\x19.buf.validate.StringRules\x18\x94\xf1\x04 \x01(\bB\xc4\x01\xc2H\xc0\x01\n" +
+	"\xbd\x01\n" +
+	"\x14string.dns_zone_name\x128must be a valid lowercase domain name (e.g. example.com)\x1aksize(this) >= 1 && size(this) <= 253 && this.matches('^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\\\.)+[a-z]{2,}$')R\vdnsZoneName:\xf9\x01\n" +
+	"\x0fdns_record_name\x12\x19.buf.validate.StringRules\x18\x95\xf1\x04 \x01(\bB\xb3\x01\xc2H\xaf\x01\n" +
+	"\xac\x01\n" +
+	"\x16string.dns_record_name\x12-must be a valid record name, 1-253 characters\x1acsize(this) >= 1 && size(this) <= 253 && this.matches('^[a-z0-9_*]([a-z0-9-_.]{0,251}[a-z0-9_.])?$')R\rdnsRecordNameB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
 
 var file_enum_api_v1_constraints_proto_goTypes = []any{
 	(*validate.StringRules)(nil), // 0: buf.validate.StringRules
@@ -233,10 +297,14 @@ var file_enum_api_v1_constraints_proto_depIdxs = []int32{
 	0,  // 9: enum.api.v1.s3key_id:extendee -> buf.validate.StringRules
 	0,  // 10: enum.api.v1.s3bucket_id:extendee -> buf.validate.StringRules
 	0,  // 11: enum.api.v1.s3bucket_name:extendee -> buf.validate.StringRules
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	0,  // [0:12] is the sub-list for extension extendee
+	0,  // 12: enum.api.v1.dnszone_id:extendee -> buf.validate.StringRules
+	0,  // 13: enum.api.v1.dnsrecord_id:extendee -> buf.validate.StringRules
+	0,  // 14: enum.api.v1.dns_zone_name:extendee -> buf.validate.StringRules
+	0,  // 15: enum.api.v1.dns_record_name:extendee -> buf.validate.StringRules
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	0,  // [0:16] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -252,7 +320,7 @@ func file_enum_api_v1_constraints_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_constraints_proto_rawDesc), len(file_enum_api_v1_constraints_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 12,
+			NumExtensions: 16,
 			NumServices:   0,
 		},
 		GoTypes:           file_enum_api_v1_constraints_proto_goTypes,

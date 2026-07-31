@@ -25,9 +25,11 @@ const (
 )
 
 type ListProjectsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrgId         string                 `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	Page          *PageRequest           `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Optional organization filter. When empty, returns projects across every
+	// organization the caller has access to.
+	OrgId         string       `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+	Page          *PageRequest `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -708,9 +710,9 @@ var File_enum_api_v1_projects_service_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_projects_service_proto_rawDesc = "" +
 	"\n" +
-	"\"enum/api/v1/projects_service.proto\x12\venum.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bopenapiv3/annotations.proto\x1a\x18enum/api/v1/common.proto\x1a\x1denum/api/v1/constraints.proto\x1a\x19enum/api/v1/options.proto\x1a\x1aenum/api/v1/projects.proto\x1a\x17enum/api/v1/users.proto\"\x86\x01\n" +
-	"\x13ListProjectsRequest\x12A\n" +
-	"\x06org_id\x18\x01 \x01(\tB*\xbaH'r%Ј'\x01\x92\x02\x1eorg-01kmyy47ynabkw0vq7bekg4e27R\x05orgId\x12,\n" +
+	"\"enum/api/v1/projects_service.proto\x12\venum.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bopenapiv3/annotations.proto\x1a\x18enum/api/v1/common.proto\x1a\x1denum/api/v1/constraints.proto\x1a\x19enum/api/v1/options.proto\x1a\x1aenum/api/v1/projects.proto\x1a\x17enum/api/v1/users.proto\"\x89\x01\n" +
+	"\x13ListProjectsRequest\x12D\n" +
+	"\x06org_id\x18\x01 \x01(\tB-\xbaH*\xd8\x01\x01r%Ј'\x01\x92\x02\x1eorg-01kmyy47ynabkw0vq7bekg4e27R\x05orgId\x12,\n" +
 	"\x04page\x18\x02 \x01(\v2\x18.enum.api.v1.PageRequestR\x04page\"w\n" +
 	"\x14ListProjectsResponse\x120\n" +
 	"\bprojects\x18\x01 \x03(\v2\x14.enum.api.v1.ProjectR\bprojects\x12-\n" +

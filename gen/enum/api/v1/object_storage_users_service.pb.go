@@ -225,9 +225,15 @@ func (x *GetObjectStorageUserResponse) GetObjectStorageUser() *ObjectStorageUser
 }
 
 type CreateObjectStorageUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// Deprecated: use `name` instead. Still accepted for backwards compatibility
+	// and will be removed in a future API version.
+	//
+	// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users_service.proto.
+	DisplayName string `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Unique name of the object storage user within the project. Replaces `display_name`.
+	Name          string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -269,9 +275,17 @@ func (x *CreateObjectStorageUserRequest) GetProjectId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users_service.proto.
 func (x *CreateObjectStorageUserRequest) GetDisplayName() string {
 	if x != nil {
 		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *CreateObjectStorageUserRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -321,10 +335,16 @@ func (x *CreateObjectStorageUserResponse) GetObjectStorageUser() *ObjectStorageU
 }
 
 type UpdateObjectStorageUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id        string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Deprecated: use `name` instead. Still accepted for backwards compatibility
+	// and will be removed in a future API version.
+	//
+	// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users_service.proto.
+	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Unique name of the object storage user within the project. Replaces `display_name`.
+	Name          string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -373,9 +393,17 @@ func (x *UpdateObjectStorageUserRequest) GetId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in enum/api/v1/object_storage_users_service.proto.
 func (x *UpdateObjectStorageUserRequest) GetDisplayName() string {
 	if x != nil {
 		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *UpdateObjectStorageUserRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -529,18 +557,22 @@ const file_enum_api_v1_object_storage_users_service_proto_rawDesc = "" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12=\n" +
 	"\x02id\x18\x02 \x01(\tB-\xbaH*r(\xf0\x88'\x01\x92\x02!s3user-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"n\n" +
 	"\x1cGetObjectStorageUserResponse\x12N\n" +
-	"\x13object_storage_user\x18\x01 \x01(\v2\x1e.enum.api.v1.ObjectStorageUserR\x11objectStorageUser\"\x9a\x01\n" +
+	"\x13object_storage_user\x18\x01 \x01(\v2\x1e.enum.api.v1.ObjectStorageUserR\x11objectStorageUser\"\xd2\x02\n" +
 	"\x1eCreateObjectStorageUserRequest\x12J\n" +
 	"\n" +
-	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12,\n" +
-	"\fdisplay_name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x90\x88'\x01R\vdisplayName\"}\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x121\n" +
+	"\fdisplay_name\x18\x02 \x01(\tB\x0e\xbaH\t\xd8\x01\x01r\x04\x90\x88'\x01\x18\x01R\vdisplayName\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\xbaH\t\xd8\x01\x01r\x04\x90\x88'\x01R\x04name:\x8e\x01\xbaH\x8a\x01\x1a\x87\x01\n" +
+	"(create_object_storage_user.name_required\x12'either name or display_name must be set\x1a2size(this.name) > 0 || size(this.display_name) > 0\"}\n" +
 	"\x1fCreateObjectStorageUserResponse\x12N\n" +
-	"\x13object_storage_user\x18\x01 \x01(\v2\x1e.enum.api.v1.ObjectStorageUserR\x11objectStorageUserJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\xd9\x01\n" +
+	"\x13object_storage_user\x18\x01 \x01(\v2\x1e.enum.api.v1.ObjectStorageUserR\x11objectStorageUserJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04\"\x91\x03\n" +
 	"\x1eUpdateObjectStorageUserRequest\x12J\n" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12=\n" +
-	"\x02id\x18\x02 \x01(\tB-\xbaH*r(\xf0\x88'\x01\x92\x02!s3user-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x12,\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x90\x88'\x01R\vdisplayName\"q\n" +
+	"\x02id\x18\x02 \x01(\tB-\xbaH*r(\xf0\x88'\x01\x92\x02!s3user-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x121\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x0e\xbaH\t\xd8\x01\x01r\x04\x90\x88'\x01\x18\x01R\vdisplayName\x12 \n" +
+	"\x04name\x18\x04 \x01(\tB\f\xbaH\t\xd8\x01\x01r\x04\x90\x88'\x01R\x04name:\x8e\x01\xbaH\x8a\x01\x1a\x87\x01\n" +
+	"(update_object_storage_user.name_required\x12'either name or display_name must be set\x1a2size(this.name) > 0 || size(this.display_name) > 0\"q\n" +
 	"\x1fUpdateObjectStorageUserResponse\x12N\n" +
 	"\x13object_storage_user\x18\x01 \x01(\v2\x1e.enum.api.v1.ObjectStorageUserR\x11objectStorageUser\"\xab\x01\n" +
 	"\x1eDeleteObjectStorageUserRequest\x12J\n" +
