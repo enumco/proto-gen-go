@@ -23,14 +23,18 @@ const (
 )
 
 type Project struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	OrgId         string                 `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	Labels        map[string]string      `protobuf:"bytes,5,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	OrgId       string                 `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+	Name        string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Description string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Labels      map[string]string      `protobuf:"bytes,5,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// Default region for regional resource creates when the request omits region_id.
+	DefaultRegionId string `protobuf:"bytes,8,opt,name=default_region_id,json=defaultRegionId,proto3" json:"default_region_id,omitempty"`
+	// Default availability zone for zonal resource creates when the request omits zone_id.
+	DefaultZoneId string `protobuf:"bytes,9,opt,name=default_zone_id,json=defaultZoneId,proto3" json:"default_zone_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -114,11 +118,25 @@ func (x *Project) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Project) GetDefaultRegionId() string {
+	if x != nil {
+		return x.DefaultRegionId
+	}
+	return ""
+}
+
+func (x *Project) GetDefaultZoneId() string {
+	if x != nil {
+		return x.DefaultZoneId
+	}
+	return ""
+}
+
 var File_enum_api_v1_projects_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_projects_proto_rawDesc = "" +
 	"\n" +
-	"\x1aenum/api/v1/projects.proto\x12\venum.api.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd1\x02\n" +
+	"\x1aenum/api/v1/projects.proto\x12\venum.api.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa5\x03\n" +
 	"\aProject\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x15\n" +
 	"\x06org_id\x18\x02 \x01(\tR\x05orgId\x12\x12\n" +
@@ -128,7 +146,9 @@ const file_enum_api_v1_projects_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x1a9\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12*\n" +
+	"\x11default_region_id\x18\b \x01(\tR\x0fdefaultRegionId\x12&\n" +
+	"\x0fdefault_zone_id\x18\t \x01(\tR\rdefaultZoneId\x1a9\n" +
 	"\vLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"

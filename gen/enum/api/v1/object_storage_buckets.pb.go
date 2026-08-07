@@ -23,14 +23,16 @@ const (
 )
 
 type ObjectStorageBucket struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ProjectId     string                 `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	CreatedBy     string                 `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Status        ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProjectId string                 `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Name      string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedBy string                 `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Status    ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
+	// Region where the bucket lives (e.g. "fra").
+	RegionId      string `protobuf:"bytes,8,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -114,11 +116,18 @@ func (x *ObjectStorageBucket) GetStatus() ResourceStatus {
 	return ResourceStatus_RESOURCE_STATUS_UNSPECIFIED
 }
 
+func (x *ObjectStorageBucket) GetRegionId() string {
+	if x != nil {
+		return x.RegionId
+	}
+	return ""
+}
+
 var File_enum_api_v1_object_storage_buckets_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"\n" +
-	"(enum/api/v1/object_storage_buckets.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa2\x02\n" +
+	"(enum/api/v1/object_storage_buckets.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x02\n" +
 	"\x13ObjectStorageBucket\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -130,7 +139,8 @@ const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
-	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06statusB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06status\x12\x1b\n" +
+	"\tregion_id\x18\b \x01(\tR\bregionIdB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_buckets_proto_rawDescOnce sync.Once

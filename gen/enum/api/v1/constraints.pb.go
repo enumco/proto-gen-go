@@ -150,6 +150,22 @@ var file_enum_api_v1_constraints_proto_extTypes = []protoimpl.ExtensionInfo{
 		Tag:           "varint,80021,opt,name=dns_record_name",
 		Filename:      "enum/api/v1/constraints.proto",
 	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80022,
+		Name:          "enum.api.v1.region_code",
+		Tag:           "varint,80022,opt,name=region_code",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80023,
+		Name:          "enum.api.v1.zone_code",
+		Tag:           "varint,80023,opt,name=zone_code",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
 }
 
 // Extension fields to validate.StringRules.
@@ -223,6 +239,14 @@ var (
 	//
 	// optional bool dns_record_name = 80021;
 	E_DnsRecordName = &file_enum_api_v1_constraints_proto_extTypes[15]
+	// Region code (e.g. fra)
+	//
+	// optional bool region_code = 80022;
+	E_RegionCode = &file_enum_api_v1_constraints_proto_extTypes[16]
+	// Availability zone code (e.g. fra-a)
+	//
+	// optional bool zone_code = 80023;
+	E_ZoneCode = &file_enum_api_v1_constraints_proto_extTypes[17]
 )
 
 var File_enum_api_v1_constraints_proto protoreflect.FileDescriptor
@@ -279,7 +303,14 @@ const file_enum_api_v1_constraints_proto_rawDesc = "" +
 	"\x14string.dns_zone_name\x128must be a valid lowercase domain name (e.g. example.com)\x1aksize(this) >= 1 && size(this) <= 253 && this.matches('^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\\\.)+[a-z]{2,}$')R\vdnsZoneName:\xf9\x01\n" +
 	"\x0fdns_record_name\x12\x19.buf.validate.StringRules\x18\x95\xf1\x04 \x01(\bB\xb3\x01\xc2H\xaf\x01\n" +
 	"\xac\x01\n" +
-	"\x16string.dns_record_name\x12-must be a valid record name, 1-253 characters\x1acsize(this) >= 1 && size(this) <= 253 && this.matches('^[a-z0-9_*]([a-z0-9-_.]{0,251}[a-z0-9_.])?$')R\rdnsRecordNameB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
+	"\x16string.dns_record_name\x12-must be a valid record name, 1-253 characters\x1acsize(this) >= 1 && size(this) <= 253 && this.matches('^[a-z0-9_*]([a-z0-9-_.]{0,251}[a-z0-9_.])?$')R\rdnsRecordName:\xa7\x01\n" +
+	"\vregion_code\x12\x19.buf.validate.StringRules\x18\x96\xf1\x04 \x01(\bBi\xc2Hf\n" +
+	"d\n" +
+	"\x12string.region_code\x12&must be a valid region code (e.g. fra)\x1a&this.matches('^[a-z][a-z0-9-]{1,15}$')R\n" +
+	"regionCode:\xae\x01\n" +
+	"\tzone_code\x12\x19.buf.validate.StringRules\x18\x97\xf1\x04 \x01(\bBt\xc2Hq\n" +
+	"o\n" +
+	"\x10string.zone_code\x123must be a valid availability zone code (e.g. fra-a)\x1a&this.matches('^[a-z][a-z0-9-]{1,15}$')R\bzoneCodeB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
 
 var file_enum_api_v1_constraints_proto_goTypes = []any{
 	(*validate.StringRules)(nil), // 0: buf.validate.StringRules
@@ -301,10 +332,12 @@ var file_enum_api_v1_constraints_proto_depIdxs = []int32{
 	0,  // 13: enum.api.v1.dnsrecord_id:extendee -> buf.validate.StringRules
 	0,  // 14: enum.api.v1.dns_zone_name:extendee -> buf.validate.StringRules
 	0,  // 15: enum.api.v1.dns_record_name:extendee -> buf.validate.StringRules
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	0,  // [0:16] is the sub-list for extension extendee
+	0,  // 16: enum.api.v1.region_code:extendee -> buf.validate.StringRules
+	0,  // 17: enum.api.v1.zone_code:extendee -> buf.validate.StringRules
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	0,  // [0:18] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -320,7 +353,7 @@ func file_enum_api_v1_constraints_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_constraints_proto_rawDesc), len(file_enum_api_v1_constraints_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 16,
+			NumExtensions: 18,
 			NumServices:   0,
 		},
 		GoTypes:           file_enum_api_v1_constraints_proto_goTypes,

@@ -209,9 +209,11 @@ func (x *GetObjectStorageBucketResponse) GetObjectStorageBucket() *ObjectStorage
 }
 
 type CreateObjectStorageBucketRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Name      string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Region for the bucket. When empty, the project's default_region_id is used.
+	RegionId      string `protobuf:"bytes,3,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -256,6 +258,13 @@ func (x *CreateObjectStorageBucketRequest) GetProjectId() string {
 func (x *CreateObjectStorageBucketRequest) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateObjectStorageBucketRequest) GetRegionId() string {
+	if x != nil {
+		return x.RegionId
 	}
 	return ""
 }
@@ -407,11 +416,13 @@ const file_enum_api_v1_object_storage_buckets_service_proto_rawDesc = "" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
 	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"v\n" +
 	"\x1eGetObjectStorageBucketResponse\x12T\n" +
-	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\x8d\x01\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xbe\x01\n" +
 	" CreateObjectStorageBucketRequest\x12J\n" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12\x1d\n" +
-	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x88\x89'\x01R\x04name\"y\n" +
+	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x88\x89'\x01R\x04name\x12/\n" +
+	"\tregion_id\x18\x03 \x01(\tB\x12\xbaH\x0f\xd8\x01\x01r\n" +
+	"\xb0\x89'\x01\x92\x02\x03fraR\bregionId\"y\n" +
 	"!CreateObjectStorageBucketResponse\x12T\n" +
 	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xaf\x01\n" +
 	" DeleteObjectStorageBucketRequest\x12J\n" +

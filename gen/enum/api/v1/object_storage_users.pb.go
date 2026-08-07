@@ -36,7 +36,9 @@ type ObjectStorageUser struct {
 	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Status      ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
 	// Unique name of the object storage user within the project. Replaces `display_name`.
-	Name          string `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	// Region where the user lives (e.g. "fra").
+	RegionId      string `protobuf:"bytes,9,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -128,11 +130,18 @@ func (x *ObjectStorageUser) GetName() string {
 	return ""
 }
 
+func (x *ObjectStorageUser) GetRegionId() string {
+	if x != nil {
+		return x.RegionId
+	}
+	return ""
+}
+
 var File_enum_api_v1_object_storage_users_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_users_proto_rawDesc = "" +
 	"\n" +
-	"&enum/api/v1/object_storage_users.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc7\x02\n" +
+	"&enum/api/v1/object_storage_users.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x02\n" +
 	"\x11ObjectStorageUser\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -145,7 +154,8 @@ const file_enum_api_v1_object_storage_users_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
 	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06status\x12\x12\n" +
-	"\x04name\x18\b \x01(\tR\x04nameB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x04name\x18\b \x01(\tR\x04name\x12\x1b\n" +
+	"\tregion_id\x18\t \x01(\tR\bregionIdB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_users_proto_rawDescOnce sync.Once

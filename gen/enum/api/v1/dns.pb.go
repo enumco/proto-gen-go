@@ -162,6 +162,9 @@ type DnssecStatus struct {
 	Ds            []string               `protobuf:"bytes,3,rep,name=ds,proto3" json:"ds,omitempty"`
 	DsPublished   bool                   `protobuf:"varint,4,opt,name=ds_published,json=dsPublished,proto3" json:"ds_published,omitempty"`
 	DsPublishedAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ds_published_at,json=dsPublishedAt,proto3" json:"ds_published_at,omitempty"`
+	// Zone signing keys in DNSKEY presentation format ("flag protocol algorithm
+	// public_key"), for registrars that take a key instead of a DS digest.
+	Dnskey        []string `protobuf:"bytes,6,rep,name=dnskey,proto3" json:"dnskey,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -227,6 +230,13 @@ func (x *DnssecStatus) GetDsPublished() bool {
 func (x *DnssecStatus) GetDsPublishedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DsPublishedAt
+	}
+	return nil
+}
+
+func (x *DnssecStatus) GetDnskey() []string {
+	if x != nil {
+		return x.Dnskey
 	}
 	return nil
 }
@@ -412,13 +422,14 @@ const file_enum_api_v1_dns_proto_rawDesc = "" +
 	"\x12deletion_protected\x18\n" +
 	" \x01(\bR\x11deletionProtected\x121\n" +
 	"\x06dnssec\x18\v \x01(\v2\x19.enum.api.v1.DnssecStatusR\x06dnssec\x121\n" +
-	"\x14observed_nameservers\x18\f \x03(\tR\x13observedNameservers\"\xbd\x01\n" +
+	"\x14observed_nameservers\x18\f \x03(\tR\x13observedNameservers\"\xd5\x01\n" +
 	"\fDnssecStatus\x12\x18\n" +
 	"\aenabled\x18\x01 \x01(\bR\aenabled\x12\x1c\n" +
 	"\talgorithm\x18\x02 \x01(\tR\talgorithm\x12\x0e\n" +
 	"\x02ds\x18\x03 \x03(\tR\x02ds\x12!\n" +
 	"\fds_published\x18\x04 \x01(\bR\vdsPublished\x12B\n" +
-	"\x0fds_published_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\rdsPublishedAt\"\x9e\x02\n" +
+	"\x0fds_published_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\rdsPublishedAt\x12\x16\n" +
+	"\x06dnskey\x18\x06 \x03(\tR\x06dnskey\"\x9e\x02\n" +
 	"\fDnsRecordSet\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\azone_id\x18\x02 \x01(\tR\x06zoneId\x12\x12\n" +
