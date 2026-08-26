@@ -31,7 +31,8 @@ type DnsZone struct {
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// Set once ownership is proven and the zone is served.
 	VerifiedAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=verified_at,json=verifiedAt,proto3" json:"verified_at,omitempty"`
-	// Nameservers to set at registrar to delegate the zone.
+	// Nameservers to set at the registrar to delegate the zone. Assigned per zone
+	// and stable for its lifetime; other zones may be assigned a different pair.
 	Nameservers []string               `protobuf:"bytes,6,rep,name=nameservers,proto3" json:"nameservers,omitempty"`
 	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -40,7 +41,8 @@ type DnsZone struct {
 	DeletionProtected bool `protobuf:"varint,10,opt,name=deletion_protected,json=deletionProtected,proto3" json:"deletion_protected,omitempty"`
 	// DNSSEC status when online signing is enabled.
 	Dnssec *DnssecStatus `protobuf:"bytes,11,opt,name=dnssec,proto3" json:"dnssec,omitempty"`
-	// Nameservers currently published for the apex in public DNS.
+	// Nameservers the domain is currently delegated to at its registrar, as last
+	// observed. Compare against nameservers to see whether delegation is in place.
 	ObservedNameservers []string `protobuf:"bytes,12,rep,name=observed_nameservers,json=observedNameservers,proto3" json:"observed_nameservers,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache

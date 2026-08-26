@@ -444,10 +444,10 @@ const file_enum_api_v1_organizations_service_proto_rawDesc = "" +
 	"\rbilling_email\x18\x03 \x01(\tB\n" +
 	"\xbaH\a\xd8\x01\x01r\x02`\x01R\fbillingEmail\"[\n" +
 	"\x1aUpdateOrganizationResponse\x12=\n" +
-	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization2\x89\x03\n" +
-	"\x13OrganizationService\x12\xbc\x01\n" +
-	"\x11ListOrganizations\x12%.enum.api.v1.ListOrganizationsRequest\x1a&.enum.api.v1.ListOrganizationsResponse\"X\xbaG\x14\x12\x12List Organizations\x80\xb5\x18\x01\x82\xd3\xe4\x93\x027:\x01*\"2/enum.api.v1.OrganizationService/ListOrganizations\x12\xb2\x01\n" +
-	"\x0fGetOrganization\x12#.enum.api.v1.GetOrganizationRequest\x1a$.enum.api.v1.GetOrganizationResponse\"T\xbaG\x12\x12\x10Get Organization\x80\xb5\x18\x01\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.OrganizationService/GetOrganizationB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization2\x99\x03\n" +
+	"\x13OrganizationService\x12\xc4\x01\n" +
+	"\x11ListOrganizations\x12%.enum.api.v1.ListOrganizationsRequest\x1a&.enum.api.v1.ListOrganizationsResponse\"`\xbaG\x14\x12\x12List Organizations\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x027:\x01*\"2/enum.api.v1.OrganizationService/ListOrganizations\x12\xba\x01\n" +
+	"\x0fGetOrganization\x12#.enum.api.v1.GetOrganizationRequest\x1a$.enum.api.v1.GetOrganizationResponse\"\\\xbaG\x12\x12\x10Get Organization\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.OrganizationService/GetOrganizationB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_organizations_service_proto_rawDescOnce sync.Once

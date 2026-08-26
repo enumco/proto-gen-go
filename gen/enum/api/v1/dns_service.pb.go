@@ -2106,31 +2106,31 @@ const file_enum_api_v1_dns_service_proto_rawDesc = "" +
 	"\x1fRECORD_SET_CHANGE_ACTION_CREATE\x10\x01\x12#\n" +
 	"\x1fRECORD_SET_CHANGE_ACTION_UPDATE\x10\x02\x12#\n" +
 	"\x1fRECORD_SET_CHANGE_ACTION_DELETE\x10\x03\x12&\n" +
-	"\"RECORD_SET_CHANGE_ACTION_UNCHANGED\x10\x042\xd0\x14\n" +
+	"\"RECORD_SET_CHANGE_ACTION_UNCHANGED\x10\x042\xeb\x15\n" +
 	"\n" +
-	"DnsService\x12\x94\x01\n" +
+	"DnsService\x12\xa1\x01\n" +
 	"\n" +
-	"CreateZone\x12\x1e.enum.api.v1.CreateZoneRequest\x1a\x1f.enum.api.v1.CreateZoneResponse\"E\xbaG\x11\x12\x0fCreate DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/CreateZone\x12\x94\x01\n" +
+	"CreateZone\x12\x1e.enum.api.v1.CreateZoneRequest\x1a\x1f.enum.api.v1.CreateZoneResponse\"R\xbaG\x11\x12\x0fCreate DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/CreateZone\x12\x9d\x01\n" +
 	"\n" +
-	"UpdateZone\x12\x1e.enum.api.v1.UpdateZoneRequest\x1a\x1f.enum.api.v1.UpdateZoneResponse\"E\xbaG\x11\x12\x0fUpdate DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/UpdateZone\x12\x85\x01\n" +
-	"\aGetZone\x12\x1b.enum.api.v1.GetZoneRequest\x1a\x1c.enum.api.v1.GetZoneResponse\"?\xbaG\x0e\x12\fGet DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/enum.api.v1.DnsService/GetZone\x12\xa5\x01\n" +
-	"\rGetZoneByName\x12!.enum.api.v1.GetZoneByNameRequest\x1a\".enum.api.v1.GetZoneByNameResponse\"M\xbaG\x16\x12\x14Get DNS Zone by name\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02*:\x01*\"%/enum.api.v1.DnsService/GetZoneByName\x12\x8f\x01\n" +
-	"\tListZones\x12\x1d.enum.api.v1.ListZonesRequest\x1a\x1e.enum.api.v1.ListZonesResponse\"C\xbaG\x10\x12\x0eList DNS Zones\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02&:\x01*\"!/enum.api.v1.DnsService/ListZones\x12\x94\x01\n" +
+	"UpdateZone\x12\x1e.enum.api.v1.UpdateZoneRequest\x1a\x1f.enum.api.v1.UpdateZoneResponse\"N\xbaG\x11\x12\x0fUpdate DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/UpdateZone\x12\x8d\x01\n" +
+	"\aGetZone\x12\x1b.enum.api.v1.GetZoneRequest\x1a\x1c.enum.api.v1.GetZoneResponse\"G\xbaG\x0e\x12\fGet DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/enum.api.v1.DnsService/GetZone\x12\xad\x01\n" +
+	"\rGetZoneByName\x12!.enum.api.v1.GetZoneByNameRequest\x1a\".enum.api.v1.GetZoneByNameResponse\"U\xbaG\x16\x12\x14Get DNS Zone by name\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02*:\x01*\"%/enum.api.v1.DnsService/GetZoneByName\x12\x97\x01\n" +
+	"\tListZones\x12\x1d.enum.api.v1.ListZonesRequest\x1a\x1e.enum.api.v1.ListZonesResponse\"K\xbaG\x10\x12\x0eList DNS Zones\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02&:\x01*\"!/enum.api.v1.DnsService/ListZones\x12\xa1\x01\n" +
 	"\n" +
-	"ImportZone\x12\x1e.enum.api.v1.ImportZoneRequest\x1a\x1f.enum.api.v1.ImportZoneResponse\"E\xbaG\x11\x12\x0fImport DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ImportZone\x12\x94\x01\n" +
+	"ImportZone\x12\x1e.enum.api.v1.ImportZoneRequest\x1a\x1f.enum.api.v1.ImportZoneResponse\"R\xbaG\x11\x12\x0fImport DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ImportZone\x12\xa1\x01\n" +
 	"\n" +
-	"ExportZone\x12\x1e.enum.api.v1.ExportZoneRequest\x1a\x1f.enum.api.v1.ExportZoneResponse\"E\xbaG\x11\x12\x0fExport DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ExportZone\x12\x94\x01\n" +
+	"ExportZone\x12\x1e.enum.api.v1.ExportZoneRequest\x1a\x1f.enum.api.v1.ExportZoneResponse\"R\xbaG\x11\x12\x0fExport DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ExportZone\x12\x9d\x01\n" +
 	"\n" +
-	"DeleteZone\x12\x1e.enum.api.v1.DeleteZoneRequest\x1a\x1f.enum.api.v1.DeleteZoneResponse\"E\xbaG\x11\x12\x0fDelete DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/DeleteZone\x12\x94\x01\n" +
+	"DeleteZone\x12\x1e.enum.api.v1.DeleteZoneRequest\x1a\x1f.enum.api.v1.DeleteZoneResponse\"N\xbaG\x11\x12\x0fDelete DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/DeleteZone\x12\xa1\x01\n" +
 	"\n" +
-	"VerifyZone\x12\x1e.enum.api.v1.VerifyZoneRequest\x1a\x1f.enum.api.v1.VerifyZoneResponse\"E\xbaG\x11\x12\x0fVerify DNS Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/VerifyZone\x12\xae\x01\n" +
-	"\x0fCreateRecordSet\x12#.enum.api.v1.CreateRecordSetRequest\x1a$.enum.api.v1.CreateRecordSetResponse\"P\xbaG\x17\x12\x15Create DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/CreateRecordSet\x12\xae\x01\n" +
-	"\x0fUpdateRecordSet\x12#.enum.api.v1.UpdateRecordSetRequest\x1a$.enum.api.v1.UpdateRecordSetResponse\"P\xbaG\x17\x12\x15Update DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/UpdateRecordSet\x12\xae\x01\n" +
-	"\x0fDeleteRecordSet\x12#.enum.api.v1.DeleteRecordSetRequest\x1a$.enum.api.v1.DeleteRecordSetResponse\"P\xbaG\x17\x12\x15Delete DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/DeleteRecordSet\x12\x9f\x01\n" +
-	"\fGetRecordSet\x12 .enum.api.v1.GetRecordSetRequest\x1a!.enum.api.v1.GetRecordSetResponse\"J\xbaG\x14\x12\x12Get DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.DnsService/GetRecordSet\x12\xa9\x01\n" +
-	"\x0eListRecordSets\x12\".enum.api.v1.ListRecordSetsRequest\x1a#.enum.api.v1.ListRecordSetsResponse\"N\xbaG\x16\x12\x14List DNS Record Sets\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.DnsService/ListRecordSets\x12\xc0\x01\n" +
-	"\x11AddRecordSetValue\x12%.enum.api.v1.AddRecordSetValueRequest\x1a&.enum.api.v1.AddRecordSetValueResponse\"\\\xbaG!\x12\x1fAdd a value to a DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.DnsService/AddRecordSetValue\x12\xd1\x01\n" +
-	"\x14RemoveRecordSetValue\x12(.enum.api.v1.RemoveRecordSetValueRequest\x1a).enum.api.v1.RemoveRecordSetValueResponse\"d\xbaG&\x12$Remove a value from a DNS Record Set\x80\xb5\x18\x01\x82\xd3\xe4\x93\x021:\x01*\",/enum.api.v1.DnsService/RemoveRecordSetValueB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"VerifyZone\x12\x1e.enum.api.v1.VerifyZoneRequest\x1a\x1f.enum.api.v1.VerifyZoneResponse\"R\xbaG\x11\x12\x0fVerify DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/VerifyZone\x12\xb7\x01\n" +
+	"\x0fCreateRecordSet\x12#.enum.api.v1.CreateRecordSetRequest\x1a$.enum.api.v1.CreateRecordSetResponse\"Y\xbaG\x17\x12\x15Create DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/CreateRecordSet\x12\xb7\x01\n" +
+	"\x0fUpdateRecordSet\x12#.enum.api.v1.UpdateRecordSetRequest\x1a$.enum.api.v1.UpdateRecordSetResponse\"Y\xbaG\x17\x12\x15Update DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/UpdateRecordSet\x12\xb7\x01\n" +
+	"\x0fDeleteRecordSet\x12#.enum.api.v1.DeleteRecordSetRequest\x1a$.enum.api.v1.DeleteRecordSetResponse\"Y\xbaG\x17\x12\x15Delete DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/DeleteRecordSet\x12\xa7\x01\n" +
+	"\fGetRecordSet\x12 .enum.api.v1.GetRecordSetRequest\x1a!.enum.api.v1.GetRecordSetResponse\"R\xbaG\x14\x12\x12Get DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.DnsService/GetRecordSet\x12\xb1\x01\n" +
+	"\x0eListRecordSets\x12\".enum.api.v1.ListRecordSetsRequest\x1a#.enum.api.v1.ListRecordSetsResponse\"V\xbaG\x16\x12\x14List DNS Record Sets\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.DnsService/ListRecordSets\x12\xc9\x01\n" +
+	"\x11AddRecordSetValue\x12%.enum.api.v1.AddRecordSetValueRequest\x1a&.enum.api.v1.AddRecordSetValueResponse\"e\xbaG!\x12\x1fAdd a value to a DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.DnsService/AddRecordSetValue\x12\xda\x01\n" +
+	"\x14RemoveRecordSetValue\x12(.enum.api.v1.RemoveRecordSetValueRequest\x1a).enum.api.v1.RemoveRecordSetValueResponse\"m\xbaG&\x12$Remove a value from a DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x021:\x01*\",/enum.api.v1.DnsService/RemoveRecordSetValueB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_dns_service_proto_rawDescOnce sync.Once

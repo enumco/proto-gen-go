@@ -590,15 +590,15 @@ const file_enum_api_v1_object_storage_users_service_proto_rawDesc = "" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12=\n" +
 	"\x02id\x18\x02 \x01(\tB-\xbaH*r(\xf0\x88'\x01\x92\x02!s3user-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"!\n" +
-	"\x1fDeleteObjectStorageUserResponse2\xeb\b\n" +
-	"\x18ObjectStorageUserService\x12\xcd\x01\n" +
-	"\x16ListObjectStorageUsers\x12*.enum.api.v1.ListObjectStorageUsersRequest\x1a+.enum.api.v1.ListObjectStorageUsersResponse\"Z\xbaG\f\x12\n" +
-	"List Users\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02A:\x01*\"</enum.api.v1.ObjectStorageUserService/ListObjectStorageUsers\x12\xc3\x01\n" +
-	"\x14GetObjectStorageUser\x12(.enum.api.v1.GetObjectStorageUserRequest\x1a).enum.api.v1.GetObjectStorageUserResponse\"V\xbaG\n" +
-	"\x12\bGet User\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02?:\x01*\":/enum.api.v1.ObjectStorageUserService/GetObjectStorageUser\x12\x8e\x02\n" +
-	"\x17CreateObjectStorageUser\x12+.enum.api.v1.CreateObjectStorageUserRequest\x1a,.enum.api.v1.CreateObjectStorageUserResponse\"\x97\x01\xbaGH\x12\vCreate User\x1a9Creates an object storage user with an initial access key\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/CreateObjectStorageUser\x12\xd2\x01\n" +
-	"\x17UpdateObjectStorageUser\x12+.enum.api.v1.UpdateObjectStorageUserRequest\x1a,.enum.api.v1.UpdateObjectStorageUserResponse\"\\\xbaG\r\x12\vUpdate User\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/UpdateObjectStorageUser\x12\xd2\x01\n" +
-	"\x17DeleteObjectStorageUser\x12+.enum.api.v1.DeleteObjectStorageUserRequest\x1a,.enum.api.v1.DeleteObjectStorageUserResponse\"\\\xbaG\r\x12\vDelete User\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/DeleteObjectStorageUserB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x1fDeleteObjectStorageUserResponse2\xef\t\n" +
+	"\x18ObjectStorageUserService\x12\xd5\x01\n" +
+	"\x16ListObjectStorageUsers\x12*.enum.api.v1.ListObjectStorageUsersRequest\x1a+.enum.api.v1.ListObjectStorageUsersResponse\"b\xbaG\f\x12\n" +
+	"List Users\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02A:\x01*\"</enum.api.v1.ObjectStorageUserService/ListObjectStorageUsers\x12\xcb\x01\n" +
+	"\x14GetObjectStorageUser\x12(.enum.api.v1.GetObjectStorageUserRequest\x1a).enum.api.v1.GetObjectStorageUserResponse\"^\xbaG\n" +
+	"\x12\bGet User\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02?:\x01*\":/enum.api.v1.ObjectStorageUserService/GetObjectStorageUser\x12\xf0\x02\n" +
+	"\x17CreateObjectStorageUser\x12+.enum.api.v1.CreateObjectStorageUserRequest\x1a,.enum.api.v1.CreateObjectStorageUserResponse\"\xf9\x01\xbaG\x9c\x01\x12\vCreate User\x1a\x8c\x01Creates an object storage user with no permissions. Attach a managed policy or put an inline policy before issuing keys that need S3 access.\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/CreateObjectStorageUser\x12\xdb\x01\n" +
+	"\x17UpdateObjectStorageUser\x12+.enum.api.v1.UpdateObjectStorageUserRequest\x1a,.enum.api.v1.UpdateObjectStorageUserResponse\"e\xbaG\r\x12\vUpdate User\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/UpdateObjectStorageUser\x12\xdb\x01\n" +
+	"\x17DeleteObjectStorageUser\x12+.enum.api.v1.DeleteObjectStorageUserRequest\x1a,.enum.api.v1.DeleteObjectStorageUserResponse\"e\xbaG\r\x12\vDelete User\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02B:\x01*\"=/enum.api.v1.ObjectStorageUserService/DeleteObjectStorageUserB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_users_service_proto_rawDescOnce sync.Once

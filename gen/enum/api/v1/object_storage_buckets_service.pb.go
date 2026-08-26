@@ -213,9 +213,11 @@ type CreateObjectStorageBucketRequest struct {
 	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	Name      string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Region for the bucket. When empty, the project's default_region_id is used.
-	RegionId      string `protobuf:"bytes,3,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	RegionId string `protobuf:"bytes,3,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
+	// Enable Object Lock at create time. Cannot be enabled after the bucket exists.
+	ObjectLockEnabled bool `protobuf:"varint,4,opt,name=object_lock_enabled,json=objectLockEnabled,proto3" json:"object_lock_enabled,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *CreateObjectStorageBucketRequest) Reset() {
@@ -267,6 +269,13 @@ func (x *CreateObjectStorageBucketRequest) GetRegionId() string {
 		return x.RegionId
 	}
 	return ""
+}
+
+func (x *CreateObjectStorageBucketRequest) GetObjectLockEnabled() bool {
+	if x != nil {
+		return x.ObjectLockEnabled
+	}
+	return false
 }
 
 type CreateObjectStorageBucketResponse struct {
@@ -401,6 +410,1216 @@ func (*DeleteObjectStorageBucketResponse) Descriptor() ([]byte, []int) {
 	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{7}
 }
 
+type PutObjectStorageBucketVersioningRequest struct {
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id        string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Enabled or Suspended.
+	Status        string `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketVersioningRequest) Reset() {
+	*x = PutObjectStorageBucketVersioningRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketVersioningRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketVersioningRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketVersioningRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketVersioningRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketVersioningRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *PutObjectStorageBucketVersioningRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketVersioningRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketVersioningRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type PutObjectStorageBucketVersioningResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketVersioningResponse) Reset() {
+	*x = PutObjectStorageBucketVersioningResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketVersioningResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketVersioningResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketVersioningResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketVersioningResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketVersioningResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *PutObjectStorageBucketVersioningResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketObjectLockRequest struct {
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id        string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Object Lock configuration XML document.
+	Configuration string `protobuf:"bytes,3,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketObjectLockRequest) Reset() {
+	*x = PutObjectStorageBucketObjectLockRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketObjectLockRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketObjectLockRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketObjectLockRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketObjectLockRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketObjectLockRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PutObjectStorageBucketObjectLockRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketObjectLockRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketObjectLockRequest) GetConfiguration() string {
+	if x != nil {
+		return x.Configuration
+	}
+	return ""
+}
+
+type PutObjectStorageBucketObjectLockResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketObjectLockResponse) Reset() {
+	*x = PutObjectStorageBucketObjectLockResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketObjectLockResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketObjectLockResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketObjectLockResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketObjectLockResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketObjectLockResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PutObjectStorageBucketObjectLockResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketEncryptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Configuration string                 `protobuf:"bytes,3,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketEncryptionRequest) Reset() {
+	*x = PutObjectStorageBucketEncryptionRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketEncryptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketEncryptionRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketEncryptionRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketEncryptionRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PutObjectStorageBucketEncryptionRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketEncryptionRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketEncryptionRequest) GetConfiguration() string {
+	if x != nil {
+		return x.Configuration
+	}
+	return ""
+}
+
+type PutObjectStorageBucketEncryptionResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketEncryptionResponse) Reset() {
+	*x = PutObjectStorageBucketEncryptionResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketEncryptionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketEncryptionResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketEncryptionResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketEncryptionResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PutObjectStorageBucketEncryptionResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type DeleteObjectStorageBucketEncryptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketEncryptionRequest) Reset() {
+	*x = DeleteObjectStorageBucketEncryptionRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketEncryptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketEncryptionRequest) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketEncryptionRequest.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketEncryptionRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *DeleteObjectStorageBucketEncryptionRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *DeleteObjectStorageBucketEncryptionRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteObjectStorageBucketEncryptionResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketEncryptionResponse) Reset() {
+	*x = DeleteObjectStorageBucketEncryptionResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketEncryptionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketEncryptionResponse) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketEncryptionResponse.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketEncryptionResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *DeleteObjectStorageBucketEncryptionResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketLifecycleRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Configuration string                 `protobuf:"bytes,3,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketLifecycleRequest) Reset() {
+	*x = PutObjectStorageBucketLifecycleRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketLifecycleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketLifecycleRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketLifecycleRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketLifecycleRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *PutObjectStorageBucketLifecycleRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketLifecycleRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketLifecycleRequest) GetConfiguration() string {
+	if x != nil {
+		return x.Configuration
+	}
+	return ""
+}
+
+type PutObjectStorageBucketLifecycleResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketLifecycleResponse) Reset() {
+	*x = PutObjectStorageBucketLifecycleResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketLifecycleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketLifecycleResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketLifecycleResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketLifecycleResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *PutObjectStorageBucketLifecycleResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type DeleteObjectStorageBucketLifecycleRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketLifecycleRequest) Reset() {
+	*x = DeleteObjectStorageBucketLifecycleRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketLifecycleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketLifecycleRequest) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketLifecycleRequest.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketLifecycleRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *DeleteObjectStorageBucketLifecycleRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *DeleteObjectStorageBucketLifecycleRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteObjectStorageBucketLifecycleResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketLifecycleResponse) Reset() {
+	*x = DeleteObjectStorageBucketLifecycleResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketLifecycleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketLifecycleResponse) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketLifecycleResponse.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketLifecycleResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteObjectStorageBucketLifecycleResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketCORSRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Configuration string                 `protobuf:"bytes,3,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketCORSRequest) Reset() {
+	*x = PutObjectStorageBucketCORSRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketCORSRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketCORSRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketCORSRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketCORSRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *PutObjectStorageBucketCORSRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketCORSRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketCORSRequest) GetConfiguration() string {
+	if x != nil {
+		return x.Configuration
+	}
+	return ""
+}
+
+type PutObjectStorageBucketCORSResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketCORSResponse) Reset() {
+	*x = PutObjectStorageBucketCORSResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketCORSResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketCORSResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketCORSResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketCORSResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *PutObjectStorageBucketCORSResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type DeleteObjectStorageBucketCORSRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketCORSRequest) Reset() {
+	*x = DeleteObjectStorageBucketCORSRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketCORSRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketCORSRequest) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketCORSRequest.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketCORSRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *DeleteObjectStorageBucketCORSRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *DeleteObjectStorageBucketCORSRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteObjectStorageBucketCORSResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketCORSResponse) Reset() {
+	*x = DeleteObjectStorageBucketCORSResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketCORSResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketCORSResponse) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketCORSResponse.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketCORSResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *DeleteObjectStorageBucketCORSResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketPolicyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Policy        string                 `protobuf:"bytes,3,opt,name=policy,proto3" json:"policy,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketPolicyRequest) Reset() {
+	*x = PutObjectStorageBucketPolicyRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketPolicyRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketPolicyRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *PutObjectStorageBucketPolicyRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketPolicyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketPolicyRequest) GetPolicy() string {
+	if x != nil {
+		return x.Policy
+	}
+	return ""
+}
+
+type PutObjectStorageBucketPolicyResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketPolicyResponse) Reset() {
+	*x = PutObjectStorageBucketPolicyResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketPolicyResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketPolicyResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *PutObjectStorageBucketPolicyResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type DeleteObjectStorageBucketPolicyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketPolicyRequest) Reset() {
+	*x = DeleteObjectStorageBucketPolicyRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketPolicyRequest) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketPolicyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteObjectStorageBucketPolicyRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *DeleteObjectStorageBucketPolicyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteObjectStorageBucketPolicyResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketPolicyResponse) Reset() {
+	*x = DeleteObjectStorageBucketPolicyResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketPolicyResponse) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketPolicyResponse.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *DeleteObjectStorageBucketPolicyResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type PutObjectStorageBucketTaggingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Tags          map[string]string      `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketTaggingRequest) Reset() {
+	*x = PutObjectStorageBucketTaggingRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketTaggingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketTaggingRequest) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketTaggingRequest.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketTaggingRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *PutObjectStorageBucketTaggingRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketTaggingRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PutObjectStorageBucketTaggingRequest) GetTags() map[string]string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+type PutObjectStorageBucketTaggingResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PutObjectStorageBucketTaggingResponse) Reset() {
+	*x = PutObjectStorageBucketTaggingResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutObjectStorageBucketTaggingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutObjectStorageBucketTaggingResponse) ProtoMessage() {}
+
+func (x *PutObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutObjectStorageBucketTaggingResponse.ProtoReflect.Descriptor instead.
+func (*PutObjectStorageBucketTaggingResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *PutObjectStorageBucketTaggingResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
+type DeleteObjectStorageBucketTaggingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketTaggingRequest) Reset() {
+	*x = DeleteObjectStorageBucketTaggingRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketTaggingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketTaggingRequest) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketTaggingRequest.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketTaggingRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *DeleteObjectStorageBucketTaggingRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *DeleteObjectStorageBucketTaggingRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteObjectStorageBucketTaggingResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *DeleteObjectStorageBucketTaggingResponse) Reset() {
+	*x = DeleteObjectStorageBucketTaggingResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteObjectStorageBucketTaggingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteObjectStorageBucketTaggingResponse) ProtoMessage() {}
+
+func (x *DeleteObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteObjectStorageBucketTaggingResponse.ProtoReflect.Descriptor instead.
+func (*DeleteObjectStorageBucketTaggingResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *DeleteObjectStorageBucketTaggingResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
 var File_enum_api_v1_object_storage_buckets_service_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_buckets_service_proto_rawDesc = "" +
@@ -416,26 +1635,121 @@ const file_enum_api_v1_object_storage_buckets_service_proto_rawDesc = "" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
 	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"v\n" +
 	"\x1eGetObjectStorageBucketResponse\x12T\n" +
-	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xbe\x01\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xee\x01\n" +
 	" CreateObjectStorageBucketRequest\x12J\n" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x88\x89'\x01R\x04name\x12/\n" +
 	"\tregion_id\x18\x03 \x01(\tB\x12\xbaH\x0f\xd8\x01\x01r\n" +
-	"\xb0\x89'\x01\x92\x02\x03fraR\bregionId\"y\n" +
+	"\xb0\x89'\x01\x92\x02\x03fraR\bregionId\x12.\n" +
+	"\x13object_lock_enabled\x18\x04 \x01(\bR\x11objectLockEnabled\"y\n" +
 	"!CreateObjectStorageBucketResponse\x12T\n" +
 	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xaf\x01\n" +
 	" DeleteObjectStorageBucketRequest\x12J\n" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
 	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"#\n" +
-	"!DeleteObjectStorageBucketResponse2\x8c\a\n" +
-	"\x1aObjectStorageBucketService\x12\xd9\x01\n" +
-	"\x18ListObjectStorageBuckets\x12,.enum.api.v1.ListObjectStorageBucketsRequest\x1a-.enum.api.v1.ListObjectStorageBucketsResponse\"`\xbaG\x0e\x12\fList Buckets\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02E:\x01*\"@/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets\x12\xcf\x01\n" +
-	"\x16GetObjectStorageBucket\x12*.enum.api.v1.GetObjectStorageBucketRequest\x1a+.enum.api.v1.GetObjectStorageBucketResponse\"\\\xbaG\f\x12\n" +
-	"Get Bucket\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02C:\x01*\">/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket\x12\xde\x01\n" +
-	"\x19CreateObjectStorageBucket\x12-.enum.api.v1.CreateObjectStorageBucketRequest\x1a..enum.api.v1.CreateObjectStorageBucketResponse\"b\xbaG\x0f\x12\rCreate Bucket\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket\x12\xde\x01\n" +
-	"\x19DeleteObjectStorageBucket\x12-.enum.api.v1.DeleteObjectStorageBucketRequest\x1a..enum.api.v1.DeleteObjectStorageBucketResponse\"b\xbaG\x0f\x12\rDelete Bucket\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"!DeleteObjectStorageBucketResponse\"\xf3\x01\n" +
+	"'PutObjectStorageBucketVersioningRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x12;\n" +
+	"\x06status\x18\x03 \x01(\tB#\xbaH r\x1eR\aEnabledR\tSuspended\x92\x02\aEnabledR\x06status\"\x80\x01\n" +
+	"(PutObjectStorageBucketVersioningResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xe9\x01\n" +
+	"'PutObjectStorageBucketObjectLockRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x121\n" +
+	"\rconfiguration\x18\x03 \x01(\tB\v\xbaH\br\x06\x10\x01\x18\xff\xff\x03R\rconfiguration\"\x80\x01\n" +
+	"(PutObjectStorageBucketObjectLockResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xe9\x01\n" +
+	"'PutObjectStorageBucketEncryptionRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x121\n" +
+	"\rconfiguration\x18\x03 \x01(\tB\v\xbaH\br\x06\x10\x01\x18\xff\xff\x03R\rconfiguration\"\x80\x01\n" +
+	"(PutObjectStorageBucketEncryptionResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb9\x01\n" +
+	"*DeleteObjectStorageBucketEncryptionRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"\x83\x01\n" +
+	"+DeleteObjectStorageBucketEncryptionResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xe8\x01\n" +
+	"&PutObjectStorageBucketLifecycleRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x121\n" +
+	"\rconfiguration\x18\x03 \x01(\tB\v\xbaH\br\x06\x10\x01\x18\xff\xff\x03R\rconfiguration\"\x7f\n" +
+	"'PutObjectStorageBucketLifecycleResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb8\x01\n" +
+	")DeleteObjectStorageBucketLifecycleRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"\x82\x01\n" +
+	"*DeleteObjectStorageBucketLifecycleResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xe3\x01\n" +
+	"!PutObjectStorageBucketCORSRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x121\n" +
+	"\rconfiguration\x18\x03 \x01(\tB\v\xbaH\br\x06\x10\x01\x18\xff\xff\x03R\rconfiguration\"z\n" +
+	"\"PutObjectStorageBucketCORSResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb3\x01\n" +
+	"$DeleteObjectStorageBucketCORSRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"}\n" +
+	"%DeleteObjectStorageBucketCORSResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xd7\x01\n" +
+	"#PutObjectStorageBucketPolicyRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x12#\n" +
+	"\x06policy\x18\x03 \x01(\tB\v\xbaH\br\x06\x10\x01\x18\xff\xff\x03R\x06policy\"|\n" +
+	"$PutObjectStorageBucketPolicyResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb5\x01\n" +
+	"&DeleteObjectStorageBucketPolicyRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"\x7f\n" +
+	"'DeleteObjectStorageBucketPolicyResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xd9\x02\n" +
+	"$PutObjectStorageBucketTaggingRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x12k\n" +
+	"\x04tags\x18\x03 \x03(\v2;.enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntryB\x1a\xbaH\x17\x9a\x01\x14\b\x01\x102\"\ar\x05\x10\x01\x18\x80\x01*\x05r\x03\x18\x80\x02R\x04tags\x1a7\n" +
+	"\tTagsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"}\n" +
+	"%PutObjectStorageBucketTaggingResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb6\x01\n" +
+	"'DeleteObjectStorageBucketTaggingRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"\x80\x01\n" +
+	"(DeleteObjectStorageBucketTaggingResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket2\xaa \n" +
+	"\x1aObjectStorageBucketService\x12\xe1\x01\n" +
+	"\x18ListObjectStorageBuckets\x12,.enum.api.v1.ListObjectStorageBucketsRequest\x1a-.enum.api.v1.ListObjectStorageBucketsResponse\"h\xbaG\x0e\x12\fList Buckets\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02E:\x01*\"@/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets\x12\xd7\x01\n" +
+	"\x16GetObjectStorageBucket\x12*.enum.api.v1.GetObjectStorageBucketRequest\x1a+.enum.api.v1.GetObjectStorageBucketResponse\"d\xbaG\f\x12\n" +
+	"Get Bucket\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02C:\x01*\">/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket\x12\xeb\x01\n" +
+	"\x19CreateObjectStorageBucket\x12-.enum.api.v1.CreateObjectStorageBucketRequest\x1a..enum.api.v1.CreateObjectStorageBucketResponse\"o\xbaG\x0f\x12\rCreate Bucket\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket\x12\xe7\x01\n" +
+	"\x19DeleteObjectStorageBucket\x12-.enum.api.v1.DeleteObjectStorageBucketRequest\x1a..enum.api.v1.DeleteObjectStorageBucketResponse\"k\xbaG\x0f\x12\rDelete Bucket\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket\x12\x8b\x02\n" +
+	" PutObjectStorageBucketVersioning\x124.enum.api.v1.PutObjectStorageBucketVersioningRequest\x1a5.enum.api.v1.PutObjectStorageBucketVersioningResponse\"z\xbaG\x17\x12\x15Put Bucket Versioning\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketVersioning\x12\x9b\x02\n" +
+	" PutObjectStorageBucketObjectLock\x124.enum.api.v1.PutObjectStorageBucketObjectLockRequest\x1a5.enum.api.v1.PutObjectStorageBucketObjectLockResponse\"\x89\x01\xbaG&\x12$Put Bucket Object Lock Configuration\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketObjectLock\x12\x8b\x02\n" +
+	" PutObjectStorageBucketEncryption\x124.enum.api.v1.PutObjectStorageBucketEncryptionRequest\x1a5.enum.api.v1.PutObjectStorageBucketEncryptionResponse\"z\xbaG\x17\x12\x15Put Bucket Encryption\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketEncryption\x12\x9b\x02\n" +
+	"#DeleteObjectStorageBucketEncryption\x127.enum.api.v1.DeleteObjectStorageBucketEncryptionRequest\x1a8.enum.api.v1.DeleteObjectStorageBucketEncryptionResponse\"\x80\x01\xbaG\x1a\x12\x18Delete Bucket Encryption\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02P:\x01*\"K/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketEncryption\x12\x86\x02\n" +
+	"\x1fPutObjectStorageBucketLifecycle\x123.enum.api.v1.PutObjectStorageBucketLifecycleRequest\x1a4.enum.api.v1.PutObjectStorageBucketLifecycleResponse\"x\xbaG\x16\x12\x14Put Bucket Lifecycle\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketLifecycle\x12\x95\x02\n" +
+	"\"DeleteObjectStorageBucketLifecycle\x126.enum.api.v1.DeleteObjectStorageBucketLifecycleRequest\x1a7.enum.api.v1.DeleteObjectStorageBucketLifecycleResponse\"~\xbaG\x19\x12\x17Delete Bucket Lifecycle\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02O:\x01*\"J/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketLifecycle\x12\xed\x01\n" +
+	"\x1aPutObjectStorageBucketCORS\x12..enum.api.v1.PutObjectStorageBucketCORSRequest\x1a/.enum.api.v1.PutObjectStorageBucketCORSResponse\"n\xbaG\x11\x12\x0fPut Bucket CORS\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02G:\x01*\"B/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketCORS\x12\xfc\x01\n" +
+	"\x1dDeleteObjectStorageBucketCORS\x121.enum.api.v1.DeleteObjectStorageBucketCORSRequest\x1a2.enum.api.v1.DeleteObjectStorageBucketCORSResponse\"t\xbaG\x14\x12\x12Delete Bucket CORS\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02J:\x01*\"E/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketCORS\x12\xf7\x01\n" +
+	"\x1cPutObjectStorageBucketPolicy\x120.enum.api.v1.PutObjectStorageBucketPolicyRequest\x1a1.enum.api.v1.PutObjectStorageBucketPolicyResponse\"r\xbaG\x13\x12\x11Put Bucket Policy\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02I:\x01*\"D/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketPolicy\x12\x86\x02\n" +
+	"\x1fDeleteObjectStorageBucketPolicy\x123.enum.api.v1.DeleteObjectStorageBucketPolicyRequest\x1a4.enum.api.v1.DeleteObjectStorageBucketPolicyResponse\"x\xbaG\x16\x12\x14Delete Bucket Policy\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketPolicy\x12\xfc\x01\n" +
+	"\x1dPutObjectStorageBucketTagging\x121.enum.api.v1.PutObjectStorageBucketTaggingRequest\x1a2.enum.api.v1.PutObjectStorageBucketTaggingResponse\"t\xbaG\x14\x12\x12Put Bucket Tagging\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02J:\x01*\"E/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketTagging\x12\x8b\x02\n" +
+	" DeleteObjectStorageBucketTagging\x124.enum.api.v1.DeleteObjectStorageBucketTaggingRequest\x1a5.enum.api.v1.DeleteObjectStorageBucketTaggingResponse\"z\xbaG\x17\x12\x15Delete Bucket Tagging\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketTaggingB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_buckets_service_proto_rawDescOnce sync.Once
@@ -449,35 +1763,97 @@ func file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP() []byte 
 	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescData
 }
 
-var file_enum_api_v1_object_storage_buckets_service_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_enum_api_v1_object_storage_buckets_service_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_enum_api_v1_object_storage_buckets_service_proto_goTypes = []any{
-	(*ListObjectStorageBucketsRequest)(nil),   // 0: enum.api.v1.ListObjectStorageBucketsRequest
-	(*ListObjectStorageBucketsResponse)(nil),  // 1: enum.api.v1.ListObjectStorageBucketsResponse
-	(*GetObjectStorageBucketRequest)(nil),     // 2: enum.api.v1.GetObjectStorageBucketRequest
-	(*GetObjectStorageBucketResponse)(nil),    // 3: enum.api.v1.GetObjectStorageBucketResponse
-	(*CreateObjectStorageBucketRequest)(nil),  // 4: enum.api.v1.CreateObjectStorageBucketRequest
-	(*CreateObjectStorageBucketResponse)(nil), // 5: enum.api.v1.CreateObjectStorageBucketResponse
-	(*DeleteObjectStorageBucketRequest)(nil),  // 6: enum.api.v1.DeleteObjectStorageBucketRequest
-	(*DeleteObjectStorageBucketResponse)(nil), // 7: enum.api.v1.DeleteObjectStorageBucketResponse
-	(*ObjectStorageBucket)(nil),               // 8: enum.api.v1.ObjectStorageBucket
+	(*ListObjectStorageBucketsRequest)(nil),             // 0: enum.api.v1.ListObjectStorageBucketsRequest
+	(*ListObjectStorageBucketsResponse)(nil),            // 1: enum.api.v1.ListObjectStorageBucketsResponse
+	(*GetObjectStorageBucketRequest)(nil),               // 2: enum.api.v1.GetObjectStorageBucketRequest
+	(*GetObjectStorageBucketResponse)(nil),              // 3: enum.api.v1.GetObjectStorageBucketResponse
+	(*CreateObjectStorageBucketRequest)(nil),            // 4: enum.api.v1.CreateObjectStorageBucketRequest
+	(*CreateObjectStorageBucketResponse)(nil),           // 5: enum.api.v1.CreateObjectStorageBucketResponse
+	(*DeleteObjectStorageBucketRequest)(nil),            // 6: enum.api.v1.DeleteObjectStorageBucketRequest
+	(*DeleteObjectStorageBucketResponse)(nil),           // 7: enum.api.v1.DeleteObjectStorageBucketResponse
+	(*PutObjectStorageBucketVersioningRequest)(nil),     // 8: enum.api.v1.PutObjectStorageBucketVersioningRequest
+	(*PutObjectStorageBucketVersioningResponse)(nil),    // 9: enum.api.v1.PutObjectStorageBucketVersioningResponse
+	(*PutObjectStorageBucketObjectLockRequest)(nil),     // 10: enum.api.v1.PutObjectStorageBucketObjectLockRequest
+	(*PutObjectStorageBucketObjectLockResponse)(nil),    // 11: enum.api.v1.PutObjectStorageBucketObjectLockResponse
+	(*PutObjectStorageBucketEncryptionRequest)(nil),     // 12: enum.api.v1.PutObjectStorageBucketEncryptionRequest
+	(*PutObjectStorageBucketEncryptionResponse)(nil),    // 13: enum.api.v1.PutObjectStorageBucketEncryptionResponse
+	(*DeleteObjectStorageBucketEncryptionRequest)(nil),  // 14: enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
+	(*DeleteObjectStorageBucketEncryptionResponse)(nil), // 15: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
+	(*PutObjectStorageBucketLifecycleRequest)(nil),      // 16: enum.api.v1.PutObjectStorageBucketLifecycleRequest
+	(*PutObjectStorageBucketLifecycleResponse)(nil),     // 17: enum.api.v1.PutObjectStorageBucketLifecycleResponse
+	(*DeleteObjectStorageBucketLifecycleRequest)(nil),   // 18: enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
+	(*DeleteObjectStorageBucketLifecycleResponse)(nil),  // 19: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
+	(*PutObjectStorageBucketCORSRequest)(nil),           // 20: enum.api.v1.PutObjectStorageBucketCORSRequest
+	(*PutObjectStorageBucketCORSResponse)(nil),          // 21: enum.api.v1.PutObjectStorageBucketCORSResponse
+	(*DeleteObjectStorageBucketCORSRequest)(nil),        // 22: enum.api.v1.DeleteObjectStorageBucketCORSRequest
+	(*DeleteObjectStorageBucketCORSResponse)(nil),       // 23: enum.api.v1.DeleteObjectStorageBucketCORSResponse
+	(*PutObjectStorageBucketPolicyRequest)(nil),         // 24: enum.api.v1.PutObjectStorageBucketPolicyRequest
+	(*PutObjectStorageBucketPolicyResponse)(nil),        // 25: enum.api.v1.PutObjectStorageBucketPolicyResponse
+	(*DeleteObjectStorageBucketPolicyRequest)(nil),      // 26: enum.api.v1.DeleteObjectStorageBucketPolicyRequest
+	(*DeleteObjectStorageBucketPolicyResponse)(nil),     // 27: enum.api.v1.DeleteObjectStorageBucketPolicyResponse
+	(*PutObjectStorageBucketTaggingRequest)(nil),        // 28: enum.api.v1.PutObjectStorageBucketTaggingRequest
+	(*PutObjectStorageBucketTaggingResponse)(nil),       // 29: enum.api.v1.PutObjectStorageBucketTaggingResponse
+	(*DeleteObjectStorageBucketTaggingRequest)(nil),     // 30: enum.api.v1.DeleteObjectStorageBucketTaggingRequest
+	(*DeleteObjectStorageBucketTaggingResponse)(nil),    // 31: enum.api.v1.DeleteObjectStorageBucketTaggingResponse
+	nil,                         // 32: enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
+	(*ObjectStorageBucket)(nil), // 33: enum.api.v1.ObjectStorageBucket
 }
 var file_enum_api_v1_object_storage_buckets_service_proto_depIdxs = []int32{
-	8, // 0: enum.api.v1.ListObjectStorageBucketsResponse.object_storage_buckets:type_name -> enum.api.v1.ObjectStorageBucket
-	8, // 1: enum.api.v1.GetObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	8, // 2: enum.api.v1.CreateObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	0, // 3: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:input_type -> enum.api.v1.ListObjectStorageBucketsRequest
-	2, // 4: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:input_type -> enum.api.v1.GetObjectStorageBucketRequest
-	4, // 5: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:input_type -> enum.api.v1.CreateObjectStorageBucketRequest
-	6, // 6: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:input_type -> enum.api.v1.DeleteObjectStorageBucketRequest
-	1, // 7: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:output_type -> enum.api.v1.ListObjectStorageBucketsResponse
-	3, // 8: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:output_type -> enum.api.v1.GetObjectStorageBucketResponse
-	5, // 9: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:output_type -> enum.api.v1.CreateObjectStorageBucketResponse
-	7, // 10: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:output_type -> enum.api.v1.DeleteObjectStorageBucketResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	33, // 0: enum.api.v1.ListObjectStorageBucketsResponse.object_storage_buckets:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 1: enum.api.v1.GetObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 2: enum.api.v1.CreateObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 3: enum.api.v1.PutObjectStorageBucketVersioningResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 4: enum.api.v1.PutObjectStorageBucketObjectLockResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 5: enum.api.v1.PutObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 6: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 7: enum.api.v1.PutObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 8: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 9: enum.api.v1.PutObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 10: enum.api.v1.DeleteObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 11: enum.api.v1.PutObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 12: enum.api.v1.DeleteObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	32, // 13: enum.api.v1.PutObjectStorageBucketTaggingRequest.tags:type_name -> enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
+	33, // 14: enum.api.v1.PutObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	33, // 15: enum.api.v1.DeleteObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	0,  // 16: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:input_type -> enum.api.v1.ListObjectStorageBucketsRequest
+	2,  // 17: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:input_type -> enum.api.v1.GetObjectStorageBucketRequest
+	4,  // 18: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:input_type -> enum.api.v1.CreateObjectStorageBucketRequest
+	6,  // 19: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:input_type -> enum.api.v1.DeleteObjectStorageBucketRequest
+	8,  // 20: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:input_type -> enum.api.v1.PutObjectStorageBucketVersioningRequest
+	10, // 21: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:input_type -> enum.api.v1.PutObjectStorageBucketObjectLockRequest
+	12, // 22: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:input_type -> enum.api.v1.PutObjectStorageBucketEncryptionRequest
+	14, // 23: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:input_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
+	16, // 24: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:input_type -> enum.api.v1.PutObjectStorageBucketLifecycleRequest
+	18, // 25: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:input_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
+	20, // 26: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:input_type -> enum.api.v1.PutObjectStorageBucketCORSRequest
+	22, // 27: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:input_type -> enum.api.v1.DeleteObjectStorageBucketCORSRequest
+	24, // 28: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:input_type -> enum.api.v1.PutObjectStorageBucketPolicyRequest
+	26, // 29: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:input_type -> enum.api.v1.DeleteObjectStorageBucketPolicyRequest
+	28, // 30: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:input_type -> enum.api.v1.PutObjectStorageBucketTaggingRequest
+	30, // 31: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:input_type -> enum.api.v1.DeleteObjectStorageBucketTaggingRequest
+	1,  // 32: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:output_type -> enum.api.v1.ListObjectStorageBucketsResponse
+	3,  // 33: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:output_type -> enum.api.v1.GetObjectStorageBucketResponse
+	5,  // 34: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:output_type -> enum.api.v1.CreateObjectStorageBucketResponse
+	7,  // 35: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:output_type -> enum.api.v1.DeleteObjectStorageBucketResponse
+	9,  // 36: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:output_type -> enum.api.v1.PutObjectStorageBucketVersioningResponse
+	11, // 37: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:output_type -> enum.api.v1.PutObjectStorageBucketObjectLockResponse
+	13, // 38: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:output_type -> enum.api.v1.PutObjectStorageBucketEncryptionResponse
+	15, // 39: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:output_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
+	17, // 40: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:output_type -> enum.api.v1.PutObjectStorageBucketLifecycleResponse
+	19, // 41: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:output_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
+	21, // 42: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:output_type -> enum.api.v1.PutObjectStorageBucketCORSResponse
+	23, // 43: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:output_type -> enum.api.v1.DeleteObjectStorageBucketCORSResponse
+	25, // 44: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:output_type -> enum.api.v1.PutObjectStorageBucketPolicyResponse
+	27, // 45: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:output_type -> enum.api.v1.DeleteObjectStorageBucketPolicyResponse
+	29, // 46: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:output_type -> enum.api.v1.PutObjectStorageBucketTaggingResponse
+	31, // 47: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:output_type -> enum.api.v1.DeleteObjectStorageBucketTaggingResponse
+	32, // [32:48] is the sub-list for method output_type
+	16, // [16:32] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_enum_api_v1_object_storage_buckets_service_proto_init() }
@@ -494,7 +1870,7 @@ func file_enum_api_v1_object_storage_buckets_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_object_storage_buckets_service_proto_rawDesc), len(file_enum_api_v1_object_storage_buckets_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

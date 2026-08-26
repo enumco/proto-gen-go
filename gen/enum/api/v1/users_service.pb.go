@@ -546,13 +546,13 @@ const file_enum_api_v1_users_service_proto_rawDesc = "" +
 	"\x17ListUserProjectsRequest\x12D\n" +
 	"\auser_id\x18\x01 \x01(\tB+\xbaH(r&\xe0\x88'\x01\x92\x02\x1fuser-01kmyy47ynabkw0vq7bekg4e27R\x06userId\"L\n" +
 	"\x18ListUserProjectsResponse\x120\n" +
-	"\bprojects\x18\x01 \x03(\v2\x14.enum.api.v1.ProjectR\bprojects2\xd4\x03\n" +
-	"\vUserService\x12\x8c\x01\n" +
-	"\tListUsers\x12\x1d.enum.api.v1.ListUsersRequest\x1a\x1e.enum.api.v1.ListUsersResponse\"@\xbaG\f\x12\n" +
-	"List Users\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.UserService/ListUsers\x12\x82\x01\n" +
-	"\aGetUser\x12\x1b.enum.api.v1.GetUserRequest\x1a\x1c.enum.api.v1.GetUserResponse\"<\xbaG\n" +
-	"\x12\bGet User\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02%:\x01*\" /enum.api.v1.UserService/GetUser\x12\xb0\x01\n" +
-	"\x10ListUserProjects\x12$.enum.api.v1.ListUserProjectsRequest\x1a%.enum.api.v1.ListUserProjectsResponse\"O\xbaG\x14\x12\x12List User Projects\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.UserService/ListUserProjectsB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\bprojects\x18\x01 \x03(\v2\x14.enum.api.v1.ProjectR\bprojects2\xec\x03\n" +
+	"\vUserService\x12\x94\x01\n" +
+	"\tListUsers\x12\x1d.enum.api.v1.ListUsersRequest\x1a\x1e.enum.api.v1.ListUsersResponse\"H\xbaG\f\x12\n" +
+	"List Users\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.UserService/ListUsers\x12\x8a\x01\n" +
+	"\aGetUser\x12\x1b.enum.api.v1.GetUserRequest\x1a\x1c.enum.api.v1.GetUserResponse\"D\xbaG\n" +
+	"\x12\bGet User\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02%:\x01*\" /enum.api.v1.UserService/GetUser\x12\xb8\x01\n" +
+	"\x10ListUserProjects\x12$.enum.api.v1.ListUserProjectsRequest\x1a%.enum.api.v1.ListUserProjectsResponse\"W\xbaG\x14\x12\x12List User Projects\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.UserService/ListUserProjectsB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_users_service_proto_rawDescOnce sync.Once

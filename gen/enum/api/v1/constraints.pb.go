@@ -121,6 +121,14 @@ var file_enum_api_v1_constraints_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*validate.StringRules)(nil),
 		ExtensionType: (*bool)(nil),
+		Field:         80024,
+		Name:          "enum.api.v1.s3policy_id",
+		Tag:           "varint,80024,opt,name=s3policy_id",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
 		Field:         80018,
 		Name:          "enum.api.v1.dnszone_id",
 		Tag:           "varint,80018,opt,name=dnszone_id",
@@ -220,33 +228,37 @@ var (
 	//
 	// optional bool s3bucket_name = 80017;
 	E_S3BucketName = &file_enum_api_v1_constraints_proto_extTypes[11]
+	// Object storage policy ID (TypeID: s3policy-{base32_ulid}).
+	//
+	// optional bool s3policy_id = 80024;
+	E_S3PolicyId = &file_enum_api_v1_constraints_proto_extTypes[12]
 	// DNS zone ID (TypeID: dnszone-{base32_ulid}).
 	//
 	// optional bool dnszone_id = 80018;
-	E_DnszoneId = &file_enum_api_v1_constraints_proto_extTypes[12]
+	E_DnszoneId = &file_enum_api_v1_constraints_proto_extTypes[13]
 	// DNS record ID (TypeID: dnsrecord-{base32_ulid}).
 	//
 	// optional bool dnsrecord_id = 80019;
-	E_DnsrecordId = &file_enum_api_v1_constraints_proto_extTypes[13]
+	E_DnsrecordId = &file_enum_api_v1_constraints_proto_extTypes[14]
 	// DNS zone apex name: fully qualified domain, 1-253 chars, lowercase.
 	//
 	// optional bool dns_zone_name = 80020;
-	E_DnsZoneName = &file_enum_api_v1_constraints_proto_extTypes[14]
+	E_DnsZoneName = &file_enum_api_v1_constraints_proto_extTypes[15]
 	// DNS record owner name: an FQDN, 1-253 chars. Allows wildcards and
 	// underscore labels (e.g. *.example.com, _acme-challenge.example.com). The
 	// apex is addressed by the zone name itself. Rigorous per-type validation
 	// happens server-side.
 	//
 	// optional bool dns_record_name = 80021;
-	E_DnsRecordName = &file_enum_api_v1_constraints_proto_extTypes[15]
+	E_DnsRecordName = &file_enum_api_v1_constraints_proto_extTypes[16]
 	// Region code (e.g. fra)
 	//
 	// optional bool region_code = 80022;
-	E_RegionCode = &file_enum_api_v1_constraints_proto_extTypes[16]
+	E_RegionCode = &file_enum_api_v1_constraints_proto_extTypes[17]
 	// Availability zone code (e.g. fra-a)
 	//
 	// optional bool zone_code = 80023;
-	E_ZoneCode = &file_enum_api_v1_constraints_proto_extTypes[17]
+	E_ZoneCode = &file_enum_api_v1_constraints_proto_extTypes[18]
 )
 
 var File_enum_api_v1_constraints_proto protoreflect.FileDescriptor
@@ -290,7 +302,11 @@ const file_enum_api_v1_constraints_proto_rawDesc = "" +
 	"s3bucketId:\x9a\x02\n" +
 	"\rs3bucket_name\x12\x19.buf.validate.StringRules\x18\x91\xf1\x04 \x01(\bB\xd7\x01\xc2H\xd3\x01\n" +
 	"\xd0\x01\n" +
-	"\x14string.s3bucket_name\x12`must be 3-63 lowercase alphanumeric characters or hyphens, starting and ending with alphanumeric\x1aVsize(this) >= 3 && size(this) <= 63 && this.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?$')R\fs3bucketName:\xc6\x01\n" +
+	"\x14string.s3bucket_name\x12`must be 3-63 lowercase alphanumeric characters or hyphens, starting and ending with alphanumeric\x1aVsize(this) >= 3 && size(this) <= 63 && this.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?$')R\fs3bucketName:\xd8\x01\n" +
+	"\vs3policy_id\x12\x19.buf.validate.StringRules\x18\x98\xf1\x04 \x01(\bB\x99\x01\xc2H\x95\x01\n" +
+	"\x92\x01\n" +
+	"\x12string.s3policy_id\x12Smust be a valid object storage policy ID (e.g. s3policy-01kmyy4apq8h8ysq42b1sqnrkc)\x1a'this.matches('^s3policy-[0-9a-z]{26}$')R\n" +
+	"s3policyId:\xc6\x01\n" +
 	"\n" +
 	"dnszone_id\x12\x19.buf.validate.StringRules\x18\x92\xf1\x04 \x01(\bB\x89\x01\xc2H\x85\x01\n" +
 	"\x82\x01\n" +
@@ -328,16 +344,17 @@ var file_enum_api_v1_constraints_proto_depIdxs = []int32{
 	0,  // 9: enum.api.v1.s3key_id:extendee -> buf.validate.StringRules
 	0,  // 10: enum.api.v1.s3bucket_id:extendee -> buf.validate.StringRules
 	0,  // 11: enum.api.v1.s3bucket_name:extendee -> buf.validate.StringRules
-	0,  // 12: enum.api.v1.dnszone_id:extendee -> buf.validate.StringRules
-	0,  // 13: enum.api.v1.dnsrecord_id:extendee -> buf.validate.StringRules
-	0,  // 14: enum.api.v1.dns_zone_name:extendee -> buf.validate.StringRules
-	0,  // 15: enum.api.v1.dns_record_name:extendee -> buf.validate.StringRules
-	0,  // 16: enum.api.v1.region_code:extendee -> buf.validate.StringRules
-	0,  // 17: enum.api.v1.zone_code:extendee -> buf.validate.StringRules
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	0,  // [0:18] is the sub-list for extension extendee
+	0,  // 12: enum.api.v1.s3policy_id:extendee -> buf.validate.StringRules
+	0,  // 13: enum.api.v1.dnszone_id:extendee -> buf.validate.StringRules
+	0,  // 14: enum.api.v1.dnsrecord_id:extendee -> buf.validate.StringRules
+	0,  // 15: enum.api.v1.dns_zone_name:extendee -> buf.validate.StringRules
+	0,  // 16: enum.api.v1.dns_record_name:extendee -> buf.validate.StringRules
+	0,  // 17: enum.api.v1.region_code:extendee -> buf.validate.StringRules
+	0,  // 18: enum.api.v1.zone_code:extendee -> buf.validate.StringRules
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	0,  // [0:19] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -353,7 +370,7 @@ func file_enum_api_v1_constraints_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_constraints_proto_rawDesc), len(file_enum_api_v1_constraints_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 18,
+			NumExtensions: 19,
 			NumServices:   0,
 		},
 		GoTypes:           file_enum_api_v1_constraints_proto_goTypes,

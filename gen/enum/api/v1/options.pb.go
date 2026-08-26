@@ -30,12 +30,25 @@ var file_enum_api_v1_options_proto_extTypes = []protoimpl.ExtensionInfo{
 		Tag:           "varint,50000,opt,name=require_auth",
 		Filename:      "enum/api/v1/options.proto",
 	},
+	{
+		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         50002,
+		Name:          "enum.api.v1.rate_limit",
+		Tag:           "bytes,50002,opt,name=rate_limit",
+		Filename:      "enum/api/v1/options.proto",
+	},
 }
 
 // Extension fields to descriptorpb.MethodOptions.
 var (
 	// optional bool require_auth = 50000;
 	E_RequireAuth = &file_enum_api_v1_options_proto_extTypes[0]
+	// rate_limit is the cost class charged for calling the method: read, write
+	// or expensive.
+	//
+	// optional string rate_limit = 50002;
+	E_RateLimit = &file_enum_api_v1_options_proto_extTypes[1]
 )
 
 var File_enum_api_v1_options_proto protoreflect.FileDescriptor
@@ -43,17 +56,20 @@ var File_enum_api_v1_options_proto protoreflect.FileDescriptor
 const file_enum_api_v1_options_proto_rawDesc = "" +
 	"\n" +
 	"\x19enum/api/v1/options.proto\x12\venum.api.v1\x1a google/protobuf/descriptor.proto:C\n" +
-	"\frequire_auth\x12\x1e.google.protobuf.MethodOptions\x18І\x03 \x01(\bR\vrequireAuthB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\frequire_auth\x12\x1e.google.protobuf.MethodOptions\x18І\x03 \x01(\bR\vrequireAuth:?\n" +
+	"\n" +
+	"rate_limit\x12\x1e.google.protobuf.MethodOptions\x18҆\x03 \x01(\tR\trateLimitB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var file_enum_api_v1_options_proto_goTypes = []any{
 	(*descriptorpb.MethodOptions)(nil), // 0: google.protobuf.MethodOptions
 }
 var file_enum_api_v1_options_proto_depIdxs = []int32{
 	0, // 0: enum.api.v1.require_auth:extendee -> google.protobuf.MethodOptions
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	0, // [0:1] is the sub-list for extension extendee
+	0, // 1: enum.api.v1.rate_limit:extendee -> google.protobuf.MethodOptions
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	0, // [0:2] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
 }
 
@@ -69,7 +85,7 @@ func file_enum_api_v1_options_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_options_proto_rawDesc), len(file_enum_api_v1_options_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 1,
+			NumExtensions: 2,
 			NumServices:   0,
 		},
 		GoTypes:           file_enum_api_v1_options_proto_goTypes,

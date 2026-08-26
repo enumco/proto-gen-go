@@ -541,13 +541,14 @@ const file_enum_api_v1_object_storage_access_keys_service_proto_rawDesc = "" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12<\n" +
 	"\x02id\x18\x02 \x01(\tB,\xbaH)r'\xf8\x88'\x01\x92\x02 s3key-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"&\n" +
-	"$DeleteObjectStorageAccessKeyResponse2\xe6\t\n" +
-	"\x1dObjectStorageAccessKeyService\x12\xe2\x01\n" +
-	"\x19GetObjectStorageAccessKey\x12-.enum.api.v1.GetObjectStorageAccessKeyRequest\x1a..enum.api.v1.GetObjectStorageAccessKeyResponse\"f\xbaG\x10\x12\x0eGet Access Key\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02I:\x01*\"D/enum.api.v1.ObjectStorageAccessKeyService/GetObjectStorageAccessKey\x12\x88\x02\n" +
-	" GetObjectStorageAccessKeyByKeyId\x124.enum.api.v1.GetObjectStorageAccessKeyByKeyIdRequest\x1a5.enum.api.v1.GetObjectStorageAccessKeyByKeyIdResponse\"w\xbaG\x1a\x12\x18Get Access Key by Key ID\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02P:\x01*\"K/enum.api.v1.ObjectStorageAccessKeyService/GetObjectStorageAccessKeyByKeyId\x12\xec\x01\n" +
-	"\x1bListObjectStorageAccessKeys\x12/.enum.api.v1.ListObjectStorageAccessKeysRequest\x1a0.enum.api.v1.ListObjectStorageAccessKeysResponse\"j\xbaG\x12\x12\x10List Access Keys\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02K:\x01*\"F/enum.api.v1.ObjectStorageAccessKeyService/ListObjectStorageAccessKeys\x12\xf1\x01\n" +
-	"\x1cCreateObjectStorageAccessKey\x120.enum.api.v1.CreateObjectStorageAccessKeyRequest\x1a1.enum.api.v1.CreateObjectStorageAccessKeyResponse\"l\xbaG\x13\x12\x11Create Access Key\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageAccessKeyService/CreateObjectStorageAccessKey\x12\xf1\x01\n" +
-	"\x1cDeleteObjectStorageAccessKey\x120.enum.api.v1.DeleteObjectStorageAccessKeyRequest\x1a1.enum.api.v1.DeleteObjectStorageAccessKeyResponse\"l\xbaG\x13\x12\x11Delete Access Key\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageAccessKeyService/DeleteObjectStorageAccessKeyB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"$DeleteObjectStorageAccessKeyResponse2\x94\n" +
+	"\n" +
+	"\x1dObjectStorageAccessKeyService\x12\xea\x01\n" +
+	"\x19GetObjectStorageAccessKey\x12-.enum.api.v1.GetObjectStorageAccessKeyRequest\x1a..enum.api.v1.GetObjectStorageAccessKeyResponse\"n\xbaG\x10\x12\x0eGet Access Key\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02I:\x01*\"D/enum.api.v1.ObjectStorageAccessKeyService/GetObjectStorageAccessKey\x12\x90\x02\n" +
+	" GetObjectStorageAccessKeyByKeyId\x124.enum.api.v1.GetObjectStorageAccessKeyByKeyIdRequest\x1a5.enum.api.v1.GetObjectStorageAccessKeyByKeyIdResponse\"\x7f\xbaG\x1a\x12\x18Get Access Key by Key ID\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02P:\x01*\"K/enum.api.v1.ObjectStorageAccessKeyService/GetObjectStorageAccessKeyByKeyId\x12\xf4\x01\n" +
+	"\x1bListObjectStorageAccessKeys\x12/.enum.api.v1.ListObjectStorageAccessKeysRequest\x1a0.enum.api.v1.ListObjectStorageAccessKeysResponse\"r\xbaG\x12\x12\x10List Access Keys\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02K:\x01*\"F/enum.api.v1.ObjectStorageAccessKeyService/ListObjectStorageAccessKeys\x12\xfe\x01\n" +
+	"\x1cCreateObjectStorageAccessKey\x120.enum.api.v1.CreateObjectStorageAccessKeyRequest\x1a1.enum.api.v1.CreateObjectStorageAccessKeyResponse\"y\xbaG\x13\x12\x11Create Access Key\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageAccessKeyService/CreateObjectStorageAccessKey\x12\xfa\x01\n" +
+	"\x1cDeleteObjectStorageAccessKey\x120.enum.api.v1.DeleteObjectStorageAccessKeyRequest\x1a1.enum.api.v1.DeleteObjectStorageAccessKeyResponse\"u\xbaG\x13\x12\x11Delete Access Key\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02L:\x01*\"G/enum.api.v1.ObjectStorageAccessKeyService/DeleteObjectStorageAccessKeyB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_access_keys_service_proto_rawDescOnce sync.Once

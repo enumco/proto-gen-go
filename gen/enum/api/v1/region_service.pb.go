@@ -391,13 +391,13 @@ const file_enum_api_v1_region_service_proto_rawDesc = "" +
 	"\x1aGetAvailabilityZoneRequest\x12!\n" +
 	"\x02id\x18\x01 \x01(\tB\x11\xbaH\x0er\f\xb8\x89'\x01\x92\x02\x05fra-aR\x02id\"D\n" +
 	"\x1bGetAvailabilityZoneResponse\x12%\n" +
-	"\x04zone\x18\x01 \x01(\v2\x11.enum.api.v1.ZoneR\x04zone2\xcd\x05\n" +
-	"\rRegionService\x12\x98\x01\n" +
-	"\vListRegions\x12\x1f.enum.api.v1.ListRegionsRequest\x1a .enum.api.v1.ListRegionsResponse\"F\xbaG\x0e\x12\fList Regions\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.RegionService/ListRegions\x12\x8e\x01\n" +
-	"\tGetRegion\x12\x1d.enum.api.v1.GetRegionRequest\x1a\x1e.enum.api.v1.GetRegionResponse\"B\xbaG\f\x12\n" +
-	"Get Region\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.RegionService/GetRegion\x12\xcb\x01\n" +
-	"\x15ListAvailabilityZones\x12).enum.api.v1.ListAvailabilityZonesRequest\x1a*.enum.api.v1.ListAvailabilityZonesResponse\"[\xbaG\x19\x12\x17List Availability Zones\x80\xb5\x18\x01\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.RegionService/ListAvailabilityZones\x12\xc1\x01\n" +
-	"\x13GetAvailabilityZone\x12'.enum.api.v1.GetAvailabilityZoneRequest\x1a(.enum.api.v1.GetAvailabilityZoneResponse\"W\xbaG\x17\x12\x15Get Availability Zone\x80\xb5\x18\x01\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.RegionService/GetAvailabilityZoneB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x04zone\x18\x01 \x01(\v2\x11.enum.api.v1.ZoneR\x04zone2\xed\x05\n" +
+	"\rRegionService\x12\xa0\x01\n" +
+	"\vListRegions\x12\x1f.enum.api.v1.ListRegionsRequest\x1a .enum.api.v1.ListRegionsResponse\"N\xbaG\x0e\x12\fList Regions\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.RegionService/ListRegions\x12\x96\x01\n" +
+	"\tGetRegion\x12\x1d.enum.api.v1.GetRegionRequest\x1a\x1e.enum.api.v1.GetRegionResponse\"J\xbaG\f\x12\n" +
+	"Get Region\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.RegionService/GetRegion\x12\xd3\x01\n" +
+	"\x15ListAvailabilityZones\x12).enum.api.v1.ListAvailabilityZonesRequest\x1a*.enum.api.v1.ListAvailabilityZonesResponse\"c\xbaG\x19\x12\x17List Availability Zones\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.RegionService/ListAvailabilityZones\x12\xc9\x01\n" +
+	"\x13GetAvailabilityZone\x12'.enum.api.v1.GetAvailabilityZoneRequest\x1a(.enum.api.v1.GetAvailabilityZoneResponse\"_\xbaG\x17\x12\x15Get Availability Zone\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.RegionService/GetAvailabilityZoneB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_region_service_proto_rawDescOnce sync.Once

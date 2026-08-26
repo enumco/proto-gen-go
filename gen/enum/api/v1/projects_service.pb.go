@@ -755,12 +755,12 @@ const file_enum_api_v1_projects_service_proto_rawDesc = "" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12D\n" +
 	"\auser_id\x18\x02 \x01(\tB+\xbaH(r&\xe0\x88'\x01\x92\x02\x1fuser-01kmyy47ynabkw0vq7bekg4e27R\x06userId\"\x1f\n" +
-	"\x1dDetachUserFromProjectResponse2\x88\x04\n" +
-	"\x0eProjectService\x12\x9e\x01\n" +
-	"\fListProjects\x12 .enum.api.v1.ListProjectsRequest\x1a!.enum.api.v1.ListProjectsResponse\"I\xbaG\x0f\x12\rList Projects\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02-:\x01*\"(/enum.api.v1.ProjectService/ListProjects\x12\x94\x01\n" +
+	"\x1dDetachUserFromProjectResponse2\xa0\x04\n" +
+	"\x0eProjectService\x12\xa6\x01\n" +
+	"\fListProjects\x12 .enum.api.v1.ListProjectsRequest\x1a!.enum.api.v1.ListProjectsResponse\"Q\xbaG\x0f\x12\rList Projects\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02-:\x01*\"(/enum.api.v1.ProjectService/ListProjects\x12\x9c\x01\n" +
 	"\n" +
-	"GetProject\x12\x1e.enum.api.v1.GetProjectRequest\x1a\x1f.enum.api.v1.GetProjectResponse\"E\xbaG\r\x12\vGet Project\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.ProjectService/GetProject\x12\xbd\x01\n" +
-	"\x12ListProjectMembers\x12&.enum.api.v1.ListProjectMembersRequest\x1a'.enum.api.v1.ListProjectMembersResponse\"V\xbaG\x16\x12\x14List Project Members\x80\xb5\x18\x01\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.ProjectService/ListProjectMembersB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"GetProject\x12\x1e.enum.api.v1.GetProjectRequest\x1a\x1f.enum.api.v1.GetProjectResponse\"M\xbaG\r\x12\vGet Project\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.ProjectService/GetProject\x12\xc5\x01\n" +
+	"\x12ListProjectMembers\x12&.enum.api.v1.ListProjectMembersRequest\x1a'.enum.api.v1.ListProjectMembersResponse\"^\xbaG\x16\x12\x14List Project Members\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.ProjectService/ListProjectMembersB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_projects_service_proto_rawDescOnce sync.Once

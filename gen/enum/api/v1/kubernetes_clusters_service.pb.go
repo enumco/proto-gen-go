@@ -438,12 +438,12 @@ const file_enum_api_v1_kubernetes_clusters_service_proto_rawDesc = "" +
 	"\x15GetKubeconfigResponse\x12\x1e\n" +
 	"\n" +
 	"kubeconfig\x18\x01 \x01(\tR\n" +
-	"kubeconfig2\x9a\x05\n" +
-	"\x18KubernetesClusterService\x12\xd0\x01\n" +
-	"\x16ListKubernetesClusters\x12*.enum.api.v1.ListKubernetesClustersRequest\x1a+.enum.api.v1.ListKubernetesClustersResponse\"]\xbaG\x0f\x12\rList Clusters\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02A:\x01*\"</enum.api.v1.KubernetesClusterService/ListKubernetesClusters\x12\xc6\x01\n" +
-	"\x14GetKubernetesCluster\x12(.enum.api.v1.GetKubernetesClusterRequest\x1a).enum.api.v1.GetKubernetesClusterResponse\"Y\xbaG\r\x12\vGet Cluster\x80\xb5\x18\x01\x82\xd3\xe4\x93\x02?:\x01*\":/enum.api.v1.KubernetesClusterService/GetKubernetesCluster\x12\x83\x01\n" +
-	"\x1aGetKubernetesClusterByName\x12..enum.api.v1.GetKubernetesClusterByNameRequest\x1a/.enum.api.v1.GetKubernetesClusterByNameResponse\"\x04\x80\xb5\x18\x01\x12\\\n" +
-	"\rGetKubeconfig\x12!.enum.api.v1.GetKubeconfigRequest\x1a\".enum.api.v1.GetKubeconfigResponse\"\x04\x80\xb5\x18\x01B<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"kubeconfig2\xba\x05\n" +
+	"\x18KubernetesClusterService\x12\xd8\x01\n" +
+	"\x16ListKubernetesClusters\x12*.enum.api.v1.ListKubernetesClustersRequest\x1a+.enum.api.v1.ListKubernetesClustersResponse\"e\xbaG\x0f\x12\rList Clusters\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02A:\x01*\"</enum.api.v1.KubernetesClusterService/ListKubernetesClusters\x12\xce\x01\n" +
+	"\x14GetKubernetesCluster\x12(.enum.api.v1.GetKubernetesClusterRequest\x1a).enum.api.v1.GetKubernetesClusterResponse\"a\xbaG\r\x12\vGet Cluster\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02?:\x01*\":/enum.api.v1.KubernetesClusterService/GetKubernetesCluster\x12\x8b\x01\n" +
+	"\x1aGetKubernetesClusterByName\x12..enum.api.v1.GetKubernetesClusterByNameRequest\x1a/.enum.api.v1.GetKubernetesClusterByNameResponse\"\f\x80\xb5\x18\x01\x92\xb5\x18\x04read\x12d\n" +
+	"\rGetKubeconfig\x12!.enum.api.v1.GetKubeconfigRequest\x1a\".enum.api.v1.GetKubeconfigResponse\"\f\x80\xb5\x18\x01\x92\xb5\x18\x04readB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_kubernetes_clusters_service_proto_rawDescOnce sync.Once

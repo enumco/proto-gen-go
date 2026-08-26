@@ -19,10 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ObjectStorageBucketService_ListObjectStorageBuckets_FullMethodName  = "/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets"
-	ObjectStorageBucketService_GetObjectStorageBucket_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket"
-	ObjectStorageBucketService_CreateObjectStorageBucket_FullMethodName = "/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket"
-	ObjectStorageBucketService_DeleteObjectStorageBucket_FullMethodName = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket"
+	ObjectStorageBucketService_ListObjectStorageBuckets_FullMethodName            = "/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets"
+	ObjectStorageBucketService_GetObjectStorageBucket_FullMethodName              = "/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket"
+	ObjectStorageBucketService_CreateObjectStorageBucket_FullMethodName           = "/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket"
+	ObjectStorageBucketService_DeleteObjectStorageBucket_FullMethodName           = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket"
+	ObjectStorageBucketService_PutObjectStorageBucketVersioning_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketVersioning"
+	ObjectStorageBucketService_PutObjectStorageBucketObjectLock_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketObjectLock"
+	ObjectStorageBucketService_PutObjectStorageBucketEncryption_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketEncryption"
+	ObjectStorageBucketService_DeleteObjectStorageBucketEncryption_FullMethodName = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketEncryption"
+	ObjectStorageBucketService_PutObjectStorageBucketLifecycle_FullMethodName     = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketLifecycle"
+	ObjectStorageBucketService_DeleteObjectStorageBucketLifecycle_FullMethodName  = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketLifecycle"
+	ObjectStorageBucketService_PutObjectStorageBucketCORS_FullMethodName          = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketCORS"
+	ObjectStorageBucketService_DeleteObjectStorageBucketCORS_FullMethodName       = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketCORS"
+	ObjectStorageBucketService_PutObjectStorageBucketPolicy_FullMethodName        = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketPolicy"
+	ObjectStorageBucketService_DeleteObjectStorageBucketPolicy_FullMethodName     = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketPolicy"
+	ObjectStorageBucketService_PutObjectStorageBucketTagging_FullMethodName       = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketTagging"
+	ObjectStorageBucketService_DeleteObjectStorageBucketTagging_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketTagging"
 )
 
 // ObjectStorageBucketServiceClient is the client API for ObjectStorageBucketService service.
@@ -33,6 +45,18 @@ type ObjectStorageBucketServiceClient interface {
 	GetObjectStorageBucket(ctx context.Context, in *GetObjectStorageBucketRequest, opts ...grpc.CallOption) (*GetObjectStorageBucketResponse, error)
 	CreateObjectStorageBucket(ctx context.Context, in *CreateObjectStorageBucketRequest, opts ...grpc.CallOption) (*CreateObjectStorageBucketResponse, error)
 	DeleteObjectStorageBucket(ctx context.Context, in *DeleteObjectStorageBucketRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketResponse, error)
+	PutObjectStorageBucketVersioning(ctx context.Context, in *PutObjectStorageBucketVersioningRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketVersioningResponse, error)
+	PutObjectStorageBucketObjectLock(ctx context.Context, in *PutObjectStorageBucketObjectLockRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketObjectLockResponse, error)
+	PutObjectStorageBucketEncryption(ctx context.Context, in *PutObjectStorageBucketEncryptionRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketEncryptionResponse, error)
+	DeleteObjectStorageBucketEncryption(ctx context.Context, in *DeleteObjectStorageBucketEncryptionRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketEncryptionResponse, error)
+	PutObjectStorageBucketLifecycle(ctx context.Context, in *PutObjectStorageBucketLifecycleRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketLifecycleResponse, error)
+	DeleteObjectStorageBucketLifecycle(ctx context.Context, in *DeleteObjectStorageBucketLifecycleRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketLifecycleResponse, error)
+	PutObjectStorageBucketCORS(ctx context.Context, in *PutObjectStorageBucketCORSRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketCORSResponse, error)
+	DeleteObjectStorageBucketCORS(ctx context.Context, in *DeleteObjectStorageBucketCORSRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketCORSResponse, error)
+	PutObjectStorageBucketPolicy(ctx context.Context, in *PutObjectStorageBucketPolicyRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketPolicyResponse, error)
+	DeleteObjectStorageBucketPolicy(ctx context.Context, in *DeleteObjectStorageBucketPolicyRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketPolicyResponse, error)
+	PutObjectStorageBucketTagging(ctx context.Context, in *PutObjectStorageBucketTaggingRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketTaggingResponse, error)
+	DeleteObjectStorageBucketTagging(ctx context.Context, in *DeleteObjectStorageBucketTaggingRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketTaggingResponse, error)
 }
 
 type objectStorageBucketServiceClient struct {
@@ -83,6 +107,126 @@ func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucket(ctx context
 	return out, nil
 }
 
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketVersioning(ctx context.Context, in *PutObjectStorageBucketVersioningRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketVersioningResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketVersioningResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketVersioning_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketObjectLock(ctx context.Context, in *PutObjectStorageBucketObjectLockRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketObjectLockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketObjectLockResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketObjectLock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketEncryption(ctx context.Context, in *PutObjectStorageBucketEncryptionRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketEncryptionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketEncryptionResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketEncryption_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketEncryption(ctx context.Context, in *DeleteObjectStorageBucketEncryptionRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketEncryptionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteObjectStorageBucketEncryptionResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_DeleteObjectStorageBucketEncryption_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketLifecycle(ctx context.Context, in *PutObjectStorageBucketLifecycleRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketLifecycleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketLifecycleResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketLifecycle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketLifecycle(ctx context.Context, in *DeleteObjectStorageBucketLifecycleRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketLifecycleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteObjectStorageBucketLifecycleResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_DeleteObjectStorageBucketLifecycle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketCORS(ctx context.Context, in *PutObjectStorageBucketCORSRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketCORSResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketCORSResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketCORS_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketCORS(ctx context.Context, in *DeleteObjectStorageBucketCORSRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketCORSResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteObjectStorageBucketCORSResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_DeleteObjectStorageBucketCORS_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketPolicy(ctx context.Context, in *PutObjectStorageBucketPolicyRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketPolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketPolicyResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketPolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketPolicy(ctx context.Context, in *DeleteObjectStorageBucketPolicyRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketPolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteObjectStorageBucketPolicyResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_DeleteObjectStorageBucketPolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketTagging(ctx context.Context, in *PutObjectStorageBucketTaggingRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketTaggingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutObjectStorageBucketTaggingResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_PutObjectStorageBucketTagging_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketTagging(ctx context.Context, in *DeleteObjectStorageBucketTaggingRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketTaggingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteObjectStorageBucketTaggingResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_DeleteObjectStorageBucketTagging_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ObjectStorageBucketServiceServer is the server API for ObjectStorageBucketService service.
 // All implementations must embed UnimplementedObjectStorageBucketServiceServer
 // for forward compatibility.
@@ -91,6 +235,18 @@ type ObjectStorageBucketServiceServer interface {
 	GetObjectStorageBucket(context.Context, *GetObjectStorageBucketRequest) (*GetObjectStorageBucketResponse, error)
 	CreateObjectStorageBucket(context.Context, *CreateObjectStorageBucketRequest) (*CreateObjectStorageBucketResponse, error)
 	DeleteObjectStorageBucket(context.Context, *DeleteObjectStorageBucketRequest) (*DeleteObjectStorageBucketResponse, error)
+	PutObjectStorageBucketVersioning(context.Context, *PutObjectStorageBucketVersioningRequest) (*PutObjectStorageBucketVersioningResponse, error)
+	PutObjectStorageBucketObjectLock(context.Context, *PutObjectStorageBucketObjectLockRequest) (*PutObjectStorageBucketObjectLockResponse, error)
+	PutObjectStorageBucketEncryption(context.Context, *PutObjectStorageBucketEncryptionRequest) (*PutObjectStorageBucketEncryptionResponse, error)
+	DeleteObjectStorageBucketEncryption(context.Context, *DeleteObjectStorageBucketEncryptionRequest) (*DeleteObjectStorageBucketEncryptionResponse, error)
+	PutObjectStorageBucketLifecycle(context.Context, *PutObjectStorageBucketLifecycleRequest) (*PutObjectStorageBucketLifecycleResponse, error)
+	DeleteObjectStorageBucketLifecycle(context.Context, *DeleteObjectStorageBucketLifecycleRequest) (*DeleteObjectStorageBucketLifecycleResponse, error)
+	PutObjectStorageBucketCORS(context.Context, *PutObjectStorageBucketCORSRequest) (*PutObjectStorageBucketCORSResponse, error)
+	DeleteObjectStorageBucketCORS(context.Context, *DeleteObjectStorageBucketCORSRequest) (*DeleteObjectStorageBucketCORSResponse, error)
+	PutObjectStorageBucketPolicy(context.Context, *PutObjectStorageBucketPolicyRequest) (*PutObjectStorageBucketPolicyResponse, error)
+	DeleteObjectStorageBucketPolicy(context.Context, *DeleteObjectStorageBucketPolicyRequest) (*DeleteObjectStorageBucketPolicyResponse, error)
+	PutObjectStorageBucketTagging(context.Context, *PutObjectStorageBucketTaggingRequest) (*PutObjectStorageBucketTaggingResponse, error)
+	DeleteObjectStorageBucketTagging(context.Context, *DeleteObjectStorageBucketTaggingRequest) (*DeleteObjectStorageBucketTaggingResponse, error)
 	mustEmbedUnimplementedObjectStorageBucketServiceServer()
 }
 
@@ -112,6 +268,42 @@ func (UnimplementedObjectStorageBucketServiceServer) CreateObjectStorageBucket(c
 }
 func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucket(context.Context, *DeleteObjectStorageBucketRequest) (*DeleteObjectStorageBucketResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucket not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketVersioning(context.Context, *PutObjectStorageBucketVersioningRequest) (*PutObjectStorageBucketVersioningResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketVersioning not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketObjectLock(context.Context, *PutObjectStorageBucketObjectLockRequest) (*PutObjectStorageBucketObjectLockResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketObjectLock not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketEncryption(context.Context, *PutObjectStorageBucketEncryptionRequest) (*PutObjectStorageBucketEncryptionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketEncryption not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucketEncryption(context.Context, *DeleteObjectStorageBucketEncryptionRequest) (*DeleteObjectStorageBucketEncryptionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucketEncryption not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketLifecycle(context.Context, *PutObjectStorageBucketLifecycleRequest) (*PutObjectStorageBucketLifecycleResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketLifecycle not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucketLifecycle(context.Context, *DeleteObjectStorageBucketLifecycleRequest) (*DeleteObjectStorageBucketLifecycleResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucketLifecycle not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketCORS(context.Context, *PutObjectStorageBucketCORSRequest) (*PutObjectStorageBucketCORSResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketCORS not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucketCORS(context.Context, *DeleteObjectStorageBucketCORSRequest) (*DeleteObjectStorageBucketCORSResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucketCORS not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketPolicy(context.Context, *PutObjectStorageBucketPolicyRequest) (*PutObjectStorageBucketPolicyResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketPolicy not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucketPolicy(context.Context, *DeleteObjectStorageBucketPolicyRequest) (*DeleteObjectStorageBucketPolicyResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucketPolicy not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) PutObjectStorageBucketTagging(context.Context, *PutObjectStorageBucketTaggingRequest) (*PutObjectStorageBucketTaggingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PutObjectStorageBucketTagging not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucketTagging(context.Context, *DeleteObjectStorageBucketTaggingRequest) (*DeleteObjectStorageBucketTaggingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucketTagging not implemented")
 }
 func (UnimplementedObjectStorageBucketServiceServer) mustEmbedUnimplementedObjectStorageBucketServiceServer() {
 }
@@ -207,6 +399,222 @@ func _ObjectStorageBucketService_DeleteObjectStorageBucket_Handler(srv interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ObjectStorageBucketService_PutObjectStorageBucketVersioning_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketVersioningRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketVersioning(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketVersioning_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketVersioning(ctx, req.(*PutObjectStorageBucketVersioningRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketObjectLock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketObjectLockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketObjectLock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketObjectLock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketObjectLock(ctx, req.(*PutObjectStorageBucketObjectLockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketEncryption_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketEncryptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketEncryption(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketEncryption_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketEncryption(ctx, req.(*PutObjectStorageBucketEncryptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_DeleteObjectStorageBucketEncryption_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectStorageBucketEncryptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketEncryption(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_DeleteObjectStorageBucketEncryption_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketEncryption(ctx, req.(*DeleteObjectStorageBucketEncryptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketLifecycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketLifecycleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketLifecycle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketLifecycle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketLifecycle(ctx, req.(*PutObjectStorageBucketLifecycleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_DeleteObjectStorageBucketLifecycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectStorageBucketLifecycleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketLifecycle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_DeleteObjectStorageBucketLifecycle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketLifecycle(ctx, req.(*DeleteObjectStorageBucketLifecycleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketCORS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketCORSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketCORS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketCORS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketCORS(ctx, req.(*PutObjectStorageBucketCORSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_DeleteObjectStorageBucketCORS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectStorageBucketCORSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketCORS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_DeleteObjectStorageBucketCORS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketCORS(ctx, req.(*DeleteObjectStorageBucketCORSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketPolicy(ctx, req.(*PutObjectStorageBucketPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_DeleteObjectStorageBucketPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectStorageBucketPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_DeleteObjectStorageBucketPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketPolicy(ctx, req.(*DeleteObjectStorageBucketPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_PutObjectStorageBucketTagging_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutObjectStorageBucketTaggingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketTagging(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_PutObjectStorageBucketTagging_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).PutObjectStorageBucketTagging(ctx, req.(*PutObjectStorageBucketTaggingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_DeleteObjectStorageBucketTagging_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteObjectStorageBucketTaggingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketTagging(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_DeleteObjectStorageBucketTagging_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).DeleteObjectStorageBucketTagging(ctx, req.(*DeleteObjectStorageBucketTaggingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ObjectStorageBucketService_ServiceDesc is the grpc.ServiceDesc for ObjectStorageBucketService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -229,6 +637,54 @@ var ObjectStorageBucketService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteObjectStorageBucket",
 			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucket_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketVersioning",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketVersioning_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketObjectLock",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketObjectLock_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketEncryption",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketEncryption_Handler,
+		},
+		{
+			MethodName: "DeleteObjectStorageBucketEncryption",
+			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucketEncryption_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketLifecycle",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketLifecycle_Handler,
+		},
+		{
+			MethodName: "DeleteObjectStorageBucketLifecycle",
+			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucketLifecycle_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketCORS",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketCORS_Handler,
+		},
+		{
+			MethodName: "DeleteObjectStorageBucketCORS",
+			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucketCORS_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketPolicy",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketPolicy_Handler,
+		},
+		{
+			MethodName: "DeleteObjectStorageBucketPolicy",
+			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucketPolicy_Handler,
+		},
+		{
+			MethodName: "PutObjectStorageBucketTagging",
+			Handler:    _ObjectStorageBucketService_PutObjectStorageBucketTagging_Handler,
+		},
+		{
+			MethodName: "DeleteObjectStorageBucketTagging",
+			Handler:    _ObjectStorageBucketService_DeleteObjectStorageBucketTagging_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

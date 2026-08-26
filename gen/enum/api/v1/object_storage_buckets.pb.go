@@ -22,6 +22,108 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// ObjectStorageBucketConfiguration is the current bucket configuration as
+// reported by object storage. Documents are opaque XML or JSON strings in the
+// same shape accepted by the corresponding Put RPCs.
+type ObjectStorageBucketConfiguration struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Versioning status: Enabled, Suspended, or empty when unset.
+	Versioning string `protobuf:"bytes,1,opt,name=versioning,proto3" json:"versioning,omitempty"`
+	// Object Lock configuration document (XML), empty when unset.
+	ObjectLock string `protobuf:"bytes,2,opt,name=object_lock,json=objectLock,proto3" json:"object_lock,omitempty"`
+	// Default encryption configuration document (XML), empty when unset.
+	Encryption string `protobuf:"bytes,3,opt,name=encryption,proto3" json:"encryption,omitempty"`
+	// Lifecycle configuration document (XML), empty when unset.
+	Lifecycle string `protobuf:"bytes,4,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
+	// CORS configuration document (XML), empty when unset.
+	Cors string `protobuf:"bytes,5,opt,name=cors,proto3" json:"cors,omitempty"`
+	// Bucket policy document (JSON), empty when unset.
+	BucketPolicy string `protobuf:"bytes,6,opt,name=bucket_policy,json=bucketPolicy,proto3" json:"bucket_policy,omitempty"`
+	// Bucket tags as a JSON object string, empty when unset.
+	Tags          string `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ObjectStorageBucketConfiguration) Reset() {
+	*x = ObjectStorageBucketConfiguration{}
+	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectStorageBucketConfiguration) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectStorageBucketConfiguration) ProtoMessage() {}
+
+func (x *ObjectStorageBucketConfiguration) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ObjectStorageBucketConfiguration.ProtoReflect.Descriptor instead.
+func (*ObjectStorageBucketConfiguration) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ObjectStorageBucketConfiguration) GetVersioning() string {
+	if x != nil {
+		return x.Versioning
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetObjectLock() string {
+	if x != nil {
+		return x.ObjectLock
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetEncryption() string {
+	if x != nil {
+		return x.Encryption
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetLifecycle() string {
+	if x != nil {
+		return x.Lifecycle
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetCors() string {
+	if x != nil {
+		return x.Cors
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetBucketPolicy() string {
+	if x != nil {
+		return x.BucketPolicy
+	}
+	return ""
+}
+
+func (x *ObjectStorageBucketConfiguration) GetTags() string {
+	if x != nil {
+		return x.Tags
+	}
+	return ""
+}
+
 type ObjectStorageBucket struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
 	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -32,14 +134,17 @@ type ObjectStorageBucket struct {
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Status    ResourceStatus         `protobuf:"varint,7,opt,name=status,proto3,enum=enum.api.v1.ResourceStatus" json:"status,omitempty"`
 	// Region where the bucket lives (e.g. "fra").
-	RegionId      string `protobuf:"bytes,8,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	RegionId      string                            `protobuf:"bytes,8,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
+	Configuration *ObjectStorageBucketConfiguration `protobuf:"bytes,9,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	// Whether Object Lock was enabled at create time. Cannot be changed later.
+	ObjectLockEnabled bool `protobuf:"varint,10,opt,name=object_lock_enabled,json=objectLockEnabled,proto3" json:"object_lock_enabled,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ObjectStorageBucket) Reset() {
 	*x = ObjectStorageBucket{}
-	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[0]
+	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -51,7 +156,7 @@ func (x *ObjectStorageBucket) String() string {
 func (*ObjectStorageBucket) ProtoMessage() {}
 
 func (x *ObjectStorageBucket) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[0]
+	mi := &file_enum_api_v1_object_storage_buckets_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +169,7 @@ func (x *ObjectStorageBucket) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObjectStorageBucket.ProtoReflect.Descriptor instead.
 func (*ObjectStorageBucket) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_proto_rawDescGZIP(), []int{0}
+	return file_enum_api_v1_object_storage_buckets_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ObjectStorageBucket) GetId() string {
@@ -123,11 +228,38 @@ func (x *ObjectStorageBucket) GetRegionId() string {
 	return ""
 }
 
+func (x *ObjectStorageBucket) GetConfiguration() *ObjectStorageBucketConfiguration {
+	if x != nil {
+		return x.Configuration
+	}
+	return nil
+}
+
+func (x *ObjectStorageBucket) GetObjectLockEnabled() bool {
+	if x != nil {
+		return x.ObjectLockEnabled
+	}
+	return false
+}
+
 var File_enum_api_v1_object_storage_buckets_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"\n" +
-	"(enum/api/v1/object_storage_buckets.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x02\n" +
+	"(enum/api/v1/object_storage_buckets.proto\x12\venum.api.v1\x1a\x18enum/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\x01\n" +
+	" ObjectStorageBucketConfiguration\x12\x1e\n" +
+	"\n" +
+	"versioning\x18\x01 \x01(\tR\n" +
+	"versioning\x12\x1f\n" +
+	"\vobject_lock\x18\x02 \x01(\tR\n" +
+	"objectLock\x12\x1e\n" +
+	"\n" +
+	"encryption\x18\x03 \x01(\tR\n" +
+	"encryption\x12\x1c\n" +
+	"\tlifecycle\x18\x04 \x01(\tR\tlifecycle\x12\x12\n" +
+	"\x04cors\x18\x05 \x01(\tR\x04cors\x12#\n" +
+	"\rbucket_policy\x18\x06 \x01(\tR\fbucketPolicy\x12\x12\n" +
+	"\x04tags\x18\a \x01(\tR\x04tags\"\xc4\x03\n" +
 	"\x13ObjectStorageBucket\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -140,7 +272,10 @@ const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x123\n" +
 	"\x06status\x18\a \x01(\x0e2\x1b.enum.api.v1.ResourceStatusR\x06status\x12\x1b\n" +
-	"\tregion_id\x18\b \x01(\tR\bregionIdB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\tregion_id\x18\b \x01(\tR\bregionId\x12S\n" +
+	"\rconfiguration\x18\t \x01(\v2-.enum.api.v1.ObjectStorageBucketConfigurationR\rconfiguration\x12.\n" +
+	"\x13object_lock_enabled\x18\n" +
+	" \x01(\bR\x11objectLockEnabledB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_buckets_proto_rawDescOnce sync.Once
@@ -154,21 +289,23 @@ func file_enum_api_v1_object_storage_buckets_proto_rawDescGZIP() []byte {
 	return file_enum_api_v1_object_storage_buckets_proto_rawDescData
 }
 
-var file_enum_api_v1_object_storage_buckets_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_enum_api_v1_object_storage_buckets_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_enum_api_v1_object_storage_buckets_proto_goTypes = []any{
-	(*ObjectStorageBucket)(nil),   // 0: enum.api.v1.ObjectStorageBucket
-	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
-	(ResourceStatus)(0),           // 2: enum.api.v1.ResourceStatus
+	(*ObjectStorageBucketConfiguration)(nil), // 0: enum.api.v1.ObjectStorageBucketConfiguration
+	(*ObjectStorageBucket)(nil),              // 1: enum.api.v1.ObjectStorageBucket
+	(*timestamppb.Timestamp)(nil),            // 2: google.protobuf.Timestamp
+	(ResourceStatus)(0),                      // 3: enum.api.v1.ResourceStatus
 }
 var file_enum_api_v1_object_storage_buckets_proto_depIdxs = []int32{
-	1, // 0: enum.api.v1.ObjectStorageBucket.created_at:type_name -> google.protobuf.Timestamp
-	1, // 1: enum.api.v1.ObjectStorageBucket.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 2: enum.api.v1.ObjectStorageBucket.status:type_name -> enum.api.v1.ResourceStatus
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2, // 0: enum.api.v1.ObjectStorageBucket.created_at:type_name -> google.protobuf.Timestamp
+	2, // 1: enum.api.v1.ObjectStorageBucket.updated_at:type_name -> google.protobuf.Timestamp
+	3, // 2: enum.api.v1.ObjectStorageBucket.status:type_name -> enum.api.v1.ResourceStatus
+	0, // 3: enum.api.v1.ObjectStorageBucket.configuration:type_name -> enum.api.v1.ObjectStorageBucketConfiguration
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_enum_api_v1_object_storage_buckets_proto_init() }
@@ -183,7 +320,7 @@ func file_enum_api_v1_object_storage_buckets_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_object_storage_buckets_proto_rawDesc), len(file_enum_api_v1_object_storage_buckets_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

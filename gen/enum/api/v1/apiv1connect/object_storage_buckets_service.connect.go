@@ -46,6 +46,42 @@ const (
 	// ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure is the fully-qualified name of the
 	// ObjectStorageBucketService's DeleteObjectStorageBucket RPC.
 	ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket"
+	// ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure is the fully-qualified name
+	// of the ObjectStorageBucketService's PutObjectStorageBucketVersioning RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketVersioning"
+	// ObjectStorageBucketServicePutObjectStorageBucketObjectLockProcedure is the fully-qualified name
+	// of the ObjectStorageBucketService's PutObjectStorageBucketObjectLock RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketObjectLockProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketObjectLock"
+	// ObjectStorageBucketServicePutObjectStorageBucketEncryptionProcedure is the fully-qualified name
+	// of the ObjectStorageBucketService's PutObjectStorageBucketEncryption RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketEncryptionProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketEncryption"
+	// ObjectStorageBucketServiceDeleteObjectStorageBucketEncryptionProcedure is the fully-qualified
+	// name of the ObjectStorageBucketService's DeleteObjectStorageBucketEncryption RPC.
+	ObjectStorageBucketServiceDeleteObjectStorageBucketEncryptionProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketEncryption"
+	// ObjectStorageBucketServicePutObjectStorageBucketLifecycleProcedure is the fully-qualified name of
+	// the ObjectStorageBucketService's PutObjectStorageBucketLifecycle RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketLifecycleProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketLifecycle"
+	// ObjectStorageBucketServiceDeleteObjectStorageBucketLifecycleProcedure is the fully-qualified name
+	// of the ObjectStorageBucketService's DeleteObjectStorageBucketLifecycle RPC.
+	ObjectStorageBucketServiceDeleteObjectStorageBucketLifecycleProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketLifecycle"
+	// ObjectStorageBucketServicePutObjectStorageBucketCORSProcedure is the fully-qualified name of the
+	// ObjectStorageBucketService's PutObjectStorageBucketCORS RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketCORSProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketCORS"
+	// ObjectStorageBucketServiceDeleteObjectStorageBucketCORSProcedure is the fully-qualified name of
+	// the ObjectStorageBucketService's DeleteObjectStorageBucketCORS RPC.
+	ObjectStorageBucketServiceDeleteObjectStorageBucketCORSProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketCORS"
+	// ObjectStorageBucketServicePutObjectStorageBucketPolicyProcedure is the fully-qualified name of
+	// the ObjectStorageBucketService's PutObjectStorageBucketPolicy RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketPolicyProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketPolicy"
+	// ObjectStorageBucketServiceDeleteObjectStorageBucketPolicyProcedure is the fully-qualified name of
+	// the ObjectStorageBucketService's DeleteObjectStorageBucketPolicy RPC.
+	ObjectStorageBucketServiceDeleteObjectStorageBucketPolicyProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketPolicy"
+	// ObjectStorageBucketServicePutObjectStorageBucketTaggingProcedure is the fully-qualified name of
+	// the ObjectStorageBucketService's PutObjectStorageBucketTagging RPC.
+	ObjectStorageBucketServicePutObjectStorageBucketTaggingProcedure = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketTagging"
+	// ObjectStorageBucketServiceDeleteObjectStorageBucketTaggingProcedure is the fully-qualified name
+	// of the ObjectStorageBucketService's DeleteObjectStorageBucketTagging RPC.
+	ObjectStorageBucketServiceDeleteObjectStorageBucketTaggingProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucketTagging"
 )
 
 // ObjectStorageBucketServiceClient is a client for the enum.api.v1.ObjectStorageBucketService
@@ -55,6 +91,18 @@ type ObjectStorageBucketServiceClient interface {
 	GetObjectStorageBucket(context.Context, *connect.Request[v1.GetObjectStorageBucketRequest]) (*connect.Response[v1.GetObjectStorageBucketResponse], error)
 	CreateObjectStorageBucket(context.Context, *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error)
 	DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error)
+	PutObjectStorageBucketVersioning(context.Context, *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error)
+	PutObjectStorageBucketObjectLock(context.Context, *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error)
+	PutObjectStorageBucketEncryption(context.Context, *connect.Request[v1.PutObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.PutObjectStorageBucketEncryptionResponse], error)
+	DeleteObjectStorageBucketEncryption(context.Context, *connect.Request[v1.DeleteObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.DeleteObjectStorageBucketEncryptionResponse], error)
+	PutObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.PutObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.PutObjectStorageBucketLifecycleResponse], error)
+	DeleteObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.DeleteObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.DeleteObjectStorageBucketLifecycleResponse], error)
+	PutObjectStorageBucketCORS(context.Context, *connect.Request[v1.PutObjectStorageBucketCORSRequest]) (*connect.Response[v1.PutObjectStorageBucketCORSResponse], error)
+	DeleteObjectStorageBucketCORS(context.Context, *connect.Request[v1.DeleteObjectStorageBucketCORSRequest]) (*connect.Response[v1.DeleteObjectStorageBucketCORSResponse], error)
+	PutObjectStorageBucketPolicy(context.Context, *connect.Request[v1.PutObjectStorageBucketPolicyRequest]) (*connect.Response[v1.PutObjectStorageBucketPolicyResponse], error)
+	DeleteObjectStorageBucketPolicy(context.Context, *connect.Request[v1.DeleteObjectStorageBucketPolicyRequest]) (*connect.Response[v1.DeleteObjectStorageBucketPolicyResponse], error)
+	PutObjectStorageBucketTagging(context.Context, *connect.Request[v1.PutObjectStorageBucketTaggingRequest]) (*connect.Response[v1.PutObjectStorageBucketTaggingResponse], error)
+	DeleteObjectStorageBucketTagging(context.Context, *connect.Request[v1.DeleteObjectStorageBucketTaggingRequest]) (*connect.Response[v1.DeleteObjectStorageBucketTaggingResponse], error)
 }
 
 // NewObjectStorageBucketServiceClient constructs a client for the
@@ -92,15 +140,99 @@ func NewObjectStorageBucketServiceClient(httpClient connect.HTTPClient, baseURL 
 			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucket")),
 			connect.WithClientOptions(opts...),
 		),
+		putObjectStorageBucketVersioning: connect.NewClient[v1.PutObjectStorageBucketVersioningRequest, v1.PutObjectStorageBucketVersioningResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketVersioning")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketObjectLock: connect.NewClient[v1.PutObjectStorageBucketObjectLockRequest, v1.PutObjectStorageBucketObjectLockResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketObjectLockProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketObjectLock")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketEncryption: connect.NewClient[v1.PutObjectStorageBucketEncryptionRequest, v1.PutObjectStorageBucketEncryptionResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketEncryptionProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketEncryption")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteObjectStorageBucketEncryption: connect.NewClient[v1.DeleteObjectStorageBucketEncryptionRequest, v1.DeleteObjectStorageBucketEncryptionResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceDeleteObjectStorageBucketEncryptionProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketEncryption")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketLifecycle: connect.NewClient[v1.PutObjectStorageBucketLifecycleRequest, v1.PutObjectStorageBucketLifecycleResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketLifecycleProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketLifecycle")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteObjectStorageBucketLifecycle: connect.NewClient[v1.DeleteObjectStorageBucketLifecycleRequest, v1.DeleteObjectStorageBucketLifecycleResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceDeleteObjectStorageBucketLifecycleProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketLifecycle")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketCORS: connect.NewClient[v1.PutObjectStorageBucketCORSRequest, v1.PutObjectStorageBucketCORSResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketCORSProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketCORS")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteObjectStorageBucketCORS: connect.NewClient[v1.DeleteObjectStorageBucketCORSRequest, v1.DeleteObjectStorageBucketCORSResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceDeleteObjectStorageBucketCORSProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketCORS")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketPolicy: connect.NewClient[v1.PutObjectStorageBucketPolicyRequest, v1.PutObjectStorageBucketPolicyResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketPolicyProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketPolicy")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteObjectStorageBucketPolicy: connect.NewClient[v1.DeleteObjectStorageBucketPolicyRequest, v1.DeleteObjectStorageBucketPolicyResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceDeleteObjectStorageBucketPolicyProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketPolicy")),
+			connect.WithClientOptions(opts...),
+		),
+		putObjectStorageBucketTagging: connect.NewClient[v1.PutObjectStorageBucketTaggingRequest, v1.PutObjectStorageBucketTaggingResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServicePutObjectStorageBucketTaggingProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketTagging")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteObjectStorageBucketTagging: connect.NewClient[v1.DeleteObjectStorageBucketTaggingRequest, v1.DeleteObjectStorageBucketTaggingResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceDeleteObjectStorageBucketTaggingProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketTagging")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // objectStorageBucketServiceClient implements ObjectStorageBucketServiceClient.
 type objectStorageBucketServiceClient struct {
-	listObjectStorageBuckets  *connect.Client[v1.ListObjectStorageBucketsRequest, v1.ListObjectStorageBucketsResponse]
-	getObjectStorageBucket    *connect.Client[v1.GetObjectStorageBucketRequest, v1.GetObjectStorageBucketResponse]
-	createObjectStorageBucket *connect.Client[v1.CreateObjectStorageBucketRequest, v1.CreateObjectStorageBucketResponse]
-	deleteObjectStorageBucket *connect.Client[v1.DeleteObjectStorageBucketRequest, v1.DeleteObjectStorageBucketResponse]
+	listObjectStorageBuckets            *connect.Client[v1.ListObjectStorageBucketsRequest, v1.ListObjectStorageBucketsResponse]
+	getObjectStorageBucket              *connect.Client[v1.GetObjectStorageBucketRequest, v1.GetObjectStorageBucketResponse]
+	createObjectStorageBucket           *connect.Client[v1.CreateObjectStorageBucketRequest, v1.CreateObjectStorageBucketResponse]
+	deleteObjectStorageBucket           *connect.Client[v1.DeleteObjectStorageBucketRequest, v1.DeleteObjectStorageBucketResponse]
+	putObjectStorageBucketVersioning    *connect.Client[v1.PutObjectStorageBucketVersioningRequest, v1.PutObjectStorageBucketVersioningResponse]
+	putObjectStorageBucketObjectLock    *connect.Client[v1.PutObjectStorageBucketObjectLockRequest, v1.PutObjectStorageBucketObjectLockResponse]
+	putObjectStorageBucketEncryption    *connect.Client[v1.PutObjectStorageBucketEncryptionRequest, v1.PutObjectStorageBucketEncryptionResponse]
+	deleteObjectStorageBucketEncryption *connect.Client[v1.DeleteObjectStorageBucketEncryptionRequest, v1.DeleteObjectStorageBucketEncryptionResponse]
+	putObjectStorageBucketLifecycle     *connect.Client[v1.PutObjectStorageBucketLifecycleRequest, v1.PutObjectStorageBucketLifecycleResponse]
+	deleteObjectStorageBucketLifecycle  *connect.Client[v1.DeleteObjectStorageBucketLifecycleRequest, v1.DeleteObjectStorageBucketLifecycleResponse]
+	putObjectStorageBucketCORS          *connect.Client[v1.PutObjectStorageBucketCORSRequest, v1.PutObjectStorageBucketCORSResponse]
+	deleteObjectStorageBucketCORS       *connect.Client[v1.DeleteObjectStorageBucketCORSRequest, v1.DeleteObjectStorageBucketCORSResponse]
+	putObjectStorageBucketPolicy        *connect.Client[v1.PutObjectStorageBucketPolicyRequest, v1.PutObjectStorageBucketPolicyResponse]
+	deleteObjectStorageBucketPolicy     *connect.Client[v1.DeleteObjectStorageBucketPolicyRequest, v1.DeleteObjectStorageBucketPolicyResponse]
+	putObjectStorageBucketTagging       *connect.Client[v1.PutObjectStorageBucketTaggingRequest, v1.PutObjectStorageBucketTaggingResponse]
+	deleteObjectStorageBucketTagging    *connect.Client[v1.DeleteObjectStorageBucketTaggingRequest, v1.DeleteObjectStorageBucketTaggingResponse]
 }
 
 // ListObjectStorageBuckets calls enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets.
@@ -123,6 +255,78 @@ func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucket(ctx context
 	return c.deleteObjectStorageBucket.CallUnary(ctx, req)
 }
 
+// PutObjectStorageBucketVersioning calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketVersioning(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error) {
+	return c.putObjectStorageBucketVersioning.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketObjectLock calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketObjectLock(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error) {
+	return c.putObjectStorageBucketObjectLock.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketEncryption calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketEncryption(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.PutObjectStorageBucketEncryptionResponse], error) {
+	return c.putObjectStorageBucketEncryption.CallUnary(ctx, req)
+}
+
+// DeleteObjectStorageBucketEncryption calls
+// enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption.
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketEncryption(ctx context.Context, req *connect.Request[v1.DeleteObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.DeleteObjectStorageBucketEncryptionResponse], error) {
+	return c.deleteObjectStorageBucketEncryption.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketLifecycle calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketLifecycle(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.PutObjectStorageBucketLifecycleResponse], error) {
+	return c.putObjectStorageBucketLifecycle.CallUnary(ctx, req)
+}
+
+// DeleteObjectStorageBucketLifecycle calls
+// enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle.
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketLifecycle(ctx context.Context, req *connect.Request[v1.DeleteObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.DeleteObjectStorageBucketLifecycleResponse], error) {
+	return c.deleteObjectStorageBucketLifecycle.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketCORS calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketCORS(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketCORSRequest]) (*connect.Response[v1.PutObjectStorageBucketCORSResponse], error) {
+	return c.putObjectStorageBucketCORS.CallUnary(ctx, req)
+}
+
+// DeleteObjectStorageBucketCORS calls
+// enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS.
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketCORS(ctx context.Context, req *connect.Request[v1.DeleteObjectStorageBucketCORSRequest]) (*connect.Response[v1.DeleteObjectStorageBucketCORSResponse], error) {
+	return c.deleteObjectStorageBucketCORS.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketPolicy calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketPolicy(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketPolicyRequest]) (*connect.Response[v1.PutObjectStorageBucketPolicyResponse], error) {
+	return c.putObjectStorageBucketPolicy.CallUnary(ctx, req)
+}
+
+// DeleteObjectStorageBucketPolicy calls
+// enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy.
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketPolicy(ctx context.Context, req *connect.Request[v1.DeleteObjectStorageBucketPolicyRequest]) (*connect.Response[v1.DeleteObjectStorageBucketPolicyResponse], error) {
+	return c.deleteObjectStorageBucketPolicy.CallUnary(ctx, req)
+}
+
+// PutObjectStorageBucketTagging calls
+// enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging.
+func (c *objectStorageBucketServiceClient) PutObjectStorageBucketTagging(ctx context.Context, req *connect.Request[v1.PutObjectStorageBucketTaggingRequest]) (*connect.Response[v1.PutObjectStorageBucketTaggingResponse], error) {
+	return c.putObjectStorageBucketTagging.CallUnary(ctx, req)
+}
+
+// DeleteObjectStorageBucketTagging calls
+// enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging.
+func (c *objectStorageBucketServiceClient) DeleteObjectStorageBucketTagging(ctx context.Context, req *connect.Request[v1.DeleteObjectStorageBucketTaggingRequest]) (*connect.Response[v1.DeleteObjectStorageBucketTaggingResponse], error) {
+	return c.deleteObjectStorageBucketTagging.CallUnary(ctx, req)
+}
+
 // ObjectStorageBucketServiceHandler is an implementation of the
 // enum.api.v1.ObjectStorageBucketService service.
 type ObjectStorageBucketServiceHandler interface {
@@ -130,6 +334,18 @@ type ObjectStorageBucketServiceHandler interface {
 	GetObjectStorageBucket(context.Context, *connect.Request[v1.GetObjectStorageBucketRequest]) (*connect.Response[v1.GetObjectStorageBucketResponse], error)
 	CreateObjectStorageBucket(context.Context, *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error)
 	DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error)
+	PutObjectStorageBucketVersioning(context.Context, *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error)
+	PutObjectStorageBucketObjectLock(context.Context, *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error)
+	PutObjectStorageBucketEncryption(context.Context, *connect.Request[v1.PutObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.PutObjectStorageBucketEncryptionResponse], error)
+	DeleteObjectStorageBucketEncryption(context.Context, *connect.Request[v1.DeleteObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.DeleteObjectStorageBucketEncryptionResponse], error)
+	PutObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.PutObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.PutObjectStorageBucketLifecycleResponse], error)
+	DeleteObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.DeleteObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.DeleteObjectStorageBucketLifecycleResponse], error)
+	PutObjectStorageBucketCORS(context.Context, *connect.Request[v1.PutObjectStorageBucketCORSRequest]) (*connect.Response[v1.PutObjectStorageBucketCORSResponse], error)
+	DeleteObjectStorageBucketCORS(context.Context, *connect.Request[v1.DeleteObjectStorageBucketCORSRequest]) (*connect.Response[v1.DeleteObjectStorageBucketCORSResponse], error)
+	PutObjectStorageBucketPolicy(context.Context, *connect.Request[v1.PutObjectStorageBucketPolicyRequest]) (*connect.Response[v1.PutObjectStorageBucketPolicyResponse], error)
+	DeleteObjectStorageBucketPolicy(context.Context, *connect.Request[v1.DeleteObjectStorageBucketPolicyRequest]) (*connect.Response[v1.DeleteObjectStorageBucketPolicyResponse], error)
+	PutObjectStorageBucketTagging(context.Context, *connect.Request[v1.PutObjectStorageBucketTaggingRequest]) (*connect.Response[v1.PutObjectStorageBucketTaggingResponse], error)
+	DeleteObjectStorageBucketTagging(context.Context, *connect.Request[v1.DeleteObjectStorageBucketTaggingRequest]) (*connect.Response[v1.DeleteObjectStorageBucketTaggingResponse], error)
 }
 
 // NewObjectStorageBucketServiceHandler builds an HTTP handler from the service implementation. It
@@ -163,6 +379,78 @@ func NewObjectStorageBucketServiceHandler(svc ObjectStorageBucketServiceHandler,
 		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucket")),
 		connect.WithHandlerOptions(opts...),
 	)
+	objectStorageBucketServicePutObjectStorageBucketVersioningHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure,
+		svc.PutObjectStorageBucketVersioning,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketVersioning")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketObjectLockHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketObjectLockProcedure,
+		svc.PutObjectStorageBucketObjectLock,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketObjectLock")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketEncryptionHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketEncryptionProcedure,
+		svc.PutObjectStorageBucketEncryption,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketEncryption")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceDeleteObjectStorageBucketEncryptionHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceDeleteObjectStorageBucketEncryptionProcedure,
+		svc.DeleteObjectStorageBucketEncryption,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketEncryption")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketLifecycleHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketLifecycleProcedure,
+		svc.PutObjectStorageBucketLifecycle,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketLifecycle")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceDeleteObjectStorageBucketLifecycleHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceDeleteObjectStorageBucketLifecycleProcedure,
+		svc.DeleteObjectStorageBucketLifecycle,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketLifecycle")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketCORSHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketCORSProcedure,
+		svc.PutObjectStorageBucketCORS,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketCORS")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceDeleteObjectStorageBucketCORSHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceDeleteObjectStorageBucketCORSProcedure,
+		svc.DeleteObjectStorageBucketCORS,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketCORS")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketPolicyHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketPolicyProcedure,
+		svc.PutObjectStorageBucketPolicy,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketPolicy")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceDeleteObjectStorageBucketPolicyHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceDeleteObjectStorageBucketPolicyProcedure,
+		svc.DeleteObjectStorageBucketPolicy,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketPolicy")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServicePutObjectStorageBucketTaggingHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServicePutObjectStorageBucketTaggingProcedure,
+		svc.PutObjectStorageBucketTagging,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("PutObjectStorageBucketTagging")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceDeleteObjectStorageBucketTaggingHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceDeleteObjectStorageBucketTaggingProcedure,
+		svc.DeleteObjectStorageBucketTagging,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("DeleteObjectStorageBucketTagging")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/enum.api.v1.ObjectStorageBucketService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ObjectStorageBucketServiceListObjectStorageBucketsProcedure:
@@ -173,6 +461,30 @@ func NewObjectStorageBucketServiceHandler(svc ObjectStorageBucketServiceHandler,
 			objectStorageBucketServiceCreateObjectStorageBucketHandler.ServeHTTP(w, r)
 		case ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure:
 			objectStorageBucketServiceDeleteObjectStorageBucketHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure:
+			objectStorageBucketServicePutObjectStorageBucketVersioningHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketObjectLockProcedure:
+			objectStorageBucketServicePutObjectStorageBucketObjectLockHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketEncryptionProcedure:
+			objectStorageBucketServicePutObjectStorageBucketEncryptionHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceDeleteObjectStorageBucketEncryptionProcedure:
+			objectStorageBucketServiceDeleteObjectStorageBucketEncryptionHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketLifecycleProcedure:
+			objectStorageBucketServicePutObjectStorageBucketLifecycleHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceDeleteObjectStorageBucketLifecycleProcedure:
+			objectStorageBucketServiceDeleteObjectStorageBucketLifecycleHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketCORSProcedure:
+			objectStorageBucketServicePutObjectStorageBucketCORSHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceDeleteObjectStorageBucketCORSProcedure:
+			objectStorageBucketServiceDeleteObjectStorageBucketCORSHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketPolicyProcedure:
+			objectStorageBucketServicePutObjectStorageBucketPolicyHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceDeleteObjectStorageBucketPolicyProcedure:
+			objectStorageBucketServiceDeleteObjectStorageBucketPolicyHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServicePutObjectStorageBucketTaggingProcedure:
+			objectStorageBucketServicePutObjectStorageBucketTaggingHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceDeleteObjectStorageBucketTaggingProcedure:
+			objectStorageBucketServiceDeleteObjectStorageBucketTaggingHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -196,4 +508,52 @@ func (UnimplementedObjectStorageBucketServiceHandler) CreateObjectStorageBucket(
 
 func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketVersioning(context.Context, *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketObjectLock(context.Context, *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketEncryption(context.Context, *connect.Request[v1.PutObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.PutObjectStorageBucketEncryptionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucketEncryption(context.Context, *connect.Request[v1.DeleteObjectStorageBucketEncryptionRequest]) (*connect.Response[v1.DeleteObjectStorageBucketEncryptionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.PutObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.PutObjectStorageBucketLifecycleResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucketLifecycle(context.Context, *connect.Request[v1.DeleteObjectStorageBucketLifecycleRequest]) (*connect.Response[v1.DeleteObjectStorageBucketLifecycleResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketCORS(context.Context, *connect.Request[v1.PutObjectStorageBucketCORSRequest]) (*connect.Response[v1.PutObjectStorageBucketCORSResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucketCORS(context.Context, *connect.Request[v1.DeleteObjectStorageBucketCORSRequest]) (*connect.Response[v1.DeleteObjectStorageBucketCORSResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketPolicy(context.Context, *connect.Request[v1.PutObjectStorageBucketPolicyRequest]) (*connect.Response[v1.PutObjectStorageBucketPolicyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucketPolicy(context.Context, *connect.Request[v1.DeleteObjectStorageBucketPolicyRequest]) (*connect.Response[v1.DeleteObjectStorageBucketPolicyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) PutObjectStorageBucketTagging(context.Context, *connect.Request[v1.PutObjectStorageBucketTaggingRequest]) (*connect.Response[v1.PutObjectStorageBucketTaggingResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucketTagging(context.Context, *connect.Request[v1.DeleteObjectStorageBucketTaggingRequest]) (*connect.Response[v1.DeleteObjectStorageBucketTaggingResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging is not implemented"))
 }
