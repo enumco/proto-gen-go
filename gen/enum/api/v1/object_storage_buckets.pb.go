@@ -138,6 +138,8 @@ type ObjectStorageBucket struct {
 	Configuration *ObjectStorageBucketConfiguration `protobuf:"bytes,9,opt,name=configuration,proto3" json:"configuration,omitempty"`
 	// Whether Object Lock was enabled at create time. Cannot be changed later.
 	ObjectLockEnabled bool `protobuf:"varint,10,opt,name=object_lock_enabled,json=objectLockEnabled,proto3" json:"object_lock_enabled,omitempty"`
+	// When true, the bucket cannot be deleted until unprotected.
+	DeletionProtected bool `protobuf:"varint,11,opt,name=deletion_protected,json=deletionProtected,proto3" json:"deletion_protected,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -242,6 +244,13 @@ func (x *ObjectStorageBucket) GetObjectLockEnabled() bool {
 	return false
 }
 
+func (x *ObjectStorageBucket) GetDeletionProtected() bool {
+	if x != nil {
+		return x.DeletionProtected
+	}
+	return false
+}
+
 var File_enum_api_v1_object_storage_buckets_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
@@ -259,7 +268,7 @@ const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"\tlifecycle\x18\x04 \x01(\tR\tlifecycle\x12\x12\n" +
 	"\x04cors\x18\x05 \x01(\tR\x04cors\x12#\n" +
 	"\rbucket_policy\x18\x06 \x01(\tR\fbucketPolicy\x12\x12\n" +
-	"\x04tags\x18\a \x01(\tR\x04tags\"\xc4\x03\n" +
+	"\x04tags\x18\a \x01(\tR\x04tags\"\xf3\x03\n" +
 	"\x13ObjectStorageBucket\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -275,7 +284,8 @@ const file_enum_api_v1_object_storage_buckets_proto_rawDesc = "" +
 	"\tregion_id\x18\b \x01(\tR\bregionId\x12S\n" +
 	"\rconfiguration\x18\t \x01(\v2-.enum.api.v1.ObjectStorageBucketConfigurationR\rconfiguration\x12.\n" +
 	"\x13object_lock_enabled\x18\n" +
-	" \x01(\bR\x11objectLockEnabledB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	" \x01(\bR\x11objectLockEnabled\x12-\n" +
+	"\x12deletion_protected\x18\v \x01(\bR\x11deletionProtectedB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_object_storage_buckets_proto_rawDescOnce sync.Once

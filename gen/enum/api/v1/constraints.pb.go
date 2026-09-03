@@ -174,6 +174,22 @@ var file_enum_api_v1_constraints_proto_extTypes = []protoimpl.ExtensionInfo{
 		Tag:           "varint,80023,opt,name=zone_code",
 		Filename:      "enum/api/v1/constraints.proto",
 	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80025,
+		Name:          "enum.api.v1.iamsa_id",
+		Tag:           "varint,80025,opt,name=iamsa_id",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
+	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80026,
+		Name:          "enum.api.v1.iamkey_id",
+		Tag:           "varint,80026,opt,name=iamkey_id",
+		Filename:      "enum/api/v1/constraints.proto",
+	},
 }
 
 // Extension fields to validate.StringRules.
@@ -259,6 +275,14 @@ var (
 	//
 	// optional bool zone_code = 80023;
 	E_ZoneCode = &file_enum_api_v1_constraints_proto_extTypes[18]
+	// Service account ID (TypeID: iamsa-{base32_ulid}).
+	//
+	// optional bool iamsa_id = 80025;
+	E_IamsaId = &file_enum_api_v1_constraints_proto_extTypes[19]
+	// API key ID (TypeID: iamkey-{base32_ulid}).
+	//
+	// optional bool iamkey_id = 80026;
+	E_IamkeyId = &file_enum_api_v1_constraints_proto_extTypes[20]
 )
 
 var File_enum_api_v1_constraints_proto protoreflect.FileDescriptor
@@ -326,7 +350,13 @@ const file_enum_api_v1_constraints_proto_rawDesc = "" +
 	"regionCode:\xae\x01\n" +
 	"\tzone_code\x12\x19.buf.validate.StringRules\x18\x97\xf1\x04 \x01(\bBt\xc2Hq\n" +
 	"o\n" +
-	"\x10string.zone_code\x123must be a valid availability zone code (e.g. fra-a)\x1a&this.matches('^[a-z][a-z0-9-]{1,15}$')R\bzoneCodeB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
+	"\x10string.zone_code\x123must be a valid availability zone code (e.g. fra-a)\x1a&this.matches('^[a-z][a-z0-9-]{1,15}$')R\bzoneCode:\xc3\x01\n" +
+	"\biamsa_id\x12\x19.buf.validate.StringRules\x18\x99\xf1\x04 \x01(\bB\x8a\x01\xc2H\x86\x01\n" +
+	"\x83\x01\n" +
+	"\x0fstring.iamsa_id\x12Jmust be a valid service account ID (e.g. iamsa-01kmyy4apq8h8ysq42b1sqnrkc)\x1a$this.matches('^iamsa-[0-9a-z]{26}$')R\aiamsaId:\xbf\x01\n" +
+	"\tiamkey_id\x12\x19.buf.validate.StringRules\x18\x9a\xf1\x04 \x01(\bB\x84\x01\xc2H\x80\x01\n" +
+	"~\n" +
+	"\x10string.iamkey_id\x12Cmust be a valid API key ID (e.g. iamkey-01kmyy4apq8h8ysq42b1sqnrkc)\x1a%this.matches('^iamkey-[0-9a-z]{26}$')R\biamkeyIdB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1"
 
 var file_enum_api_v1_constraints_proto_goTypes = []any{
 	(*validate.StringRules)(nil), // 0: buf.validate.StringRules
@@ -351,10 +381,12 @@ var file_enum_api_v1_constraints_proto_depIdxs = []int32{
 	0,  // 16: enum.api.v1.dns_record_name:extendee -> buf.validate.StringRules
 	0,  // 17: enum.api.v1.region_code:extendee -> buf.validate.StringRules
 	0,  // 18: enum.api.v1.zone_code:extendee -> buf.validate.StringRules
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	0,  // [0:19] is the sub-list for extension extendee
+	0,  // 19: enum.api.v1.iamsa_id:extendee -> buf.validate.StringRules
+	0,  // 20: enum.api.v1.iamkey_id:extendee -> buf.validate.StringRules
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	0,  // [0:21] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -370,7 +402,7 @@ func file_enum_api_v1_constraints_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_constraints_proto_rawDesc), len(file_enum_api_v1_constraints_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 19,
+			NumExtensions: 21,
 			NumServices:   0,
 		},
 		GoTypes:           file_enum_api_v1_constraints_proto_goTypes,

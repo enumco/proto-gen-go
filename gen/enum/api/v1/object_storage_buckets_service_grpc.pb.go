@@ -22,6 +22,7 @@ const (
 	ObjectStorageBucketService_ListObjectStorageBuckets_FullMethodName            = "/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets"
 	ObjectStorageBucketService_GetObjectStorageBucket_FullMethodName              = "/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket"
 	ObjectStorageBucketService_CreateObjectStorageBucket_FullMethodName           = "/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket"
+	ObjectStorageBucketService_UpdateObjectStorageBucket_FullMethodName           = "/enum.api.v1.ObjectStorageBucketService/UpdateObjectStorageBucket"
 	ObjectStorageBucketService_DeleteObjectStorageBucket_FullMethodName           = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket"
 	ObjectStorageBucketService_PutObjectStorageBucketVersioning_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketVersioning"
 	ObjectStorageBucketService_PutObjectStorageBucketObjectLock_FullMethodName    = "/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketObjectLock"
@@ -44,6 +45,7 @@ type ObjectStorageBucketServiceClient interface {
 	ListObjectStorageBuckets(ctx context.Context, in *ListObjectStorageBucketsRequest, opts ...grpc.CallOption) (*ListObjectStorageBucketsResponse, error)
 	GetObjectStorageBucket(ctx context.Context, in *GetObjectStorageBucketRequest, opts ...grpc.CallOption) (*GetObjectStorageBucketResponse, error)
 	CreateObjectStorageBucket(ctx context.Context, in *CreateObjectStorageBucketRequest, opts ...grpc.CallOption) (*CreateObjectStorageBucketResponse, error)
+	UpdateObjectStorageBucket(ctx context.Context, in *UpdateObjectStorageBucketRequest, opts ...grpc.CallOption) (*UpdateObjectStorageBucketResponse, error)
 	DeleteObjectStorageBucket(ctx context.Context, in *DeleteObjectStorageBucketRequest, opts ...grpc.CallOption) (*DeleteObjectStorageBucketResponse, error)
 	PutObjectStorageBucketVersioning(ctx context.Context, in *PutObjectStorageBucketVersioningRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketVersioningResponse, error)
 	PutObjectStorageBucketObjectLock(ctx context.Context, in *PutObjectStorageBucketObjectLockRequest, opts ...grpc.CallOption) (*PutObjectStorageBucketObjectLockResponse, error)
@@ -91,6 +93,16 @@ func (c *objectStorageBucketServiceClient) CreateObjectStorageBucket(ctx context
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateObjectStorageBucketResponse)
 	err := c.cc.Invoke(ctx, ObjectStorageBucketService_CreateObjectStorageBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectStorageBucketServiceClient) UpdateObjectStorageBucket(ctx context.Context, in *UpdateObjectStorageBucketRequest, opts ...grpc.CallOption) (*UpdateObjectStorageBucketResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateObjectStorageBucketResponse)
+	err := c.cc.Invoke(ctx, ObjectStorageBucketService_UpdateObjectStorageBucket_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -234,6 +246,7 @@ type ObjectStorageBucketServiceServer interface {
 	ListObjectStorageBuckets(context.Context, *ListObjectStorageBucketsRequest) (*ListObjectStorageBucketsResponse, error)
 	GetObjectStorageBucket(context.Context, *GetObjectStorageBucketRequest) (*GetObjectStorageBucketResponse, error)
 	CreateObjectStorageBucket(context.Context, *CreateObjectStorageBucketRequest) (*CreateObjectStorageBucketResponse, error)
+	UpdateObjectStorageBucket(context.Context, *UpdateObjectStorageBucketRequest) (*UpdateObjectStorageBucketResponse, error)
 	DeleteObjectStorageBucket(context.Context, *DeleteObjectStorageBucketRequest) (*DeleteObjectStorageBucketResponse, error)
 	PutObjectStorageBucketVersioning(context.Context, *PutObjectStorageBucketVersioningRequest) (*PutObjectStorageBucketVersioningResponse, error)
 	PutObjectStorageBucketObjectLock(context.Context, *PutObjectStorageBucketObjectLockRequest) (*PutObjectStorageBucketObjectLockResponse, error)
@@ -265,6 +278,9 @@ func (UnimplementedObjectStorageBucketServiceServer) GetObjectStorageBucket(cont
 }
 func (UnimplementedObjectStorageBucketServiceServer) CreateObjectStorageBucket(context.Context, *CreateObjectStorageBucketRequest) (*CreateObjectStorageBucketResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateObjectStorageBucket not implemented")
+}
+func (UnimplementedObjectStorageBucketServiceServer) UpdateObjectStorageBucket(context.Context, *UpdateObjectStorageBucketRequest) (*UpdateObjectStorageBucketResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateObjectStorageBucket not implemented")
 }
 func (UnimplementedObjectStorageBucketServiceServer) DeleteObjectStorageBucket(context.Context, *DeleteObjectStorageBucketRequest) (*DeleteObjectStorageBucketResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteObjectStorageBucket not implemented")
@@ -377,6 +393,24 @@ func _ObjectStorageBucketService_CreateObjectStorageBucket_Handler(srv interface
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ObjectStorageBucketServiceServer).CreateObjectStorageBucket(ctx, req.(*CreateObjectStorageBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectStorageBucketService_UpdateObjectStorageBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateObjectStorageBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectStorageBucketServiceServer).UpdateObjectStorageBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectStorageBucketService_UpdateObjectStorageBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectStorageBucketServiceServer).UpdateObjectStorageBucket(ctx, req.(*UpdateObjectStorageBucketRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -633,6 +667,10 @@ var ObjectStorageBucketService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateObjectStorageBucket",
 			Handler:    _ObjectStorageBucketService_CreateObjectStorageBucket_Handler,
+		},
+		{
+			MethodName: "UpdateObjectStorageBucket",
+			Handler:    _ObjectStorageBucketService_UpdateObjectStorageBucket_Handler,
 		},
 		{
 			MethodName: "DeleteObjectStorageBucket",

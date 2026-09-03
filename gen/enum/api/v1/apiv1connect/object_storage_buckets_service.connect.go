@@ -43,6 +43,9 @@ const (
 	// ObjectStorageBucketServiceCreateObjectStorageBucketProcedure is the fully-qualified name of the
 	// ObjectStorageBucketService's CreateObjectStorageBucket RPC.
 	ObjectStorageBucketServiceCreateObjectStorageBucketProcedure = "/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket"
+	// ObjectStorageBucketServiceUpdateObjectStorageBucketProcedure is the fully-qualified name of the
+	// ObjectStorageBucketService's UpdateObjectStorageBucket RPC.
+	ObjectStorageBucketServiceUpdateObjectStorageBucketProcedure = "/enum.api.v1.ObjectStorageBucketService/UpdateObjectStorageBucket"
 	// ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure is the fully-qualified name of the
 	// ObjectStorageBucketService's DeleteObjectStorageBucket RPC.
 	ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure = "/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket"
@@ -90,6 +93,7 @@ type ObjectStorageBucketServiceClient interface {
 	ListObjectStorageBuckets(context.Context, *connect.Request[v1.ListObjectStorageBucketsRequest]) (*connect.Response[v1.ListObjectStorageBucketsResponse], error)
 	GetObjectStorageBucket(context.Context, *connect.Request[v1.GetObjectStorageBucketRequest]) (*connect.Response[v1.GetObjectStorageBucketResponse], error)
 	CreateObjectStorageBucket(context.Context, *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error)
+	UpdateObjectStorageBucket(context.Context, *connect.Request[v1.UpdateObjectStorageBucketRequest]) (*connect.Response[v1.UpdateObjectStorageBucketResponse], error)
 	DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error)
 	PutObjectStorageBucketVersioning(context.Context, *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error)
 	PutObjectStorageBucketObjectLock(context.Context, *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error)
@@ -132,6 +136,12 @@ func NewObjectStorageBucketServiceClient(httpClient connect.HTTPClient, baseURL 
 			httpClient,
 			baseURL+ObjectStorageBucketServiceCreateObjectStorageBucketProcedure,
 			connect.WithSchema(objectStorageBucketServiceMethods.ByName("CreateObjectStorageBucket")),
+			connect.WithClientOptions(opts...),
+		),
+		updateObjectStorageBucket: connect.NewClient[v1.UpdateObjectStorageBucketRequest, v1.UpdateObjectStorageBucketResponse](
+			httpClient,
+			baseURL+ObjectStorageBucketServiceUpdateObjectStorageBucketProcedure,
+			connect.WithSchema(objectStorageBucketServiceMethods.ByName("UpdateObjectStorageBucket")),
 			connect.WithClientOptions(opts...),
 		),
 		deleteObjectStorageBucket: connect.NewClient[v1.DeleteObjectStorageBucketRequest, v1.DeleteObjectStorageBucketResponse](
@@ -220,6 +230,7 @@ type objectStorageBucketServiceClient struct {
 	listObjectStorageBuckets            *connect.Client[v1.ListObjectStorageBucketsRequest, v1.ListObjectStorageBucketsResponse]
 	getObjectStorageBucket              *connect.Client[v1.GetObjectStorageBucketRequest, v1.GetObjectStorageBucketResponse]
 	createObjectStorageBucket           *connect.Client[v1.CreateObjectStorageBucketRequest, v1.CreateObjectStorageBucketResponse]
+	updateObjectStorageBucket           *connect.Client[v1.UpdateObjectStorageBucketRequest, v1.UpdateObjectStorageBucketResponse]
 	deleteObjectStorageBucket           *connect.Client[v1.DeleteObjectStorageBucketRequest, v1.DeleteObjectStorageBucketResponse]
 	putObjectStorageBucketVersioning    *connect.Client[v1.PutObjectStorageBucketVersioningRequest, v1.PutObjectStorageBucketVersioningResponse]
 	putObjectStorageBucketObjectLock    *connect.Client[v1.PutObjectStorageBucketObjectLockRequest, v1.PutObjectStorageBucketObjectLockResponse]
@@ -248,6 +259,11 @@ func (c *objectStorageBucketServiceClient) GetObjectStorageBucket(ctx context.Co
 // CreateObjectStorageBucket calls enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket.
 func (c *objectStorageBucketServiceClient) CreateObjectStorageBucket(ctx context.Context, req *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error) {
 	return c.createObjectStorageBucket.CallUnary(ctx, req)
+}
+
+// UpdateObjectStorageBucket calls enum.api.v1.ObjectStorageBucketService.UpdateObjectStorageBucket.
+func (c *objectStorageBucketServiceClient) UpdateObjectStorageBucket(ctx context.Context, req *connect.Request[v1.UpdateObjectStorageBucketRequest]) (*connect.Response[v1.UpdateObjectStorageBucketResponse], error) {
+	return c.updateObjectStorageBucket.CallUnary(ctx, req)
 }
 
 // DeleteObjectStorageBucket calls enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket.
@@ -333,6 +349,7 @@ type ObjectStorageBucketServiceHandler interface {
 	ListObjectStorageBuckets(context.Context, *connect.Request[v1.ListObjectStorageBucketsRequest]) (*connect.Response[v1.ListObjectStorageBucketsResponse], error)
 	GetObjectStorageBucket(context.Context, *connect.Request[v1.GetObjectStorageBucketRequest]) (*connect.Response[v1.GetObjectStorageBucketResponse], error)
 	CreateObjectStorageBucket(context.Context, *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error)
+	UpdateObjectStorageBucket(context.Context, *connect.Request[v1.UpdateObjectStorageBucketRequest]) (*connect.Response[v1.UpdateObjectStorageBucketResponse], error)
 	DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error)
 	PutObjectStorageBucketVersioning(context.Context, *connect.Request[v1.PutObjectStorageBucketVersioningRequest]) (*connect.Response[v1.PutObjectStorageBucketVersioningResponse], error)
 	PutObjectStorageBucketObjectLock(context.Context, *connect.Request[v1.PutObjectStorageBucketObjectLockRequest]) (*connect.Response[v1.PutObjectStorageBucketObjectLockResponse], error)
@@ -371,6 +388,12 @@ func NewObjectStorageBucketServiceHandler(svc ObjectStorageBucketServiceHandler,
 		ObjectStorageBucketServiceCreateObjectStorageBucketProcedure,
 		svc.CreateObjectStorageBucket,
 		connect.WithSchema(objectStorageBucketServiceMethods.ByName("CreateObjectStorageBucket")),
+		connect.WithHandlerOptions(opts...),
+	)
+	objectStorageBucketServiceUpdateObjectStorageBucketHandler := connect.NewUnaryHandler(
+		ObjectStorageBucketServiceUpdateObjectStorageBucketProcedure,
+		svc.UpdateObjectStorageBucket,
+		connect.WithSchema(objectStorageBucketServiceMethods.ByName("UpdateObjectStorageBucket")),
 		connect.WithHandlerOptions(opts...),
 	)
 	objectStorageBucketServiceDeleteObjectStorageBucketHandler := connect.NewUnaryHandler(
@@ -459,6 +482,8 @@ func NewObjectStorageBucketServiceHandler(svc ObjectStorageBucketServiceHandler,
 			objectStorageBucketServiceGetObjectStorageBucketHandler.ServeHTTP(w, r)
 		case ObjectStorageBucketServiceCreateObjectStorageBucketProcedure:
 			objectStorageBucketServiceCreateObjectStorageBucketHandler.ServeHTTP(w, r)
+		case ObjectStorageBucketServiceUpdateObjectStorageBucketProcedure:
+			objectStorageBucketServiceUpdateObjectStorageBucketHandler.ServeHTTP(w, r)
 		case ObjectStorageBucketServiceDeleteObjectStorageBucketProcedure:
 			objectStorageBucketServiceDeleteObjectStorageBucketHandler.ServeHTTP(w, r)
 		case ObjectStorageBucketServicePutObjectStorageBucketVersioningProcedure:
@@ -504,6 +529,10 @@ func (UnimplementedObjectStorageBucketServiceHandler) GetObjectStorageBucket(con
 
 func (UnimplementedObjectStorageBucketServiceHandler) CreateObjectStorageBucket(context.Context, *connect.Request[v1.CreateObjectStorageBucketRequest]) (*connect.Response[v1.CreateObjectStorageBucketResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket is not implemented"))
+}
+
+func (UnimplementedObjectStorageBucketServiceHandler) UpdateObjectStorageBucket(context.Context, *connect.Request[v1.UpdateObjectStorageBucketRequest]) (*connect.Response[v1.UpdateObjectStorageBucketResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.ObjectStorageBucketService.UpdateObjectStorageBucket is not implemented"))
 }
 
 func (UnimplementedObjectStorageBucketServiceHandler) DeleteObjectStorageBucket(context.Context, *connect.Request[v1.DeleteObjectStorageBucketRequest]) (*connect.Response[v1.DeleteObjectStorageBucketResponse], error) {

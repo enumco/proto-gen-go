@@ -216,6 +216,10 @@ type CreateObjectStorageBucketRequest struct {
 	RegionId string `protobuf:"bytes,3,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	// Enable Object Lock at create time. Cannot be enabled after the bucket exists.
 	ObjectLockEnabled bool `protobuf:"varint,4,opt,name=object_lock_enabled,json=objectLockEnabled,proto3" json:"object_lock_enabled,omitempty"`
+	// Protect the bucket from deletion; it must be unprotected before it can be
+	// deleted. Defaults to true when omitted, so buckets are protected unless
+	// deletion protection is explicitly set to false.
+	DeletionProtected *bool `protobuf:"varint,5,opt,name=deletion_protected,json=deletionProtected,proto3,oneof" json:"deletion_protected,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -278,6 +282,13 @@ func (x *CreateObjectStorageBucketRequest) GetObjectLockEnabled() bool {
 	return false
 }
 
+func (x *CreateObjectStorageBucketRequest) GetDeletionProtected() bool {
+	if x != nil && x.DeletionProtected != nil {
+		return *x.DeletionProtected
+	}
+	return false
+}
+
 type CreateObjectStorageBucketResponse struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
@@ -322,6 +333,111 @@ func (x *CreateObjectStorageBucketResponse) GetObjectStorageBucket() *ObjectStor
 	return nil
 }
 
+type UpdateObjectStorageBucketRequest struct {
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProjectId string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	Id        string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Only set fields are applied.
+	DeletionProtected *bool `protobuf:"varint,3,opt,name=deletion_protected,json=deletionProtected,proto3,oneof" json:"deletion_protected,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UpdateObjectStorageBucketRequest) Reset() {
+	*x = UpdateObjectStorageBucketRequest{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectStorageBucketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectStorageBucketRequest) ProtoMessage() {}
+
+func (x *UpdateObjectStorageBucketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectStorageBucketRequest.ProtoReflect.Descriptor instead.
+func (*UpdateObjectStorageBucketRequest) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateObjectStorageBucketRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *UpdateObjectStorageBucketRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateObjectStorageBucketRequest) GetDeletionProtected() bool {
+	if x != nil && x.DeletionProtected != nil {
+		return *x.DeletionProtected
+	}
+	return false
+}
+
+type UpdateObjectStorageBucketResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	ObjectStorageBucket *ObjectStorageBucket   `protobuf:"bytes,1,opt,name=object_storage_bucket,json=objectStorageBucket,proto3" json:"object_storage_bucket,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *UpdateObjectStorageBucketResponse) Reset() {
+	*x = UpdateObjectStorageBucketResponse{}
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateObjectStorageBucketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateObjectStorageBucketResponse) ProtoMessage() {}
+
+func (x *UpdateObjectStorageBucketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateObjectStorageBucketResponse.ProtoReflect.Descriptor instead.
+func (*UpdateObjectStorageBucketResponse) Descriptor() ([]byte, []int) {
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateObjectStorageBucketResponse) GetObjectStorageBucket() *ObjectStorageBucket {
+	if x != nil {
+		return x.ObjectStorageBucket
+	}
+	return nil
+}
+
 type DeleteObjectStorageBucketRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProjectId     string                 `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
@@ -332,7 +448,7 @@ type DeleteObjectStorageBucketRequest struct {
 
 func (x *DeleteObjectStorageBucketRequest) Reset() {
 	*x = DeleteObjectStorageBucketRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[6]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -344,7 +460,7 @@ func (x *DeleteObjectStorageBucketRequest) String() string {
 func (*DeleteObjectStorageBucketRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[6]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,7 +473,7 @@ func (x *DeleteObjectStorageBucketRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectStorageBucketRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{6}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteObjectStorageBucketRequest) GetProjectId() string {
@@ -382,7 +498,7 @@ type DeleteObjectStorageBucketResponse struct {
 
 func (x *DeleteObjectStorageBucketResponse) Reset() {
 	*x = DeleteObjectStorageBucketResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[7]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -394,7 +510,7 @@ func (x *DeleteObjectStorageBucketResponse) String() string {
 func (*DeleteObjectStorageBucketResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[7]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -407,7 +523,7 @@ func (x *DeleteObjectStorageBucketResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteObjectStorageBucketResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{7}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{9}
 }
 
 type PutObjectStorageBucketVersioningRequest struct {
@@ -422,7 +538,7 @@ type PutObjectStorageBucketVersioningRequest struct {
 
 func (x *PutObjectStorageBucketVersioningRequest) Reset() {
 	*x = PutObjectStorageBucketVersioningRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -434,7 +550,7 @@ func (x *PutObjectStorageBucketVersioningRequest) String() string {
 func (*PutObjectStorageBucketVersioningRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketVersioningRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[8]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -447,7 +563,7 @@ func (x *PutObjectStorageBucketVersioningRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use PutObjectStorageBucketVersioningRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketVersioningRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{8}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *PutObjectStorageBucketVersioningRequest) GetProjectId() string {
@@ -480,7 +596,7 @@ type PutObjectStorageBucketVersioningResponse struct {
 
 func (x *PutObjectStorageBucketVersioningResponse) Reset() {
 	*x = PutObjectStorageBucketVersioningResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -492,7 +608,7 @@ func (x *PutObjectStorageBucketVersioningResponse) String() string {
 func (*PutObjectStorageBucketVersioningResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketVersioningResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[9]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -505,7 +621,7 @@ func (x *PutObjectStorageBucketVersioningResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use PutObjectStorageBucketVersioningResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketVersioningResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{9}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PutObjectStorageBucketVersioningResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -527,7 +643,7 @@ type PutObjectStorageBucketObjectLockRequest struct {
 
 func (x *PutObjectStorageBucketObjectLockRequest) Reset() {
 	*x = PutObjectStorageBucketObjectLockRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -539,7 +655,7 @@ func (x *PutObjectStorageBucketObjectLockRequest) String() string {
 func (*PutObjectStorageBucketObjectLockRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketObjectLockRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[10]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -552,7 +668,7 @@ func (x *PutObjectStorageBucketObjectLockRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use PutObjectStorageBucketObjectLockRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketObjectLockRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{10}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *PutObjectStorageBucketObjectLockRequest) GetProjectId() string {
@@ -585,7 +701,7 @@ type PutObjectStorageBucketObjectLockResponse struct {
 
 func (x *PutObjectStorageBucketObjectLockResponse) Reset() {
 	*x = PutObjectStorageBucketObjectLockResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +713,7 @@ func (x *PutObjectStorageBucketObjectLockResponse) String() string {
 func (*PutObjectStorageBucketObjectLockResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketObjectLockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[11]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +726,7 @@ func (x *PutObjectStorageBucketObjectLockResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use PutObjectStorageBucketObjectLockResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketObjectLockResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{11}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *PutObjectStorageBucketObjectLockResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -631,7 +747,7 @@ type PutObjectStorageBucketEncryptionRequest struct {
 
 func (x *PutObjectStorageBucketEncryptionRequest) Reset() {
 	*x = PutObjectStorageBucketEncryptionRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +759,7 @@ func (x *PutObjectStorageBucketEncryptionRequest) String() string {
 func (*PutObjectStorageBucketEncryptionRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[12]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +772,7 @@ func (x *PutObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use PutObjectStorageBucketEncryptionRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketEncryptionRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{12}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *PutObjectStorageBucketEncryptionRequest) GetProjectId() string {
@@ -689,7 +805,7 @@ type PutObjectStorageBucketEncryptionResponse struct {
 
 func (x *PutObjectStorageBucketEncryptionResponse) Reset() {
 	*x = PutObjectStorageBucketEncryptionResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -701,7 +817,7 @@ func (x *PutObjectStorageBucketEncryptionResponse) String() string {
 func (*PutObjectStorageBucketEncryptionResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[13]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -714,7 +830,7 @@ func (x *PutObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use PutObjectStorageBucketEncryptionResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketEncryptionResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{13}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PutObjectStorageBucketEncryptionResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -734,7 +850,7 @@ type DeleteObjectStorageBucketEncryptionRequest struct {
 
 func (x *DeleteObjectStorageBucketEncryptionRequest) Reset() {
 	*x = DeleteObjectStorageBucketEncryptionRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -746,7 +862,7 @@ func (x *DeleteObjectStorageBucketEncryptionRequest) String() string {
 func (*DeleteObjectStorageBucketEncryptionRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[14]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -759,7 +875,7 @@ func (x *DeleteObjectStorageBucketEncryptionRequest) ProtoReflect() protoreflect
 
 // Deprecated: Use DeleteObjectStorageBucketEncryptionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketEncryptionRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{14}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeleteObjectStorageBucketEncryptionRequest) GetProjectId() string {
@@ -785,7 +901,7 @@ type DeleteObjectStorageBucketEncryptionResponse struct {
 
 func (x *DeleteObjectStorageBucketEncryptionResponse) Reset() {
 	*x = DeleteObjectStorageBucketEncryptionResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -797,7 +913,7 @@ func (x *DeleteObjectStorageBucketEncryptionResponse) String() string {
 func (*DeleteObjectStorageBucketEncryptionResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[15]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -810,7 +926,7 @@ func (x *DeleteObjectStorageBucketEncryptionResponse) ProtoReflect() protoreflec
 
 // Deprecated: Use DeleteObjectStorageBucketEncryptionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketEncryptionResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{15}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteObjectStorageBucketEncryptionResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -831,7 +947,7 @@ type PutObjectStorageBucketLifecycleRequest struct {
 
 func (x *PutObjectStorageBucketLifecycleRequest) Reset() {
 	*x = PutObjectStorageBucketLifecycleRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -843,7 +959,7 @@ func (x *PutObjectStorageBucketLifecycleRequest) String() string {
 func (*PutObjectStorageBucketLifecycleRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[16]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -856,7 +972,7 @@ func (x *PutObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use PutObjectStorageBucketLifecycleRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketLifecycleRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{16}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *PutObjectStorageBucketLifecycleRequest) GetProjectId() string {
@@ -889,7 +1005,7 @@ type PutObjectStorageBucketLifecycleResponse struct {
 
 func (x *PutObjectStorageBucketLifecycleResponse) Reset() {
 	*x = PutObjectStorageBucketLifecycleResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -901,7 +1017,7 @@ func (x *PutObjectStorageBucketLifecycleResponse) String() string {
 func (*PutObjectStorageBucketLifecycleResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[17]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -914,7 +1030,7 @@ func (x *PutObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use PutObjectStorageBucketLifecycleResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketLifecycleResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{17}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *PutObjectStorageBucketLifecycleResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -934,7 +1050,7 @@ type DeleteObjectStorageBucketLifecycleRequest struct {
 
 func (x *DeleteObjectStorageBucketLifecycleRequest) Reset() {
 	*x = DeleteObjectStorageBucketLifecycleRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -946,7 +1062,7 @@ func (x *DeleteObjectStorageBucketLifecycleRequest) String() string {
 func (*DeleteObjectStorageBucketLifecycleRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[18]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -959,7 +1075,7 @@ func (x *DeleteObjectStorageBucketLifecycleRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use DeleteObjectStorageBucketLifecycleRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketLifecycleRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{18}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *DeleteObjectStorageBucketLifecycleRequest) GetProjectId() string {
@@ -985,7 +1101,7 @@ type DeleteObjectStorageBucketLifecycleResponse struct {
 
 func (x *DeleteObjectStorageBucketLifecycleResponse) Reset() {
 	*x = DeleteObjectStorageBucketLifecycleResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -997,7 +1113,7 @@ func (x *DeleteObjectStorageBucketLifecycleResponse) String() string {
 func (*DeleteObjectStorageBucketLifecycleResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[19]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1010,7 +1126,7 @@ func (x *DeleteObjectStorageBucketLifecycleResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use DeleteObjectStorageBucketLifecycleResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketLifecycleResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{19}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DeleteObjectStorageBucketLifecycleResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1031,7 +1147,7 @@ type PutObjectStorageBucketCORSRequest struct {
 
 func (x *PutObjectStorageBucketCORSRequest) Reset() {
 	*x = PutObjectStorageBucketCORSRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1043,7 +1159,7 @@ func (x *PutObjectStorageBucketCORSRequest) String() string {
 func (*PutObjectStorageBucketCORSRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[20]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1056,7 +1172,7 @@ func (x *PutObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PutObjectStorageBucketCORSRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketCORSRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{20}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *PutObjectStorageBucketCORSRequest) GetProjectId() string {
@@ -1089,7 +1205,7 @@ type PutObjectStorageBucketCORSResponse struct {
 
 func (x *PutObjectStorageBucketCORSResponse) Reset() {
 	*x = PutObjectStorageBucketCORSResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1101,7 +1217,7 @@ func (x *PutObjectStorageBucketCORSResponse) String() string {
 func (*PutObjectStorageBucketCORSResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[21]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1114,7 +1230,7 @@ func (x *PutObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use PutObjectStorageBucketCORSResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketCORSResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{21}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *PutObjectStorageBucketCORSResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1134,7 +1250,7 @@ type DeleteObjectStorageBucketCORSRequest struct {
 
 func (x *DeleteObjectStorageBucketCORSRequest) Reset() {
 	*x = DeleteObjectStorageBucketCORSRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1146,7 +1262,7 @@ func (x *DeleteObjectStorageBucketCORSRequest) String() string {
 func (*DeleteObjectStorageBucketCORSRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[22]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1159,7 +1275,7 @@ func (x *DeleteObjectStorageBucketCORSRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use DeleteObjectStorageBucketCORSRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketCORSRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{22}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteObjectStorageBucketCORSRequest) GetProjectId() string {
@@ -1185,7 +1301,7 @@ type DeleteObjectStorageBucketCORSResponse struct {
 
 func (x *DeleteObjectStorageBucketCORSResponse) Reset() {
 	*x = DeleteObjectStorageBucketCORSResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1197,7 +1313,7 @@ func (x *DeleteObjectStorageBucketCORSResponse) String() string {
 func (*DeleteObjectStorageBucketCORSResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[23]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1210,7 +1326,7 @@ func (x *DeleteObjectStorageBucketCORSResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use DeleteObjectStorageBucketCORSResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketCORSResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{23}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteObjectStorageBucketCORSResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1231,7 +1347,7 @@ type PutObjectStorageBucketPolicyRequest struct {
 
 func (x *PutObjectStorageBucketPolicyRequest) Reset() {
 	*x = PutObjectStorageBucketPolicyRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1243,7 +1359,7 @@ func (x *PutObjectStorageBucketPolicyRequest) String() string {
 func (*PutObjectStorageBucketPolicyRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[24]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1256,7 +1372,7 @@ func (x *PutObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use PutObjectStorageBucketPolicyRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{24}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *PutObjectStorageBucketPolicyRequest) GetProjectId() string {
@@ -1289,7 +1405,7 @@ type PutObjectStorageBucketPolicyResponse struct {
 
 func (x *PutObjectStorageBucketPolicyResponse) Reset() {
 	*x = PutObjectStorageBucketPolicyResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1301,7 +1417,7 @@ func (x *PutObjectStorageBucketPolicyResponse) String() string {
 func (*PutObjectStorageBucketPolicyResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[25]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1314,7 +1430,7 @@ func (x *PutObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use PutObjectStorageBucketPolicyResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{25}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *PutObjectStorageBucketPolicyResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1334,7 +1450,7 @@ type DeleteObjectStorageBucketPolicyRequest struct {
 
 func (x *DeleteObjectStorageBucketPolicyRequest) Reset() {
 	*x = DeleteObjectStorageBucketPolicyRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1346,7 +1462,7 @@ func (x *DeleteObjectStorageBucketPolicyRequest) String() string {
 func (*DeleteObjectStorageBucketPolicyRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[26]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1359,7 +1475,7 @@ func (x *DeleteObjectStorageBucketPolicyRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use DeleteObjectStorageBucketPolicyRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{26}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteObjectStorageBucketPolicyRequest) GetProjectId() string {
@@ -1385,7 +1501,7 @@ type DeleteObjectStorageBucketPolicyResponse struct {
 
 func (x *DeleteObjectStorageBucketPolicyResponse) Reset() {
 	*x = DeleteObjectStorageBucketPolicyResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1397,7 +1513,7 @@ func (x *DeleteObjectStorageBucketPolicyResponse) String() string {
 func (*DeleteObjectStorageBucketPolicyResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[27]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1410,7 +1526,7 @@ func (x *DeleteObjectStorageBucketPolicyResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use DeleteObjectStorageBucketPolicyResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{27}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeleteObjectStorageBucketPolicyResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1431,7 +1547,7 @@ type PutObjectStorageBucketTaggingRequest struct {
 
 func (x *PutObjectStorageBucketTaggingRequest) Reset() {
 	*x = PutObjectStorageBucketTaggingRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1443,7 +1559,7 @@ func (x *PutObjectStorageBucketTaggingRequest) String() string {
 func (*PutObjectStorageBucketTaggingRequest) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[28]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1456,7 +1572,7 @@ func (x *PutObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use PutObjectStorageBucketTaggingRequest.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketTaggingRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{28}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *PutObjectStorageBucketTaggingRequest) GetProjectId() string {
@@ -1489,7 +1605,7 @@ type PutObjectStorageBucketTaggingResponse struct {
 
 func (x *PutObjectStorageBucketTaggingResponse) Reset() {
 	*x = PutObjectStorageBucketTaggingResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1501,7 +1617,7 @@ func (x *PutObjectStorageBucketTaggingResponse) String() string {
 func (*PutObjectStorageBucketTaggingResponse) ProtoMessage() {}
 
 func (x *PutObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[29]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1514,7 +1630,7 @@ func (x *PutObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use PutObjectStorageBucketTaggingResponse.ProtoReflect.Descriptor instead.
 func (*PutObjectStorageBucketTaggingResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{29}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *PutObjectStorageBucketTaggingResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1534,7 +1650,7 @@ type DeleteObjectStorageBucketTaggingRequest struct {
 
 func (x *DeleteObjectStorageBucketTaggingRequest) Reset() {
 	*x = DeleteObjectStorageBucketTaggingRequest{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1546,7 +1662,7 @@ func (x *DeleteObjectStorageBucketTaggingRequest) String() string {
 func (*DeleteObjectStorageBucketTaggingRequest) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[30]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1559,7 +1675,7 @@ func (x *DeleteObjectStorageBucketTaggingRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use DeleteObjectStorageBucketTaggingRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketTaggingRequest) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{30}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteObjectStorageBucketTaggingRequest) GetProjectId() string {
@@ -1585,7 +1701,7 @@ type DeleteObjectStorageBucketTaggingResponse struct {
 
 func (x *DeleteObjectStorageBucketTaggingResponse) Reset() {
 	*x = DeleteObjectStorageBucketTaggingResponse{}
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1597,7 +1713,7 @@ func (x *DeleteObjectStorageBucketTaggingResponse) String() string {
 func (*DeleteObjectStorageBucketTaggingResponse) ProtoMessage() {}
 
 func (x *DeleteObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[31]
+	mi := &file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1610,7 +1726,7 @@ func (x *DeleteObjectStorageBucketTaggingResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use DeleteObjectStorageBucketTaggingResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectStorageBucketTaggingResponse) Descriptor() ([]byte, []int) {
-	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{31}
+	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *DeleteObjectStorageBucketTaggingResponse) GetObjectStorageBucket() *ObjectStorageBucket {
@@ -1635,15 +1751,25 @@ const file_enum_api_v1_object_storage_buckets_service_proto_rawDesc = "" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
 	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"v\n" +
 	"\x1eGetObjectStorageBucketResponse\x12T\n" +
-	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xee\x01\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xb9\x02\n" +
 	" CreateObjectStorageBucketRequest\x12J\n" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x88\x89'\x01R\x04name\x12/\n" +
 	"\tregion_id\x18\x03 \x01(\tB\x12\xbaH\x0f\xd8\x01\x01r\n" +
 	"\xb0\x89'\x01\x92\x02\x03fraR\bregionId\x12.\n" +
-	"\x13object_lock_enabled\x18\x04 \x01(\bR\x11objectLockEnabled\"y\n" +
+	"\x13object_lock_enabled\x18\x04 \x01(\bR\x11objectLockEnabled\x122\n" +
+	"\x12deletion_protected\x18\x05 \x01(\bH\x00R\x11deletionProtected\x88\x01\x01B\x15\n" +
+	"\x13_deletion_protected\"y\n" +
 	"!CreateObjectStorageBucketResponse\x12T\n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xfa\x01\n" +
+	" UpdateObjectStorageBucketRequest\x12J\n" +
+	"\n" +
+	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
+	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\x122\n" +
+	"\x12deletion_protected\x18\x03 \x01(\bH\x00R\x11deletionProtected\x88\x01\x01B\x15\n" +
+	"\x13_deletion_protected\"y\n" +
+	"!UpdateObjectStorageBucketResponse\x12T\n" +
 	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket\"\xaf\x01\n" +
 	" DeleteObjectStorageBucketRequest\x12J\n" +
 	"\n" +
@@ -1731,12 +1857,13 @@ const file_enum_api_v1_object_storage_buckets_service_proto_rawDesc = "" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12?\n" +
 	"\x02id\x18\x02 \x01(\tB/\xbaH,r*\x80\x89'\x01\x92\x02#s3bucket-01kmyy4apq8h8ysq42b1sqnrkcR\x02id\"\x80\x01\n" +
 	"(DeleteObjectStorageBucketTaggingResponse\x12T\n" +
-	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket2\xaa \n" +
+	"\x15object_storage_bucket\x18\x01 \x01(\v2 .enum.api.v1.ObjectStorageBucketR\x13objectStorageBucket2\x94\"\n" +
 	"\x1aObjectStorageBucketService\x12\xe1\x01\n" +
 	"\x18ListObjectStorageBuckets\x12,.enum.api.v1.ListObjectStorageBucketsRequest\x1a-.enum.api.v1.ListObjectStorageBucketsResponse\"h\xbaG\x0e\x12\fList Buckets\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02E:\x01*\"@/enum.api.v1.ObjectStorageBucketService/ListObjectStorageBuckets\x12\xd7\x01\n" +
 	"\x16GetObjectStorageBucket\x12*.enum.api.v1.GetObjectStorageBucketRequest\x1a+.enum.api.v1.GetObjectStorageBucketResponse\"d\xbaG\f\x12\n" +
 	"Get Bucket\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02C:\x01*\">/enum.api.v1.ObjectStorageBucketService/GetObjectStorageBucket\x12\xeb\x01\n" +
 	"\x19CreateObjectStorageBucket\x12-.enum.api.v1.CreateObjectStorageBucketRequest\x1a..enum.api.v1.CreateObjectStorageBucketResponse\"o\xbaG\x0f\x12\rCreate Bucket\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/CreateObjectStorageBucket\x12\xe7\x01\n" +
+	"\x19UpdateObjectStorageBucket\x12-.enum.api.v1.UpdateObjectStorageBucketRequest\x1a..enum.api.v1.UpdateObjectStorageBucketResponse\"k\xbaG\x0f\x12\rUpdate Bucket\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/UpdateObjectStorageBucket\x12\xe7\x01\n" +
 	"\x19DeleteObjectStorageBucket\x12-.enum.api.v1.DeleteObjectStorageBucketRequest\x1a..enum.api.v1.DeleteObjectStorageBucketResponse\"k\xbaG\x0f\x12\rDelete Bucket\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02F:\x01*\"A/enum.api.v1.ObjectStorageBucketService/DeleteObjectStorageBucket\x12\x8b\x02\n" +
 	" PutObjectStorageBucketVersioning\x124.enum.api.v1.PutObjectStorageBucketVersioningRequest\x1a5.enum.api.v1.PutObjectStorageBucketVersioningResponse\"z\xbaG\x17\x12\x15Put Bucket Versioning\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketVersioning\x12\x9b\x02\n" +
 	" PutObjectStorageBucketObjectLock\x124.enum.api.v1.PutObjectStorageBucketObjectLockRequest\x1a5.enum.api.v1.PutObjectStorageBucketObjectLockResponse\"\x89\x01\xbaG&\x12$Put Bucket Object Lock Configuration\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02M:\x01*\"H/enum.api.v1.ObjectStorageBucketService/PutObjectStorageBucketObjectLock\x12\x8b\x02\n" +
@@ -1763,7 +1890,7 @@ func file_enum_api_v1_object_storage_buckets_service_proto_rawDescGZIP() []byte 
 	return file_enum_api_v1_object_storage_buckets_service_proto_rawDescData
 }
 
-var file_enum_api_v1_object_storage_buckets_service_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_enum_api_v1_object_storage_buckets_service_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_enum_api_v1_object_storage_buckets_service_proto_goTypes = []any{
 	(*ListObjectStorageBucketsRequest)(nil),             // 0: enum.api.v1.ListObjectStorageBucketsRequest
 	(*ListObjectStorageBucketsResponse)(nil),            // 1: enum.api.v1.ListObjectStorageBucketsResponse
@@ -1771,89 +1898,94 @@ var file_enum_api_v1_object_storage_buckets_service_proto_goTypes = []any{
 	(*GetObjectStorageBucketResponse)(nil),              // 3: enum.api.v1.GetObjectStorageBucketResponse
 	(*CreateObjectStorageBucketRequest)(nil),            // 4: enum.api.v1.CreateObjectStorageBucketRequest
 	(*CreateObjectStorageBucketResponse)(nil),           // 5: enum.api.v1.CreateObjectStorageBucketResponse
-	(*DeleteObjectStorageBucketRequest)(nil),            // 6: enum.api.v1.DeleteObjectStorageBucketRequest
-	(*DeleteObjectStorageBucketResponse)(nil),           // 7: enum.api.v1.DeleteObjectStorageBucketResponse
-	(*PutObjectStorageBucketVersioningRequest)(nil),     // 8: enum.api.v1.PutObjectStorageBucketVersioningRequest
-	(*PutObjectStorageBucketVersioningResponse)(nil),    // 9: enum.api.v1.PutObjectStorageBucketVersioningResponse
-	(*PutObjectStorageBucketObjectLockRequest)(nil),     // 10: enum.api.v1.PutObjectStorageBucketObjectLockRequest
-	(*PutObjectStorageBucketObjectLockResponse)(nil),    // 11: enum.api.v1.PutObjectStorageBucketObjectLockResponse
-	(*PutObjectStorageBucketEncryptionRequest)(nil),     // 12: enum.api.v1.PutObjectStorageBucketEncryptionRequest
-	(*PutObjectStorageBucketEncryptionResponse)(nil),    // 13: enum.api.v1.PutObjectStorageBucketEncryptionResponse
-	(*DeleteObjectStorageBucketEncryptionRequest)(nil),  // 14: enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
-	(*DeleteObjectStorageBucketEncryptionResponse)(nil), // 15: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
-	(*PutObjectStorageBucketLifecycleRequest)(nil),      // 16: enum.api.v1.PutObjectStorageBucketLifecycleRequest
-	(*PutObjectStorageBucketLifecycleResponse)(nil),     // 17: enum.api.v1.PutObjectStorageBucketLifecycleResponse
-	(*DeleteObjectStorageBucketLifecycleRequest)(nil),   // 18: enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
-	(*DeleteObjectStorageBucketLifecycleResponse)(nil),  // 19: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
-	(*PutObjectStorageBucketCORSRequest)(nil),           // 20: enum.api.v1.PutObjectStorageBucketCORSRequest
-	(*PutObjectStorageBucketCORSResponse)(nil),          // 21: enum.api.v1.PutObjectStorageBucketCORSResponse
-	(*DeleteObjectStorageBucketCORSRequest)(nil),        // 22: enum.api.v1.DeleteObjectStorageBucketCORSRequest
-	(*DeleteObjectStorageBucketCORSResponse)(nil),       // 23: enum.api.v1.DeleteObjectStorageBucketCORSResponse
-	(*PutObjectStorageBucketPolicyRequest)(nil),         // 24: enum.api.v1.PutObjectStorageBucketPolicyRequest
-	(*PutObjectStorageBucketPolicyResponse)(nil),        // 25: enum.api.v1.PutObjectStorageBucketPolicyResponse
-	(*DeleteObjectStorageBucketPolicyRequest)(nil),      // 26: enum.api.v1.DeleteObjectStorageBucketPolicyRequest
-	(*DeleteObjectStorageBucketPolicyResponse)(nil),     // 27: enum.api.v1.DeleteObjectStorageBucketPolicyResponse
-	(*PutObjectStorageBucketTaggingRequest)(nil),        // 28: enum.api.v1.PutObjectStorageBucketTaggingRequest
-	(*PutObjectStorageBucketTaggingResponse)(nil),       // 29: enum.api.v1.PutObjectStorageBucketTaggingResponse
-	(*DeleteObjectStorageBucketTaggingRequest)(nil),     // 30: enum.api.v1.DeleteObjectStorageBucketTaggingRequest
-	(*DeleteObjectStorageBucketTaggingResponse)(nil),    // 31: enum.api.v1.DeleteObjectStorageBucketTaggingResponse
-	nil,                         // 32: enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
-	(*ObjectStorageBucket)(nil), // 33: enum.api.v1.ObjectStorageBucket
+	(*UpdateObjectStorageBucketRequest)(nil),            // 6: enum.api.v1.UpdateObjectStorageBucketRequest
+	(*UpdateObjectStorageBucketResponse)(nil),           // 7: enum.api.v1.UpdateObjectStorageBucketResponse
+	(*DeleteObjectStorageBucketRequest)(nil),            // 8: enum.api.v1.DeleteObjectStorageBucketRequest
+	(*DeleteObjectStorageBucketResponse)(nil),           // 9: enum.api.v1.DeleteObjectStorageBucketResponse
+	(*PutObjectStorageBucketVersioningRequest)(nil),     // 10: enum.api.v1.PutObjectStorageBucketVersioningRequest
+	(*PutObjectStorageBucketVersioningResponse)(nil),    // 11: enum.api.v1.PutObjectStorageBucketVersioningResponse
+	(*PutObjectStorageBucketObjectLockRequest)(nil),     // 12: enum.api.v1.PutObjectStorageBucketObjectLockRequest
+	(*PutObjectStorageBucketObjectLockResponse)(nil),    // 13: enum.api.v1.PutObjectStorageBucketObjectLockResponse
+	(*PutObjectStorageBucketEncryptionRequest)(nil),     // 14: enum.api.v1.PutObjectStorageBucketEncryptionRequest
+	(*PutObjectStorageBucketEncryptionResponse)(nil),    // 15: enum.api.v1.PutObjectStorageBucketEncryptionResponse
+	(*DeleteObjectStorageBucketEncryptionRequest)(nil),  // 16: enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
+	(*DeleteObjectStorageBucketEncryptionResponse)(nil), // 17: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
+	(*PutObjectStorageBucketLifecycleRequest)(nil),      // 18: enum.api.v1.PutObjectStorageBucketLifecycleRequest
+	(*PutObjectStorageBucketLifecycleResponse)(nil),     // 19: enum.api.v1.PutObjectStorageBucketLifecycleResponse
+	(*DeleteObjectStorageBucketLifecycleRequest)(nil),   // 20: enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
+	(*DeleteObjectStorageBucketLifecycleResponse)(nil),  // 21: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
+	(*PutObjectStorageBucketCORSRequest)(nil),           // 22: enum.api.v1.PutObjectStorageBucketCORSRequest
+	(*PutObjectStorageBucketCORSResponse)(nil),          // 23: enum.api.v1.PutObjectStorageBucketCORSResponse
+	(*DeleteObjectStorageBucketCORSRequest)(nil),        // 24: enum.api.v1.DeleteObjectStorageBucketCORSRequest
+	(*DeleteObjectStorageBucketCORSResponse)(nil),       // 25: enum.api.v1.DeleteObjectStorageBucketCORSResponse
+	(*PutObjectStorageBucketPolicyRequest)(nil),         // 26: enum.api.v1.PutObjectStorageBucketPolicyRequest
+	(*PutObjectStorageBucketPolicyResponse)(nil),        // 27: enum.api.v1.PutObjectStorageBucketPolicyResponse
+	(*DeleteObjectStorageBucketPolicyRequest)(nil),      // 28: enum.api.v1.DeleteObjectStorageBucketPolicyRequest
+	(*DeleteObjectStorageBucketPolicyResponse)(nil),     // 29: enum.api.v1.DeleteObjectStorageBucketPolicyResponse
+	(*PutObjectStorageBucketTaggingRequest)(nil),        // 30: enum.api.v1.PutObjectStorageBucketTaggingRequest
+	(*PutObjectStorageBucketTaggingResponse)(nil),       // 31: enum.api.v1.PutObjectStorageBucketTaggingResponse
+	(*DeleteObjectStorageBucketTaggingRequest)(nil),     // 32: enum.api.v1.DeleteObjectStorageBucketTaggingRequest
+	(*DeleteObjectStorageBucketTaggingResponse)(nil),    // 33: enum.api.v1.DeleteObjectStorageBucketTaggingResponse
+	nil,                         // 34: enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
+	(*ObjectStorageBucket)(nil), // 35: enum.api.v1.ObjectStorageBucket
 }
 var file_enum_api_v1_object_storage_buckets_service_proto_depIdxs = []int32{
-	33, // 0: enum.api.v1.ListObjectStorageBucketsResponse.object_storage_buckets:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 1: enum.api.v1.GetObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 2: enum.api.v1.CreateObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 3: enum.api.v1.PutObjectStorageBucketVersioningResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 4: enum.api.v1.PutObjectStorageBucketObjectLockResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 5: enum.api.v1.PutObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 6: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 7: enum.api.v1.PutObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 8: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 9: enum.api.v1.PutObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 10: enum.api.v1.DeleteObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 11: enum.api.v1.PutObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 12: enum.api.v1.DeleteObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	32, // 13: enum.api.v1.PutObjectStorageBucketTaggingRequest.tags:type_name -> enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
-	33, // 14: enum.api.v1.PutObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	33, // 15: enum.api.v1.DeleteObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
-	0,  // 16: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:input_type -> enum.api.v1.ListObjectStorageBucketsRequest
-	2,  // 17: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:input_type -> enum.api.v1.GetObjectStorageBucketRequest
-	4,  // 18: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:input_type -> enum.api.v1.CreateObjectStorageBucketRequest
-	6,  // 19: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:input_type -> enum.api.v1.DeleteObjectStorageBucketRequest
-	8,  // 20: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:input_type -> enum.api.v1.PutObjectStorageBucketVersioningRequest
-	10, // 21: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:input_type -> enum.api.v1.PutObjectStorageBucketObjectLockRequest
-	12, // 22: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:input_type -> enum.api.v1.PutObjectStorageBucketEncryptionRequest
-	14, // 23: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:input_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
-	16, // 24: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:input_type -> enum.api.v1.PutObjectStorageBucketLifecycleRequest
-	18, // 25: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:input_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
-	20, // 26: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:input_type -> enum.api.v1.PutObjectStorageBucketCORSRequest
-	22, // 27: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:input_type -> enum.api.v1.DeleteObjectStorageBucketCORSRequest
-	24, // 28: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:input_type -> enum.api.v1.PutObjectStorageBucketPolicyRequest
-	26, // 29: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:input_type -> enum.api.v1.DeleteObjectStorageBucketPolicyRequest
-	28, // 30: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:input_type -> enum.api.v1.PutObjectStorageBucketTaggingRequest
-	30, // 31: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:input_type -> enum.api.v1.DeleteObjectStorageBucketTaggingRequest
-	1,  // 32: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:output_type -> enum.api.v1.ListObjectStorageBucketsResponse
-	3,  // 33: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:output_type -> enum.api.v1.GetObjectStorageBucketResponse
-	5,  // 34: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:output_type -> enum.api.v1.CreateObjectStorageBucketResponse
-	7,  // 35: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:output_type -> enum.api.v1.DeleteObjectStorageBucketResponse
-	9,  // 36: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:output_type -> enum.api.v1.PutObjectStorageBucketVersioningResponse
-	11, // 37: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:output_type -> enum.api.v1.PutObjectStorageBucketObjectLockResponse
-	13, // 38: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:output_type -> enum.api.v1.PutObjectStorageBucketEncryptionResponse
-	15, // 39: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:output_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
-	17, // 40: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:output_type -> enum.api.v1.PutObjectStorageBucketLifecycleResponse
-	19, // 41: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:output_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
-	21, // 42: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:output_type -> enum.api.v1.PutObjectStorageBucketCORSResponse
-	23, // 43: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:output_type -> enum.api.v1.DeleteObjectStorageBucketCORSResponse
-	25, // 44: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:output_type -> enum.api.v1.PutObjectStorageBucketPolicyResponse
-	27, // 45: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:output_type -> enum.api.v1.DeleteObjectStorageBucketPolicyResponse
-	29, // 46: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:output_type -> enum.api.v1.PutObjectStorageBucketTaggingResponse
-	31, // 47: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:output_type -> enum.api.v1.DeleteObjectStorageBucketTaggingResponse
-	32, // [32:48] is the sub-list for method output_type
-	16, // [16:32] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	35, // 0: enum.api.v1.ListObjectStorageBucketsResponse.object_storage_buckets:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 1: enum.api.v1.GetObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 2: enum.api.v1.CreateObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 3: enum.api.v1.UpdateObjectStorageBucketResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 4: enum.api.v1.PutObjectStorageBucketVersioningResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 5: enum.api.v1.PutObjectStorageBucketObjectLockResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 6: enum.api.v1.PutObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 7: enum.api.v1.DeleteObjectStorageBucketEncryptionResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 8: enum.api.v1.PutObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 9: enum.api.v1.DeleteObjectStorageBucketLifecycleResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 10: enum.api.v1.PutObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 11: enum.api.v1.DeleteObjectStorageBucketCORSResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 12: enum.api.v1.PutObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 13: enum.api.v1.DeleteObjectStorageBucketPolicyResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	34, // 14: enum.api.v1.PutObjectStorageBucketTaggingRequest.tags:type_name -> enum.api.v1.PutObjectStorageBucketTaggingRequest.TagsEntry
+	35, // 15: enum.api.v1.PutObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	35, // 16: enum.api.v1.DeleteObjectStorageBucketTaggingResponse.object_storage_bucket:type_name -> enum.api.v1.ObjectStorageBucket
+	0,  // 17: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:input_type -> enum.api.v1.ListObjectStorageBucketsRequest
+	2,  // 18: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:input_type -> enum.api.v1.GetObjectStorageBucketRequest
+	4,  // 19: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:input_type -> enum.api.v1.CreateObjectStorageBucketRequest
+	6,  // 20: enum.api.v1.ObjectStorageBucketService.UpdateObjectStorageBucket:input_type -> enum.api.v1.UpdateObjectStorageBucketRequest
+	8,  // 21: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:input_type -> enum.api.v1.DeleteObjectStorageBucketRequest
+	10, // 22: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:input_type -> enum.api.v1.PutObjectStorageBucketVersioningRequest
+	12, // 23: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:input_type -> enum.api.v1.PutObjectStorageBucketObjectLockRequest
+	14, // 24: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:input_type -> enum.api.v1.PutObjectStorageBucketEncryptionRequest
+	16, // 25: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:input_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionRequest
+	18, // 26: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:input_type -> enum.api.v1.PutObjectStorageBucketLifecycleRequest
+	20, // 27: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:input_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleRequest
+	22, // 28: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:input_type -> enum.api.v1.PutObjectStorageBucketCORSRequest
+	24, // 29: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:input_type -> enum.api.v1.DeleteObjectStorageBucketCORSRequest
+	26, // 30: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:input_type -> enum.api.v1.PutObjectStorageBucketPolicyRequest
+	28, // 31: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:input_type -> enum.api.v1.DeleteObjectStorageBucketPolicyRequest
+	30, // 32: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:input_type -> enum.api.v1.PutObjectStorageBucketTaggingRequest
+	32, // 33: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:input_type -> enum.api.v1.DeleteObjectStorageBucketTaggingRequest
+	1,  // 34: enum.api.v1.ObjectStorageBucketService.ListObjectStorageBuckets:output_type -> enum.api.v1.ListObjectStorageBucketsResponse
+	3,  // 35: enum.api.v1.ObjectStorageBucketService.GetObjectStorageBucket:output_type -> enum.api.v1.GetObjectStorageBucketResponse
+	5,  // 36: enum.api.v1.ObjectStorageBucketService.CreateObjectStorageBucket:output_type -> enum.api.v1.CreateObjectStorageBucketResponse
+	7,  // 37: enum.api.v1.ObjectStorageBucketService.UpdateObjectStorageBucket:output_type -> enum.api.v1.UpdateObjectStorageBucketResponse
+	9,  // 38: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucket:output_type -> enum.api.v1.DeleteObjectStorageBucketResponse
+	11, // 39: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketVersioning:output_type -> enum.api.v1.PutObjectStorageBucketVersioningResponse
+	13, // 40: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketObjectLock:output_type -> enum.api.v1.PutObjectStorageBucketObjectLockResponse
+	15, // 41: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketEncryption:output_type -> enum.api.v1.PutObjectStorageBucketEncryptionResponse
+	17, // 42: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketEncryption:output_type -> enum.api.v1.DeleteObjectStorageBucketEncryptionResponse
+	19, // 43: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketLifecycle:output_type -> enum.api.v1.PutObjectStorageBucketLifecycleResponse
+	21, // 44: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketLifecycle:output_type -> enum.api.v1.DeleteObjectStorageBucketLifecycleResponse
+	23, // 45: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketCORS:output_type -> enum.api.v1.PutObjectStorageBucketCORSResponse
+	25, // 46: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketCORS:output_type -> enum.api.v1.DeleteObjectStorageBucketCORSResponse
+	27, // 47: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketPolicy:output_type -> enum.api.v1.PutObjectStorageBucketPolicyResponse
+	29, // 48: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketPolicy:output_type -> enum.api.v1.DeleteObjectStorageBucketPolicyResponse
+	31, // 49: enum.api.v1.ObjectStorageBucketService.PutObjectStorageBucketTagging:output_type -> enum.api.v1.PutObjectStorageBucketTaggingResponse
+	33, // 50: enum.api.v1.ObjectStorageBucketService.DeleteObjectStorageBucketTagging:output_type -> enum.api.v1.DeleteObjectStorageBucketTaggingResponse
+	34, // [34:51] is the sub-list for method output_type
+	17, // [17:34] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_enum_api_v1_object_storage_buckets_service_proto_init() }
@@ -1864,13 +1996,15 @@ func file_enum_api_v1_object_storage_buckets_service_proto_init() {
 	file_enum_api_v1_constraints_proto_init()
 	file_enum_api_v1_options_proto_init()
 	file_enum_api_v1_object_storage_buckets_proto_init()
+	file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[4].OneofWrappers = []any{}
+	file_enum_api_v1_object_storage_buckets_service_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_enum_api_v1_object_storage_buckets_service_proto_rawDesc), len(file_enum_api_v1_object_storage_buckets_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
