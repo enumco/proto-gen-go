@@ -33,6 +33,9 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// OrganizationServiceCreateOrganizationProcedure is the fully-qualified name of the
+	// OrganizationService's CreateOrganization RPC.
+	OrganizationServiceCreateOrganizationProcedure = "/enum.api.v1.OrganizationService/CreateOrganization"
 	// OrganizationServiceListOrganizationsProcedure is the fully-qualified name of the
 	// OrganizationService's ListOrganizations RPC.
 	OrganizationServiceListOrganizationsProcedure = "/enum.api.v1.OrganizationService/ListOrganizations"
@@ -43,6 +46,7 @@ const (
 
 // OrganizationServiceClient is a client for the enum.api.v1.OrganizationService service.
 type OrganizationServiceClient interface {
+	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganizations(context.Context, *connect.Request[v1.ListOrganizationsRequest]) (*connect.Response[v1.ListOrganizationsResponse], error)
 	GetOrganization(context.Context, *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.GetOrganizationResponse], error)
 }
@@ -58,6 +62,12 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 	baseURL = strings.TrimRight(baseURL, "/")
 	organizationServiceMethods := v1.File_enum_api_v1_organizations_service_proto.Services().ByName("OrganizationService").Methods()
 	return &organizationServiceClient{
+		createOrganization: connect.NewClient[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse](
+			httpClient,
+			baseURL+OrganizationServiceCreateOrganizationProcedure,
+			connect.WithSchema(organizationServiceMethods.ByName("CreateOrganization")),
+			connect.WithClientOptions(opts...),
+		),
 		listOrganizations: connect.NewClient[v1.ListOrganizationsRequest, v1.ListOrganizationsResponse](
 			httpClient,
 			baseURL+OrganizationServiceListOrganizationsProcedure,
@@ -75,8 +85,14 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 
 // organizationServiceClient implements OrganizationServiceClient.
 type organizationServiceClient struct {
-	listOrganizations *connect.Client[v1.ListOrganizationsRequest, v1.ListOrganizationsResponse]
-	getOrganization   *connect.Client[v1.GetOrganizationRequest, v1.GetOrganizationResponse]
+	createOrganization *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
+	listOrganizations  *connect.Client[v1.ListOrganizationsRequest, v1.ListOrganizationsResponse]
+	getOrganization    *connect.Client[v1.GetOrganizationRequest, v1.GetOrganizationResponse]
+}
+
+// CreateOrganization calls enum.api.v1.OrganizationService.CreateOrganization.
+func (c *organizationServiceClient) CreateOrganization(ctx context.Context, req *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {
+	return c.createOrganization.CallUnary(ctx, req)
 }
 
 // ListOrganizations calls enum.api.v1.OrganizationService.ListOrganizations.
@@ -91,6 +107,7 @@ func (c *organizationServiceClient) GetOrganization(ctx context.Context, req *co
 
 // OrganizationServiceHandler is an implementation of the enum.api.v1.OrganizationService service.
 type OrganizationServiceHandler interface {
+	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganizations(context.Context, *connect.Request[v1.ListOrganizationsRequest]) (*connect.Response[v1.ListOrganizationsResponse], error)
 	GetOrganization(context.Context, *connect.Request[v1.GetOrganizationRequest]) (*connect.Response[v1.GetOrganizationResponse], error)
 }
@@ -102,6 +119,12 @@ type OrganizationServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	organizationServiceMethods := v1.File_enum_api_v1_organizations_service_proto.Services().ByName("OrganizationService").Methods()
+	organizationServiceCreateOrganizationHandler := connect.NewUnaryHandler(
+		OrganizationServiceCreateOrganizationProcedure,
+		svc.CreateOrganization,
+		connect.WithSchema(organizationServiceMethods.ByName("CreateOrganization")),
+		connect.WithHandlerOptions(opts...),
+	)
 	organizationServiceListOrganizationsHandler := connect.NewUnaryHandler(
 		OrganizationServiceListOrganizationsProcedure,
 		svc.ListOrganizations,
@@ -116,6 +139,8 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 	)
 	return "/enum.api.v1.OrganizationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case OrganizationServiceCreateOrganizationProcedure:
+			organizationServiceCreateOrganizationHandler.ServeHTTP(w, r)
 		case OrganizationServiceListOrganizationsProcedure:
 			organizationServiceListOrganizationsHandler.ServeHTTP(w, r)
 		case OrganizationServiceGetOrganizationProcedure:
@@ -128,6 +153,10 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 
 // UnimplementedOrganizationServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedOrganizationServiceHandler struct{}
+
+func (UnimplementedOrganizationServiceHandler) CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.OrganizationService.CreateOrganization is not implemented"))
+}
 
 func (UnimplementedOrganizationServiceHandler) ListOrganizations(context.Context, *connect.Request[v1.ListOrganizationsRequest]) (*connect.Response[v1.ListOrganizationsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.OrganizationService.ListOrganizations is not implemented"))

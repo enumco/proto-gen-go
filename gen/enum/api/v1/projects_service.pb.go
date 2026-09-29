@@ -219,11 +219,13 @@ func (x *GetProjectResponse) GetProject() *Project {
 }
 
 type CreateProjectRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrgId         string                 `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Labels        map[string]string      `protobuf:"bytes,4,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The organization the project belongs to. You must be a member of it.
+	OrgId string `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+	// Unique within the organization.
+	Name          string            `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string            `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Labels        map[string]string `protobuf:"bytes,4,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -755,12 +757,13 @@ const file_enum_api_v1_projects_service_proto_rawDesc = "" +
 	"\n" +
 	"project_id\x18\x01 \x01(\tB+\xbaH(r&؈'\x01\x92\x02\x1fproj-01kmyy3t719crcnrrvk1mgyjd0R\tprojectId\x12D\n" +
 	"\auser_id\x18\x02 \x01(\tB+\xbaH(r&\xe0\x88'\x01\x92\x02\x1fuser-01kmyy47ynabkw0vq7bekg4e27R\x06userId\"\x1f\n" +
-	"\x1dDetachUserFromProjectResponse2\xa0\x04\n" +
+	"\x1dDetachUserFromProjectResponse2\xcf\x05\n" +
 	"\x0eProjectService\x12\xa6\x01\n" +
 	"\fListProjects\x12 .enum.api.v1.ListProjectsRequest\x1a!.enum.api.v1.ListProjectsResponse\"Q\xbaG\x0f\x12\rList Projects\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02-:\x01*\"(/enum.api.v1.ProjectService/ListProjects\x12\x9c\x01\n" +
 	"\n" +
 	"GetProject\x12\x1e.enum.api.v1.GetProjectRequest\x1a\x1f.enum.api.v1.GetProjectResponse\"M\xbaG\r\x12\vGet Project\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.ProjectService/GetProject\x12\xc5\x01\n" +
-	"\x12ListProjectMembers\x12&.enum.api.v1.ListProjectMembersRequest\x1a'.enum.api.v1.ListProjectMembersResponse\"^\xbaG\x16\x12\x14List Project Members\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.ProjectService/ListProjectMembersB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x12ListProjectMembers\x12&.enum.api.v1.ListProjectMembersRequest\x1a'.enum.api.v1.ListProjectMembersResponse\"^\xbaG\x16\x12\x14List Project Members\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x023:\x01*\"./enum.api.v1.ProjectService/ListProjectMembers\x12\xac\x01\n" +
+	"\rCreateProject\x12!.enum.api.v1.CreateProjectRequest\x1a\".enum.api.v1.CreateProjectResponse\"T\xbaG\x10\x12\x0eCreate Project\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.ProjectService/CreateProjectB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_projects_service_proto_rawDescOnce sync.Once
@@ -810,11 +813,13 @@ var file_enum_api_v1_projects_service_proto_depIdxs = []int32{
 	0,  // 9: enum.api.v1.ProjectService.ListProjects:input_type -> enum.api.v1.ListProjectsRequest
 	2,  // 10: enum.api.v1.ProjectService.GetProject:input_type -> enum.api.v1.GetProjectRequest
 	8,  // 11: enum.api.v1.ProjectService.ListProjectMembers:input_type -> enum.api.v1.ListProjectMembersRequest
-	1,  // 12: enum.api.v1.ProjectService.ListProjects:output_type -> enum.api.v1.ListProjectsResponse
-	3,  // 13: enum.api.v1.ProjectService.GetProject:output_type -> enum.api.v1.GetProjectResponse
-	9,  // 14: enum.api.v1.ProjectService.ListProjectMembers:output_type -> enum.api.v1.ListProjectMembersResponse
-	12, // [12:15] is the sub-list for method output_type
-	9,  // [9:12] is the sub-list for method input_type
+	4,  // 12: enum.api.v1.ProjectService.CreateProject:input_type -> enum.api.v1.CreateProjectRequest
+	1,  // 13: enum.api.v1.ProjectService.ListProjects:output_type -> enum.api.v1.ListProjectsResponse
+	3,  // 14: enum.api.v1.ProjectService.GetProject:output_type -> enum.api.v1.GetProjectResponse
+	9,  // 15: enum.api.v1.ProjectService.ListProjectMembers:output_type -> enum.api.v1.ListProjectMembersResponse
+	5,  // 16: enum.api.v1.ProjectService.CreateProject:output_type -> enum.api.v1.CreateProjectResponse
+	13, // [13:17] is the sub-list for method output_type
+	9,  // [9:13] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
 	9,  // [9:9] is the sub-list for extension extendee
 	0,  // [0:9] is the sub-list for field type_name

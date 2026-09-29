@@ -209,10 +209,11 @@ func (x *GetOrganizationResponse) GetOrganization() *Organization {
 }
 
 type CreateOrganizationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ZitadelId     string                 `protobuf:"bytes,1,opt,name=zitadel_id,json=zitadelId,proto3" json:"zitadel_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	BillingEmail  string                 `protobuf:"bytes,3,opt,name=billing_email,json=billingEmail,proto3" json:"billing_email,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The display name. You are added as its first member.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Where invoices are sent. Optional.
+	BillingEmail  string `protobuf:"bytes,3,opt,name=billing_email,json=billingEmail,proto3" json:"billing_email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -245,13 +246,6 @@ func (x *CreateOrganizationRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreateOrganizationRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrganizationRequest) Descriptor() ([]byte, []int) {
 	return file_enum_api_v1_organizations_service_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *CreateOrganizationRequest) GetZitadelId() string {
-	if x != nil {
-		return x.ZitadelId
-	}
-	return ""
 }
 
 func (x *CreateOrganizationRequest) GetName() string {
@@ -429,13 +423,11 @@ const file_enum_api_v1_organizations_service_proto_rawDesc = "" +
 	"\x16GetOrganizationRequest\x12:\n" +
 	"\x02id\x18\x01 \x01(\tB*\xbaH'r%Ј'\x01\x92\x02\x1eorg-01kmyy47ynabkw0vq7bekg4e27R\x02id\"X\n" +
 	"\x17GetOrganizationResponse\x12=\n" +
-	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization\"\x93\x01\n" +
-	"\x19CreateOrganizationRequest\x12&\n" +
-	"\n" +
-	"zitadel_id\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\tzitadelId\x12\x1d\n" +
+	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization\"q\n" +
+	"\x19CreateOrganizationRequest\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x90\x88'\x01R\x04name\x12/\n" +
 	"\rbilling_email\x18\x03 \x01(\tB\n" +
-	"\xbaH\a\xd8\x01\x01r\x02`\x01R\fbillingEmail\"[\n" +
+	"\xbaH\a\xd8\x01\x01r\x02`\x01R\fbillingEmailJ\x04\b\x01\x10\x02\"[\n" +
 	"\x1aCreateOrganizationResponse\x12=\n" +
 	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization\"\xa7\x01\n" +
 	"\x19UpdateOrganizationRequest\x12:\n" +
@@ -444,8 +436,9 @@ const file_enum_api_v1_organizations_service_proto_rawDesc = "" +
 	"\rbilling_email\x18\x03 \x01(\tB\n" +
 	"\xbaH\a\xd8\x01\x01r\x02`\x01R\fbillingEmail\"[\n" +
 	"\x1aUpdateOrganizationResponse\x12=\n" +
-	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization2\x99\x03\n" +
-	"\x13OrganizationService\x12\xc4\x01\n" +
+	"\forganization\x18\x01 \x01(\v2\x19.enum.api.v1.OrganizationR\forganization2\xe6\x04\n" +
+	"\x13OrganizationService\x12\xca\x01\n" +
+	"\x12CreateOrganization\x12&.enum.api.v1.CreateOrganizationRequest\x1a'.enum.api.v1.CreateOrganizationResponse\"c\xbaG\x15\x12\x13Create Organization\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x028:\x01*\"3/enum.api.v1.OrganizationService/CreateOrganization\x12\xc4\x01\n" +
 	"\x11ListOrganizations\x12%.enum.api.v1.ListOrganizationsRequest\x1a&.enum.api.v1.ListOrganizationsResponse\"`\xbaG\x14\x12\x12List Organizations\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x027:\x01*\"2/enum.api.v1.OrganizationService/ListOrganizations\x12\xba\x01\n" +
 	"\x0fGetOrganization\x12#.enum.api.v1.GetOrganizationRequest\x1a$.enum.api.v1.GetOrganizationResponse\"\\\xbaG\x12\x12\x10Get Organization\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.OrganizationService/GetOrganizationB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
@@ -482,12 +475,14 @@ var file_enum_api_v1_organizations_service_proto_depIdxs = []int32{
 	9,  // 3: enum.api.v1.GetOrganizationResponse.organization:type_name -> enum.api.v1.Organization
 	9,  // 4: enum.api.v1.CreateOrganizationResponse.organization:type_name -> enum.api.v1.Organization
 	9,  // 5: enum.api.v1.UpdateOrganizationResponse.organization:type_name -> enum.api.v1.Organization
-	0,  // 6: enum.api.v1.OrganizationService.ListOrganizations:input_type -> enum.api.v1.ListOrganizationsRequest
-	2,  // 7: enum.api.v1.OrganizationService.GetOrganization:input_type -> enum.api.v1.GetOrganizationRequest
-	1,  // 8: enum.api.v1.OrganizationService.ListOrganizations:output_type -> enum.api.v1.ListOrganizationsResponse
-	3,  // 9: enum.api.v1.OrganizationService.GetOrganization:output_type -> enum.api.v1.GetOrganizationResponse
-	8,  // [8:10] is the sub-list for method output_type
-	6,  // [6:8] is the sub-list for method input_type
+	4,  // 6: enum.api.v1.OrganizationService.CreateOrganization:input_type -> enum.api.v1.CreateOrganizationRequest
+	0,  // 7: enum.api.v1.OrganizationService.ListOrganizations:input_type -> enum.api.v1.ListOrganizationsRequest
+	2,  // 8: enum.api.v1.OrganizationService.GetOrganization:input_type -> enum.api.v1.GetOrganizationRequest
+	5,  // 9: enum.api.v1.OrganizationService.CreateOrganization:output_type -> enum.api.v1.CreateOrganizationResponse
+	1,  // 10: enum.api.v1.OrganizationService.ListOrganizations:output_type -> enum.api.v1.ListOrganizationsResponse
+	3,  // 11: enum.api.v1.OrganizationService.GetOrganization:output_type -> enum.api.v1.GetOrganizationResponse
+	9,  // [9:12] is the sub-list for method output_type
+	6,  // [6:9] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
