@@ -7,6 +7,7 @@
 package apiv1
 
 import (
+	_ "github.com/google/gnostic/openapiv3"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -184,7 +185,7 @@ var File_enum_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_enum_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x18enum/api/v1/common.proto\x12\venum.api.v1\"I\n" +
+	"\x18enum/api/v1/common.proto\x12\venum.api.v1\x1a\x1bopenapiv3/annotations.proto\"I\n" +
 	"\vPageRequest\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
 	"\n" +
@@ -198,7 +199,113 @@ const file_enum_api_v1_common_proto_rawDesc = "" +
 	"\x1cRESOURCE_STATUS_PROVISIONING\x10\x01\x12\x19\n" +
 	"\x15RESOURCE_STATUS_READY\x10\x02\x12\x1a\n" +
 	"\x16RESOURCE_STATUS_FAILED\x10\x03\x12\x1c\n" +
-	"\x18RESOURCE_STATUS_DELETING\x10\x04B<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"\x18RESOURCE_STATUS_DELETING\x10\x04B\xef\f\xbaG\xaf\f\x1a\x15\n" +
+	"\x13https://api.enum.co*\x83\f\n" +
+	"\xa3\x01\n" +
+	"\xa0\x01\n" +
+	"\x05Error\x12\x96\x01\n" +
+	"\x93\x01\xca\x01\x06object\xfa\x01\x86\x01\n" +
+	"L\n" +
+	"\x04code\x12D\n" +
+	"B\xca\x01\x06string\x92\x026Error code, such as `invalid_argument` or `not_found`.\n" +
+	"6\n" +
+	"\amessage\x12+\n" +
+	")\xca\x01\x06string\x92\x02\x1dHuman-readable error message.\x12\xb8\n" +
+	"\n" +
+	"\xb7\x01\n" +
+	"\x0fInvalidArgument\x12\xa3\x01\n" +
+	"\xa0\x01\n" +
+	"f`invalid_argument`: a field is missing or invalid.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xfe\x01\n" +
+	"\x0fUnauthenticated\x12\xea\x01\n" +
+	"\xe7\x01\n" +
+	"\xac\x01`unauthenticated`: the token is missing, invalid, or expired.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `missing authorization header`\n" +
+	"- `invalid authorization header format`\n" +
+	"- `authentication failed`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xb8\x01\n" +
+	"\x10PermissionDenied\x12\xa3\x01\n" +
+	"\xa0\x01\n" +
+	"f`permission_denied`: the token has no access to this project or method.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `not authorized`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\x96\x01\n" +
+	"\bNotFound\x12\x89\x01\n" +
+	"\x86\x01\n" +
+	"L`not_found`: the resource does not exist.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `resource not found`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xb2\x01\n" +
+	"\rAlreadyExists\x12\xa0\x01\n" +
+	"\x9d\x01\n" +
+	"c`already_exists`: a resource with this name already exists.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `resource already exists`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xdc\x01\n" +
+	"\vRateLimited\x12\xcc\x01\n" +
+	"\xc9\x01\n" +
+	"\x8e\x01`resource_exhausted`: the token's rate limit is reached.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `rate limit exceeded`: wait for the number of seconds in `Retry-After`.\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\x92\x01\n" +
+	"\bInternal\x12\x85\x01\n" +
+	"\x82\x01\n" +
+	"H`internal`: something failed on our side.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `internal error`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error: \n" +
+	"\x1e\n" +
+	"\n" +
+	"bearerAuth\x12\x10\n" +
+	"\x0e\n" +
+	"\x04http*\x06bearer2\x10\n" +
+	"\x0e\n" +
+	"\n" +
+	"bearerAuth\x12\x00Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_common_proto_rawDescOnce sync.Once

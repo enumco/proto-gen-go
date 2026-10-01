@@ -2106,31 +2106,358 @@ const file_enum_api_v1_dns_service_proto_rawDesc = "" +
 	"\x1fRECORD_SET_CHANGE_ACTION_CREATE\x10\x01\x12#\n" +
 	"\x1fRECORD_SET_CHANGE_ACTION_UPDATE\x10\x02\x12#\n" +
 	"\x1fRECORD_SET_CHANGE_ACTION_DELETE\x10\x03\x12&\n" +
-	"\"RECORD_SET_CHANGE_ACTION_UNCHANGED\x10\x042\xeb\x15\n" +
+	"\"RECORD_SET_CHANGE_ACTION_UNCHANGED\x10\x042\xcb;\n" +
 	"\n" +
-	"DnsService\x12\xa1\x01\n" +
+	"DnsService\x12\xe5\x03\n" +
 	"\n" +
-	"CreateZone\x12\x1e.enum.api.v1.CreateZoneRequest\x1a\x1f.enum.api.v1.CreateZoneResponse\"R\xbaG\x11\x12\x0fCreate DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/CreateZone\x12\x9d\x01\n" +
+	"CreateZone\x12\x1e.enum.api.v1.CreateZoneRequest\x1a\x1f.enum.api.v1.CreateZoneResponse\"\x95\x03\xbaG\xd3\x02\x12\x0fCreate DNS ZoneB\xbf\x02\x129\n" +
+	"\x03400\x122\x120\n" +
+	".#/components/responses/DnsCreateZoneBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12/\n" +
+	"\x03409\x12(\x12&\n" +
+	"$#/components/responses/AlreadyExists\x12>\n" +
+	"\x03429\x127\x125\n" +
+	"3#/components/responses/DnsCreateZoneTooManyRequests\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/CreateZone\x12\xcb\x03\n" +
 	"\n" +
-	"UpdateZone\x12\x1e.enum.api.v1.UpdateZoneRequest\x1a\x1f.enum.api.v1.UpdateZoneResponse\"N\xbaG\x11\x12\x0fUpdate DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/UpdateZone\x12\x8d\x01\n" +
-	"\aGetZone\x12\x1b.enum.api.v1.GetZoneRequest\x1a\x1c.enum.api.v1.GetZoneResponse\"G\xbaG\x0e\x12\fGet DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/enum.api.v1.DnsService/GetZone\x12\xad\x01\n" +
-	"\rGetZoneByName\x12!.enum.api.v1.GetZoneByNameRequest\x1a\".enum.api.v1.GetZoneByNameResponse\"U\xbaG\x16\x12\x14Get DNS Zone by name\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02*:\x01*\"%/enum.api.v1.DnsService/GetZoneByName\x12\x97\x01\n" +
-	"\tListZones\x12\x1d.enum.api.v1.ListZonesRequest\x1a\x1e.enum.api.v1.ListZonesResponse\"K\xbaG\x10\x12\x0eList DNS Zones\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02&:\x01*\"!/enum.api.v1.DnsService/ListZones\x12\xa1\x01\n" +
+	"UpdateZone\x12\x1e.enum.api.v1.UpdateZoneRequest\x1a\x1f.enum.api.v1.UpdateZoneResponse\"\xfb\x02\xbaG\xbd\x02\x12\x0fUpdate DNS ZoneB\xa9\x02\x129\n" +
+	"\x03400\x122\x120\n" +
+	".#/components/responses/DnsUpdateZoneBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/UpdateZone\x12\xb3\x03\n" +
+	"\aGetZone\x12\x1b.enum.api.v1.GetZoneRequest\x1a\x1c.enum.api.v1.GetZoneResponse\"\xec\x02\xbaG\xb2\x02\x12\fGet DNS ZoneB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/enum.api.v1.DnsService/GetZone\x12\xd3\x03\n" +
+	"\rGetZoneByName\x12!.enum.api.v1.GetZoneByNameRequest\x1a\".enum.api.v1.GetZoneByNameResponse\"\xfa\x02\xbaG\xba\x02\x12\x14Get DNS Zone by nameB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02*:\x01*\"%/enum.api.v1.DnsService/GetZoneByName\x12\x91\x03\n" +
+	"\tListZones\x12\x1d.enum.api.v1.ListZonesRequest\x1a\x1e.enum.api.v1.ListZonesResponse\"\xc4\x02\xbaG\x88\x02\x12\x0eList DNS ZonesB\xf5\x01\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02&:\x01*\"!/enum.api.v1.DnsService/ListZones\x12\xdc\x03\n" +
 	"\n" +
-	"ImportZone\x12\x1e.enum.api.v1.ImportZoneRequest\x1a\x1f.enum.api.v1.ImportZoneResponse\"R\xbaG\x11\x12\x0fImport DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ImportZone\x12\xa1\x01\n" +
+	"ImportZone\x12\x1e.enum.api.v1.ImportZoneRequest\x1a\x1f.enum.api.v1.ImportZoneResponse\"\x8c\x03\xbaG\xca\x02\x12\x0fImport DNS ZoneB\xb6\x02\x129\n" +
+	"\x03400\x122\x120\n" +
+	".#/components/responses/DnsImportZoneBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12:\n" +
+	"\x03429\x123\x121\n" +
+	"/#/components/responses/DnsRecordTooManyRequests\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ImportZone\x12\xc7\x03\n" +
 	"\n" +
-	"ExportZone\x12\x1e.enum.api.v1.ExportZoneRequest\x1a\x1f.enum.api.v1.ExportZoneResponse\"R\xbaG\x11\x12\x0fExport DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ExportZone\x12\x9d\x01\n" +
+	"ExportZone\x12\x1e.enum.api.v1.ExportZoneRequest\x1a\x1f.enum.api.v1.ExportZoneResponse\"\xf7\x02\xbaG\xb5\x02\x12\x0fExport DNS ZoneB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/ExportZone\x12\xcb\x03\n" +
 	"\n" +
-	"DeleteZone\x12\x1e.enum.api.v1.DeleteZoneRequest\x1a\x1f.enum.api.v1.DeleteZoneResponse\"N\xbaG\x11\x12\x0fDelete DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/DeleteZone\x12\xa1\x01\n" +
+	"DeleteZone\x12\x1e.enum.api.v1.DeleteZoneRequest\x1a\x1f.enum.api.v1.DeleteZoneResponse\"\xfb\x02\xbaG\xbd\x02\x12\x0fDelete DNS ZoneB\xa9\x02\x129\n" +
+	"\x03400\x122\x120\n" +
+	".#/components/responses/DnsDeleteZoneBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/DeleteZone\x12\xc7\x03\n" +
 	"\n" +
-	"VerifyZone\x12\x1e.enum.api.v1.VerifyZoneRequest\x1a\x1f.enum.api.v1.VerifyZoneResponse\"R\xbaG\x11\x12\x0fVerify DNS Zone\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/VerifyZone\x12\xb7\x01\n" +
-	"\x0fCreateRecordSet\x12#.enum.api.v1.CreateRecordSetRequest\x1a$.enum.api.v1.CreateRecordSetResponse\"Y\xbaG\x17\x12\x15Create DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/CreateRecordSet\x12\xb7\x01\n" +
-	"\x0fUpdateRecordSet\x12#.enum.api.v1.UpdateRecordSetRequest\x1a$.enum.api.v1.UpdateRecordSetResponse\"Y\xbaG\x17\x12\x15Update DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/UpdateRecordSet\x12\xb7\x01\n" +
-	"\x0fDeleteRecordSet\x12#.enum.api.v1.DeleteRecordSetRequest\x1a$.enum.api.v1.DeleteRecordSetResponse\"Y\xbaG\x17\x12\x15Delete DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/DeleteRecordSet\x12\xa7\x01\n" +
-	"\fGetRecordSet\x12 .enum.api.v1.GetRecordSetRequest\x1a!.enum.api.v1.GetRecordSetResponse\"R\xbaG\x14\x12\x12Get DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.DnsService/GetRecordSet\x12\xb1\x01\n" +
-	"\x0eListRecordSets\x12\".enum.api.v1.ListRecordSetsRequest\x1a#.enum.api.v1.ListRecordSetsResponse\"V\xbaG\x16\x12\x14List DNS Record Sets\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.DnsService/ListRecordSets\x12\xc9\x01\n" +
-	"\x11AddRecordSetValue\x12%.enum.api.v1.AddRecordSetValueRequest\x1a&.enum.api.v1.AddRecordSetValueResponse\"e\xbaG!\x12\x1fAdd a value to a DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.DnsService/AddRecordSetValue\x12\xda\x01\n" +
-	"\x14RemoveRecordSetValue\x12(.enum.api.v1.RemoveRecordSetValueRequest\x1a).enum.api.v1.RemoveRecordSetValueResponse\"m\xbaG&\x12$Remove a value from a DNS Record Set\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x021:\x01*\",/enum.api.v1.DnsService/RemoveRecordSetValueB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
+	"VerifyZone\x12\x1e.enum.api.v1.VerifyZoneRequest\x1a\x1f.enum.api.v1.VerifyZoneResponse\"\xf7\x02\xbaG\xb5\x02\x12\x0fVerify DNS ZoneB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02':\x01*\"\"/enum.api.v1.DnsService/VerifyZone\x12\xa2\x04\n" +
+	"\x0fCreateRecordSet\x12#.enum.api.v1.CreateRecordSetRequest\x1a$.enum.api.v1.CreateRecordSetResponse\"\xc3\x03\xbaG\x80\x03\x12\x15Create DNS Record SetB\xe6\x02\x128\n" +
+	"\x03400\x121\x12/\n" +
+	"-#/components/responses/DnsRecordSetBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12/\n" +
+	"\x03409\x12(\x12&\n" +
+	"$#/components/responses/AlreadyExists\x12:\n" +
+	"\x03429\x123\x121\n" +
+	"/#/components/responses/DnsRecordTooManyRequests\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/CreateRecordSet\x12\xe4\x03\n" +
+	"\x0fUpdateRecordSet\x12#.enum.api.v1.UpdateRecordSetRequest\x1a$.enum.api.v1.UpdateRecordSetResponse\"\x85\x03\xbaG\xc2\x02\x12\x15Update DNS Record SetB\xa8\x02\x128\n" +
+	"\x03400\x121\x12/\n" +
+	"-#/components/responses/DnsRecordSetBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/UpdateRecordSet\x12\xdd\x03\n" +
+	"\x0fDeleteRecordSet\x12#.enum.api.v1.DeleteRecordSetRequest\x1a$.enum.api.v1.DeleteRecordSetResponse\"\xfe\x02\xbaG\xbb\x02\x12\x15Delete DNS Record SetB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02,:\x01*\"'/enum.api.v1.DnsService/DeleteRecordSet\x12\xcd\x03\n" +
+	"\fGetRecordSet\x12 .enum.api.v1.GetRecordSetRequest\x1a!.enum.api.v1.GetRecordSetResponse\"\xf7\x02\xbaG\xb8\x02\x12\x12Get DNS Record SetB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02):\x01*\"$/enum.api.v1.DnsService/GetRecordSet\x12\xd7\x03\n" +
+	"\x0eListRecordSets\x12\".enum.api.v1.ListRecordSetsRequest\x1a#.enum.api.v1.ListRecordSetsResponse\"\xfb\x02\xbaG\xba\x02\x12\x14List DNS Record SetsB\xa1\x02\x121\n" +
+	"\x03400\x12*\x12(\n" +
+	"&#/components/responses/InvalidArgument\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02+:\x01*\"&/enum.api.v1.DnsService/ListRecordSets\x12\x83\x04\n" +
+	"\x11AddRecordSetValue\x12%.enum.api.v1.AddRecordSetValueRequest\x1a&.enum.api.v1.AddRecordSetValueResponse\"\x9e\x03\xbaG\xd9\x02\x12\x1fAdd a value to a DNS Record SetB\xb5\x02\x128\n" +
+	"\x03400\x121\x12/\n" +
+	"-#/components/responses/DnsRecordSetBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12:\n" +
+	"\x03429\x123\x121\n" +
+	"/#/components/responses/DnsRecordTooManyRequests\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.DnsService/AddRecordSetValue\x12\x89\x04\n" +
+	"\x14RemoveRecordSetValue\x12(.enum.api.v1.RemoveRecordSetValueRequest\x1a).enum.api.v1.RemoveRecordSetValueResponse\"\x9b\x03\xbaG\xd3\x02\x12$Remove a value from a DNS Record SetB\xaa\x02\x12:\n" +
+	"\x03400\x123\x121\n" +
+	"/#/components/responses/DnsRecordValueBadRequest\x121\n" +
+	"\x03401\x12*\x12(\n" +
+	"&#/components/responses/Unauthenticated\x122\n" +
+	"\x03403\x12+\x12)\n" +
+	"'#/components/responses/PermissionDenied\x12*\n" +
+	"\x03404\x12#\x12!\n" +
+	"\x1f#/components/responses/NotFound\x12-\n" +
+	"\x03429\x12&\x12$\n" +
+	"\"#/components/responses/RateLimited\x12*\n" +
+	"\x03500\x12#\x12!\n" +
+	"\x1f#/components/responses/Internal\x80\xb5\x18\x01\x92\xb5\x18\x05write\x82\xd3\xe4\x93\x021:\x01*\",/enum.api.v1.DnsService/RemoveRecordSetValueB\xe2\x1d\xbaG\xa2\x1d*\x9f\x1d\x12\x9c\x1d\n" +
+	"\xda\x03\n" +
+	"\x17DnsCreateZoneBadRequest\x12\xbe\x03\n" +
+	"\xbb\x03\n" +
+	"\x80\x03`invalid_argument`: the zone name or another field is invalid.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"- `\"<name>\" is not a registrable domain`\n" +
+	"- `\"<name>\" is not a root domain; register the zone \"<root domain>\" and manage subdomains as records`\n" +
+	"\n" +
+	"`failed_precondition`: the project has no nameservers assigned.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `project has fewer than 2 assigned nameservers`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xb5\x03\n" +
+	"\x1cDnsCreateZoneTooManyRequests\x12\x94\x03\n" +
+	"\x91\x03\n" +
+	"\xd6\x02`resource_exhausted`: a rate limit or quota is reached.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `rate limit exceeded`: wait for the number of seconds in `Retry-After`.\n" +
+	"- `dns.zones quota exceeded: limit <n>, in use <n>, requested 1`: the project has reached its zone quota.\n" +
+	"- `no nameserver pair is available for this name`: no nameservers are free for this zone name.\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\x9c\x04\n" +
+	"\x17DnsUpdateZoneBadRequest\x12\x80\x04\n" +
+	"\xfd\x03\n" +
+	"\xc2\x03`invalid_argument`: a field is missing or invalid.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"- `at least one of deletion_protected or dnssec_enabled is required`\n" +
+	"\n" +
+	"`failed_precondition`: the zone does not allow this change right now.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `zone must be active before enabling DNSSEC`\n" +
+	"- `remove the DS record at your registrar before disabling DNSSEC; the zone would fail validation while the parent still points a DS at enum's keys`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xb8\x02\n" +
+	"\x17DnsDeleteZoneBadRequest\x12\x9c\x02\n" +
+	"\x99\x02\n" +
+	"\xde\x01`invalid_argument`: a field is missing or invalid.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"\n" +
+	"`failed_precondition`: the zone is protected.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `zone is deletion protected; unprotect it before deleting`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\x85\x04\n" +
+	"\x17DnsImportZoneBadRequest\x12\xe9\x03\n" +
+	"\xe6\x03\n" +
+	"\xab\x03`invalid_argument`: the zone file cannot be parsed or its records conflict. Records that are invalid on their own are skipped and listed in `warnings` instead.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"- `parse zone file: <reason>`\n" +
+	"- `CNAME at <name> cannot coexist with other record types`\n" +
+	"- `multiple CNAME records at <name>; a name may have only one CNAME`\n" +
+	"- `ALIAS at <name> cannot coexist with A, AAAA, or CNAME`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\x87\x06\n" +
+	"\x16DnsRecordSetBadRequest\x12\xec\x05\n" +
+	"\xe9\x05\n" +
+	"\xae\x05`invalid_argument`: a field or record value is invalid. A CNAME at the zone apex is stored as ALIAS, so its errors name ALIAS.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"- `record <name> is not within zone <zone>`\n" +
+	"- `ttl <ttl> out of range [<min>,<max>] for <type>`: allowed TTLs are 60 - 86400 seconds, or 3600 - 604800 for NS.\n" +
+	"- `invalid <type> rdata \"<value>\"`\n" +
+	"- `A record content must be an IPv4 address, got \"<value>\"` (`AAAA` and IPv6 likewise)\n" +
+	"- `a CNAME record set must have exactly one value`\n" +
+	"- `CNAME at <name> cannot coexist with other record types`\n" +
+	"- `ALIAS at <name> cannot coexist with A, AAAA, or CNAME`\n" +
+	"- `apex NS at <name> is managed by enum and cannot be set`\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xbd\x02\n" +
+	"\x18DnsRecordValueBadRequest\x12\xa0\x02\n" +
+	"\x9d\x02\n" +
+	"\xe2\x01`invalid_argument`: a field or the value is invalid.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `validation error: <field>: <reason>`\n" +
+	"- `invalid <type> rdata \"<value>\"`\n" +
+	"- `A record content must be an IPv4 address, got \"<value>\"` (`AAAA` and IPv6 likewise)\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/Error\n" +
+	"\xd8\x02\n" +
+	"\x18DnsRecordTooManyRequests\x12\xbb\x02\n" +
+	"\xb8\x02\n" +
+	"\xfd\x01`resource_exhausted`: a rate limit or quota is reached.\n" +
+	"\n" +
+	"Messages:\n" +
+	"\n" +
+	"- `rate limit exceeded`: wait for the number of seconds in `Retry-After`.\n" +
+	"- `dns.records quota exceeded: limit <n>, in use <n>, requested <n>`: the project has reached its record quota.\x1a6\n" +
+	"4\n" +
+	"\x10application/json\x12 \n" +
+	"\x1e\x12\x1c\n" +
+	"\x1a#/components/schemas/ErrorZ:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
 var (
 	file_enum_api_v1_dns_service_proto_rawDescOnce sync.Once
