@@ -22,7 +22,7 @@ const (
 	RegistrationService_Register_FullMethodName              = "/enum.api.v1.RegistrationService/Register"
 	RegistrationService_VerifyEmail_FullMethodName           = "/enum.api.v1.RegistrationService/VerifyEmail"
 	RegistrationService_ResendEmailCode_FullMethodName       = "/enum.api.v1.RegistrationService/ResendEmailCode"
-	RegistrationService_GetCaptchaChallenge_FullMethodName   = "/enum.api.v1.RegistrationService/GetCaptchaChallenge"
+	RegistrationService_GetCaptchaConfig_FullMethodName      = "/enum.api.v1.RegistrationService/GetCaptchaConfig"
 	RegistrationService_GetRegistrationForm_FullMethodName   = "/enum.api.v1.RegistrationService/GetRegistrationForm"
 	RegistrationService_GetRegistrationStatus_FullMethodName = "/enum.api.v1.RegistrationService/GetRegistrationStatus"
 )
@@ -40,9 +40,7 @@ type RegistrationServiceClient interface {
 	// ResendEmailCode sends a new verification code and invalidates the previous
 	// one.
 	ResendEmailCode(ctx context.Context, in *ResendEmailCodeRequest, opts ...grpc.CallOption) (*ResendEmailCodeResponse, error)
-	// GetCaptchaChallenge issues a challenge for the register form. It expires
-	// shortly after it is issued.
-	GetCaptchaChallenge(ctx context.Context, in *GetCaptchaChallengeRequest, opts ...grpc.CallOption) (*GetCaptchaChallengeResponse, error)
+	GetCaptchaConfig(ctx context.Context, in *GetCaptchaConfigRequest, opts ...grpc.CallOption) (*GetCaptchaConfigResponse, error)
 	GetRegistrationForm(ctx context.Context, in *GetRegistrationFormRequest, opts ...grpc.CallOption) (*GetRegistrationFormResponse, error)
 	// GetRegistrationStatus reports whether the email address for a registration
 	// has been verified. Poll it with the token from Register while waiting for
@@ -88,10 +86,10 @@ func (c *registrationServiceClient) ResendEmailCode(ctx context.Context, in *Res
 	return out, nil
 }
 
-func (c *registrationServiceClient) GetCaptchaChallenge(ctx context.Context, in *GetCaptchaChallengeRequest, opts ...grpc.CallOption) (*GetCaptchaChallengeResponse, error) {
+func (c *registrationServiceClient) GetCaptchaConfig(ctx context.Context, in *GetCaptchaConfigRequest, opts ...grpc.CallOption) (*GetCaptchaConfigResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCaptchaChallengeResponse)
-	err := c.cc.Invoke(ctx, RegistrationService_GetCaptchaChallenge_FullMethodName, in, out, cOpts...)
+	out := new(GetCaptchaConfigResponse)
+	err := c.cc.Invoke(ctx, RegistrationService_GetCaptchaConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,9 +129,7 @@ type RegistrationServiceServer interface {
 	// ResendEmailCode sends a new verification code and invalidates the previous
 	// one.
 	ResendEmailCode(context.Context, *ResendEmailCodeRequest) (*ResendEmailCodeResponse, error)
-	// GetCaptchaChallenge issues a challenge for the register form. It expires
-	// shortly after it is issued.
-	GetCaptchaChallenge(context.Context, *GetCaptchaChallengeRequest) (*GetCaptchaChallengeResponse, error)
+	GetCaptchaConfig(context.Context, *GetCaptchaConfigRequest) (*GetCaptchaConfigResponse, error)
 	GetRegistrationForm(context.Context, *GetRegistrationFormRequest) (*GetRegistrationFormResponse, error)
 	// GetRegistrationStatus reports whether the email address for a registration
 	// has been verified. Poll it with the token from Register while waiting for
@@ -158,8 +154,8 @@ func (UnimplementedRegistrationServiceServer) VerifyEmail(context.Context, *Veri
 func (UnimplementedRegistrationServiceServer) ResendEmailCode(context.Context, *ResendEmailCodeRequest) (*ResendEmailCodeResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ResendEmailCode not implemented")
 }
-func (UnimplementedRegistrationServiceServer) GetCaptchaChallenge(context.Context, *GetCaptchaChallengeRequest) (*GetCaptchaChallengeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCaptchaChallenge not implemented")
+func (UnimplementedRegistrationServiceServer) GetCaptchaConfig(context.Context, *GetCaptchaConfigRequest) (*GetCaptchaConfigResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCaptchaConfig not implemented")
 }
 func (UnimplementedRegistrationServiceServer) GetRegistrationForm(context.Context, *GetRegistrationFormRequest) (*GetRegistrationFormResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRegistrationForm not implemented")
@@ -242,20 +238,20 @@ func _RegistrationService_ResendEmailCode_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RegistrationService_GetCaptchaChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCaptchaChallengeRequest)
+func _RegistrationService_GetCaptchaConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCaptchaConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegistrationServiceServer).GetCaptchaChallenge(ctx, in)
+		return srv.(RegistrationServiceServer).GetCaptchaConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RegistrationService_GetCaptchaChallenge_FullMethodName,
+		FullMethod: RegistrationService_GetCaptchaConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegistrationServiceServer).GetCaptchaChallenge(ctx, req.(*GetCaptchaChallengeRequest))
+		return srv.(RegistrationServiceServer).GetCaptchaConfig(ctx, req.(*GetCaptchaConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -316,8 +312,8 @@ var RegistrationService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RegistrationService_ResendEmailCode_Handler,
 		},
 		{
-			MethodName: "GetCaptchaChallenge",
-			Handler:    _RegistrationService_GetCaptchaChallenge_Handler,
+			MethodName: "GetCaptchaConfig",
+			Handler:    _RegistrationService_GetCaptchaConfig_Handler,
 		},
 		{
 			MethodName: "GetRegistrationForm",

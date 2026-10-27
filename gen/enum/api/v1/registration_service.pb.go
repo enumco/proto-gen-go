@@ -445,26 +445,26 @@ func (*ResendEmailCodeResponse) Descriptor() ([]byte, []int) {
 	return file_enum_api_v1_registration_service_proto_rawDescGZIP(), []int{6}
 }
 
-type GetCaptchaChallengeRequest struct {
+type GetCaptchaConfigRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCaptchaChallengeRequest) Reset() {
-	*x = GetCaptchaChallengeRequest{}
+func (x *GetCaptchaConfigRequest) Reset() {
+	*x = GetCaptchaConfigRequest{}
 	mi := &file_enum_api_v1_registration_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCaptchaChallengeRequest) String() string {
+func (x *GetCaptchaConfigRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCaptchaChallengeRequest) ProtoMessage() {}
+func (*GetCaptchaConfigRequest) ProtoMessage() {}
 
-func (x *GetCaptchaChallengeRequest) ProtoReflect() protoreflect.Message {
+func (x *GetCaptchaConfigRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_enum_api_v1_registration_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -476,32 +476,32 @@ func (x *GetCaptchaChallengeRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCaptchaChallengeRequest.ProtoReflect.Descriptor instead.
-func (*GetCaptchaChallengeRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetCaptchaConfigRequest.ProtoReflect.Descriptor instead.
+func (*GetCaptchaConfigRequest) Descriptor() ([]byte, []int) {
 	return file_enum_api_v1_registration_service_proto_rawDescGZIP(), []int{7}
 }
 
-type GetCaptchaChallengeResponse struct {
+type GetCaptchaConfigResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Challenge     string                 `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	Sitekey       string                 `protobuf:"bytes,1,opt,name=sitekey,proto3" json:"sitekey,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCaptchaChallengeResponse) Reset() {
-	*x = GetCaptchaChallengeResponse{}
+func (x *GetCaptchaConfigResponse) Reset() {
+	*x = GetCaptchaConfigResponse{}
 	mi := &file_enum_api_v1_registration_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCaptchaChallengeResponse) String() string {
+func (x *GetCaptchaConfigResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCaptchaChallengeResponse) ProtoMessage() {}
+func (*GetCaptchaConfigResponse) ProtoMessage() {}
 
-func (x *GetCaptchaChallengeResponse) ProtoReflect() protoreflect.Message {
+func (x *GetCaptchaConfigResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_enum_api_v1_registration_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -513,14 +513,14 @@ func (x *GetCaptchaChallengeResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCaptchaChallengeResponse.ProtoReflect.Descriptor instead.
-func (*GetCaptchaChallengeResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetCaptchaConfigResponse.ProtoReflect.Descriptor instead.
+func (*GetCaptchaConfigResponse) Descriptor() ([]byte, []int) {
 	return file_enum_api_v1_registration_service_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetCaptchaChallengeResponse) GetChallenge() string {
+func (x *GetCaptchaConfigResponse) GetSitekey() string {
 	if x != nil {
-		return x.Challenge
+		return x.Sitekey
 	}
 	return ""
 }
@@ -826,10 +826,10 @@ const file_enum_api_v1_registration_service_proto_rawDesc = "" +
 	"\x13VerifyEmailResponse\"7\n" +
 	"\x16ResendEmailCodeRequest\x12\x1d\n" +
 	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"\x19\n" +
-	"\x17ResendEmailCodeResponse\"\x1c\n" +
-	"\x1aGetCaptchaChallengeRequest\";\n" +
-	"\x1bGetCaptchaChallengeResponse\x12\x1c\n" +
-	"\tchallenge\x18\x01 \x01(\tR\tchallenge\"\xa5\x02\n" +
+	"\x17ResendEmailCodeResponse\"\x19\n" +
+	"\x17GetCaptchaConfigRequest\"4\n" +
+	"\x18GetCaptchaConfigResponse\x12\x18\n" +
+	"\asitekey\x18\x01 \x01(\tR\asitekey\"\xa5\x02\n" +
 	"\x14RegistrationFormItem\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x129\n" +
 	"\x04type\x18\x02 \x01(\x0e2%.enum.api.v1.RegistrationFormItemTypeR\x04type\x12\x14\n" +
@@ -853,13 +853,13 @@ const file_enum_api_v1_registration_service_proto_rawDesc = "" +
 	" REGISTRATION_FORM_ITEM_TYPE_TEXT\x10\x01\x12%\n" +
 	"!REGISTRATION_FORM_ITEM_TYPE_EMAIL\x10\x02\x12(\n" +
 	"$REGISTRATION_FORM_ITEM_TYPE_PASSWORD\x10\x03\x12(\n" +
-	"$REGISTRATION_FORM_ITEM_TYPE_CHECKBOX\x10\x042\xa4\t\n" +
+	"$REGISTRATION_FORM_ITEM_TYPE_CHECKBOX\x10\x042\x95\t\n" +
 	"\x13RegistrationService\x12\x9b\x01\n" +
 	"\bRegister\x12\x1c.enum.api.v1.RegisterRequest\x1a\x1d.enum.api.v1.RegisterResponse\"R\xbaG\n" +
 	"\x12\bRegister\x80\xb5\x18\x00\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x02.:\x01*\")/enum.api.v1.RegistrationService/Register\x12\xab\x01\n" +
 	"\vVerifyEmail\x12\x1f.enum.api.v1.VerifyEmailRequest\x1a .enum.api.v1.VerifyEmailResponse\"Y\xbaG\x0e\x12\fVerify Email\x80\xb5\x18\x00\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x021:\x01*\",/enum.api.v1.RegistrationService/VerifyEmail\x12\xc0\x01\n" +
-	"\x0fResendEmailCode\x12#.enum.api.v1.ResendEmailCodeRequest\x1a$.enum.api.v1.ResendEmailCodeResponse\"b\xbaG\x13\x12\x11Resend Email Code\x80\xb5\x18\x00\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.RegistrationService/ResendEmailCode\x12\xcf\x01\n" +
-	"\x13GetCaptchaChallenge\x12'.enum.api.v1.GetCaptchaChallengeRequest\x1a(.enum.api.v1.GetCaptchaChallengeResponse\"e\xbaG\x17\x12\x15Get Captcha Challenge\x80\xb5\x18\x00\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x029:\x01*\"4/enum.api.v1.RegistrationService/GetCaptchaChallenge\x12\xcf\x01\n" +
+	"\x0fResendEmailCode\x12#.enum.api.v1.ResendEmailCodeRequest\x1a$.enum.api.v1.ResendEmailCodeResponse\"b\xbaG\x13\x12\x11Resend Email Code\x80\xb5\x18\x00\x92\xb5\x18\texpensive\x82\xd3\xe4\x93\x025:\x01*\"0/enum.api.v1.RegistrationService/ResendEmailCode\x12\xc0\x01\n" +
+	"\x10GetCaptchaConfig\x12$.enum.api.v1.GetCaptchaConfigRequest\x1a%.enum.api.v1.GetCaptchaConfigResponse\"_\xbaG\x14\x12\x12Get Captcha Config\x80\xb5\x18\x00\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x026:\x01*\"1/enum.api.v1.RegistrationService/GetCaptchaConfig\x12\xcf\x01\n" +
 	"\x13GetRegistrationForm\x12'.enum.api.v1.GetRegistrationFormRequest\x1a(.enum.api.v1.GetRegistrationFormResponse\"e\xbaG\x17\x12\x15Get Registration Form\x80\xb5\x18\x00\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x029:\x01*\"4/enum.api.v1.RegistrationService/GetRegistrationForm\x12\xd9\x01\n" +
 	"\x15GetRegistrationStatus\x12).enum.api.v1.GetRegistrationStatusRequest\x1a*.enum.api.v1.GetRegistrationStatusResponse\"i\xbaG\x19\x12\x17Get Registration Status\x80\xb5\x18\x00\x92\xb5\x18\x04read\x82\xd3\xe4\x93\x02;:\x01*\"6/enum.api.v1.RegistrationService/GetRegistrationStatusB<Z:git.enum.land/enum/enum/proto-gen-go/gen/enum/api/v1;apiv1b\x06proto3"
 
@@ -886,8 +886,8 @@ var file_enum_api_v1_registration_service_proto_goTypes = []any{
 	(*VerifyEmailResponse)(nil),           // 5: enum.api.v1.VerifyEmailResponse
 	(*ResendEmailCodeRequest)(nil),        // 6: enum.api.v1.ResendEmailCodeRequest
 	(*ResendEmailCodeResponse)(nil),       // 7: enum.api.v1.ResendEmailCodeResponse
-	(*GetCaptchaChallengeRequest)(nil),    // 8: enum.api.v1.GetCaptchaChallengeRequest
-	(*GetCaptchaChallengeResponse)(nil),   // 9: enum.api.v1.GetCaptchaChallengeResponse
+	(*GetCaptchaConfigRequest)(nil),       // 8: enum.api.v1.GetCaptchaConfigRequest
+	(*GetCaptchaConfigResponse)(nil),      // 9: enum.api.v1.GetCaptchaConfigResponse
 	(*RegistrationFormItem)(nil),          // 10: enum.api.v1.RegistrationFormItem
 	(*GetRegistrationFormRequest)(nil),    // 11: enum.api.v1.GetRegistrationFormRequest
 	(*GetRegistrationFormResponse)(nil),   // 12: enum.api.v1.GetRegistrationFormResponse
@@ -901,13 +901,13 @@ var file_enum_api_v1_registration_service_proto_depIdxs = []int32{
 	2,  // 3: enum.api.v1.RegistrationService.Register:input_type -> enum.api.v1.RegisterRequest
 	4,  // 4: enum.api.v1.RegistrationService.VerifyEmail:input_type -> enum.api.v1.VerifyEmailRequest
 	6,  // 5: enum.api.v1.RegistrationService.ResendEmailCode:input_type -> enum.api.v1.ResendEmailCodeRequest
-	8,  // 6: enum.api.v1.RegistrationService.GetCaptchaChallenge:input_type -> enum.api.v1.GetCaptchaChallengeRequest
+	8,  // 6: enum.api.v1.RegistrationService.GetCaptchaConfig:input_type -> enum.api.v1.GetCaptchaConfigRequest
 	11, // 7: enum.api.v1.RegistrationService.GetRegistrationForm:input_type -> enum.api.v1.GetRegistrationFormRequest
 	13, // 8: enum.api.v1.RegistrationService.GetRegistrationStatus:input_type -> enum.api.v1.GetRegistrationStatusRequest
 	3,  // 9: enum.api.v1.RegistrationService.Register:output_type -> enum.api.v1.RegisterResponse
 	5,  // 10: enum.api.v1.RegistrationService.VerifyEmail:output_type -> enum.api.v1.VerifyEmailResponse
 	7,  // 11: enum.api.v1.RegistrationService.ResendEmailCode:output_type -> enum.api.v1.ResendEmailCodeResponse
-	9,  // 12: enum.api.v1.RegistrationService.GetCaptchaChallenge:output_type -> enum.api.v1.GetCaptchaChallengeResponse
+	9,  // 12: enum.api.v1.RegistrationService.GetCaptchaConfig:output_type -> enum.api.v1.GetCaptchaConfigResponse
 	12, // 13: enum.api.v1.RegistrationService.GetRegistrationForm:output_type -> enum.api.v1.GetRegistrationFormResponse
 	14, // 14: enum.api.v1.RegistrationService.GetRegistrationStatus:output_type -> enum.api.v1.GetRegistrationStatusResponse
 	9,  // [9:15] is the sub-list for method output_type

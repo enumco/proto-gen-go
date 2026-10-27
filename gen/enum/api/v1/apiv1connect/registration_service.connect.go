@@ -42,9 +42,9 @@ const (
 	// RegistrationServiceResendEmailCodeProcedure is the fully-qualified name of the
 	// RegistrationService's ResendEmailCode RPC.
 	RegistrationServiceResendEmailCodeProcedure = "/enum.api.v1.RegistrationService/ResendEmailCode"
-	// RegistrationServiceGetCaptchaChallengeProcedure is the fully-qualified name of the
-	// RegistrationService's GetCaptchaChallenge RPC.
-	RegistrationServiceGetCaptchaChallengeProcedure = "/enum.api.v1.RegistrationService/GetCaptchaChallenge"
+	// RegistrationServiceGetCaptchaConfigProcedure is the fully-qualified name of the
+	// RegistrationService's GetCaptchaConfig RPC.
+	RegistrationServiceGetCaptchaConfigProcedure = "/enum.api.v1.RegistrationService/GetCaptchaConfig"
 	// RegistrationServiceGetRegistrationFormProcedure is the fully-qualified name of the
 	// RegistrationService's GetRegistrationForm RPC.
 	RegistrationServiceGetRegistrationFormProcedure = "/enum.api.v1.RegistrationService/GetRegistrationForm"
@@ -64,9 +64,7 @@ type RegistrationServiceClient interface {
 	// ResendEmailCode sends a new verification code and invalidates the previous
 	// one.
 	ResendEmailCode(context.Context, *connect.Request[v1.ResendEmailCodeRequest]) (*connect.Response[v1.ResendEmailCodeResponse], error)
-	// GetCaptchaChallenge issues a challenge for the register form. It expires
-	// shortly after it is issued.
-	GetCaptchaChallenge(context.Context, *connect.Request[v1.GetCaptchaChallengeRequest]) (*connect.Response[v1.GetCaptchaChallengeResponse], error)
+	GetCaptchaConfig(context.Context, *connect.Request[v1.GetCaptchaConfigRequest]) (*connect.Response[v1.GetCaptchaConfigResponse], error)
 	GetRegistrationForm(context.Context, *connect.Request[v1.GetRegistrationFormRequest]) (*connect.Response[v1.GetRegistrationFormResponse], error)
 	// GetRegistrationStatus reports whether the email address for a registration
 	// has been verified. Poll it with the token from Register while waiting for
@@ -103,10 +101,10 @@ func NewRegistrationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(registrationServiceMethods.ByName("ResendEmailCode")),
 			connect.WithClientOptions(opts...),
 		),
-		getCaptchaChallenge: connect.NewClient[v1.GetCaptchaChallengeRequest, v1.GetCaptchaChallengeResponse](
+		getCaptchaConfig: connect.NewClient[v1.GetCaptchaConfigRequest, v1.GetCaptchaConfigResponse](
 			httpClient,
-			baseURL+RegistrationServiceGetCaptchaChallengeProcedure,
-			connect.WithSchema(registrationServiceMethods.ByName("GetCaptchaChallenge")),
+			baseURL+RegistrationServiceGetCaptchaConfigProcedure,
+			connect.WithSchema(registrationServiceMethods.ByName("GetCaptchaConfig")),
 			connect.WithClientOptions(opts...),
 		),
 		getRegistrationForm: connect.NewClient[v1.GetRegistrationFormRequest, v1.GetRegistrationFormResponse](
@@ -129,7 +127,7 @@ type registrationServiceClient struct {
 	register              *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
 	verifyEmail           *connect.Client[v1.VerifyEmailRequest, v1.VerifyEmailResponse]
 	resendEmailCode       *connect.Client[v1.ResendEmailCodeRequest, v1.ResendEmailCodeResponse]
-	getCaptchaChallenge   *connect.Client[v1.GetCaptchaChallengeRequest, v1.GetCaptchaChallengeResponse]
+	getCaptchaConfig      *connect.Client[v1.GetCaptchaConfigRequest, v1.GetCaptchaConfigResponse]
 	getRegistrationForm   *connect.Client[v1.GetRegistrationFormRequest, v1.GetRegistrationFormResponse]
 	getRegistrationStatus *connect.Client[v1.GetRegistrationStatusRequest, v1.GetRegistrationStatusResponse]
 }
@@ -149,9 +147,9 @@ func (c *registrationServiceClient) ResendEmailCode(ctx context.Context, req *co
 	return c.resendEmailCode.CallUnary(ctx, req)
 }
 
-// GetCaptchaChallenge calls enum.api.v1.RegistrationService.GetCaptchaChallenge.
-func (c *registrationServiceClient) GetCaptchaChallenge(ctx context.Context, req *connect.Request[v1.GetCaptchaChallengeRequest]) (*connect.Response[v1.GetCaptchaChallengeResponse], error) {
-	return c.getCaptchaChallenge.CallUnary(ctx, req)
+// GetCaptchaConfig calls enum.api.v1.RegistrationService.GetCaptchaConfig.
+func (c *registrationServiceClient) GetCaptchaConfig(ctx context.Context, req *connect.Request[v1.GetCaptchaConfigRequest]) (*connect.Response[v1.GetCaptchaConfigResponse], error) {
+	return c.getCaptchaConfig.CallUnary(ctx, req)
 }
 
 // GetRegistrationForm calls enum.api.v1.RegistrationService.GetRegistrationForm.
@@ -175,9 +173,7 @@ type RegistrationServiceHandler interface {
 	// ResendEmailCode sends a new verification code and invalidates the previous
 	// one.
 	ResendEmailCode(context.Context, *connect.Request[v1.ResendEmailCodeRequest]) (*connect.Response[v1.ResendEmailCodeResponse], error)
-	// GetCaptchaChallenge issues a challenge for the register form. It expires
-	// shortly after it is issued.
-	GetCaptchaChallenge(context.Context, *connect.Request[v1.GetCaptchaChallengeRequest]) (*connect.Response[v1.GetCaptchaChallengeResponse], error)
+	GetCaptchaConfig(context.Context, *connect.Request[v1.GetCaptchaConfigRequest]) (*connect.Response[v1.GetCaptchaConfigResponse], error)
 	GetRegistrationForm(context.Context, *connect.Request[v1.GetRegistrationFormRequest]) (*connect.Response[v1.GetRegistrationFormResponse], error)
 	// GetRegistrationStatus reports whether the email address for a registration
 	// has been verified. Poll it with the token from Register while waiting for
@@ -210,10 +206,10 @@ func NewRegistrationServiceHandler(svc RegistrationServiceHandler, opts ...conne
 		connect.WithSchema(registrationServiceMethods.ByName("ResendEmailCode")),
 		connect.WithHandlerOptions(opts...),
 	)
-	registrationServiceGetCaptchaChallengeHandler := connect.NewUnaryHandler(
-		RegistrationServiceGetCaptchaChallengeProcedure,
-		svc.GetCaptchaChallenge,
-		connect.WithSchema(registrationServiceMethods.ByName("GetCaptchaChallenge")),
+	registrationServiceGetCaptchaConfigHandler := connect.NewUnaryHandler(
+		RegistrationServiceGetCaptchaConfigProcedure,
+		svc.GetCaptchaConfig,
+		connect.WithSchema(registrationServiceMethods.ByName("GetCaptchaConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
 	registrationServiceGetRegistrationFormHandler := connect.NewUnaryHandler(
@@ -236,8 +232,8 @@ func NewRegistrationServiceHandler(svc RegistrationServiceHandler, opts ...conne
 			registrationServiceVerifyEmailHandler.ServeHTTP(w, r)
 		case RegistrationServiceResendEmailCodeProcedure:
 			registrationServiceResendEmailCodeHandler.ServeHTTP(w, r)
-		case RegistrationServiceGetCaptchaChallengeProcedure:
-			registrationServiceGetCaptchaChallengeHandler.ServeHTTP(w, r)
+		case RegistrationServiceGetCaptchaConfigProcedure:
+			registrationServiceGetCaptchaConfigHandler.ServeHTTP(w, r)
 		case RegistrationServiceGetRegistrationFormProcedure:
 			registrationServiceGetRegistrationFormHandler.ServeHTTP(w, r)
 		case RegistrationServiceGetRegistrationStatusProcedure:
@@ -263,8 +259,8 @@ func (UnimplementedRegistrationServiceHandler) ResendEmailCode(context.Context, 
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.RegistrationService.ResendEmailCode is not implemented"))
 }
 
-func (UnimplementedRegistrationServiceHandler) GetCaptchaChallenge(context.Context, *connect.Request[v1.GetCaptchaChallengeRequest]) (*connect.Response[v1.GetCaptchaChallengeResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.RegistrationService.GetCaptchaChallenge is not implemented"))
+func (UnimplementedRegistrationServiceHandler) GetCaptchaConfig(context.Context, *connect.Request[v1.GetCaptchaConfigRequest]) (*connect.Response[v1.GetCaptchaConfigResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("enum.api.v1.RegistrationService.GetCaptchaConfig is not implemented"))
 }
 
 func (UnimplementedRegistrationServiceHandler) GetRegistrationForm(context.Context, *connect.Request[v1.GetRegistrationFormRequest]) (*connect.Response[v1.GetRegistrationFormResponse], error) {
